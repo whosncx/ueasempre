@@ -1,0 +1,55 @@
+/*.components{*/
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  /*height: 90%;*/
+/*}*/
+
+
+.imgLogo{
+    margin-right: 0.2rem;
+}
+
+.labTitle{
+    color: gray;
+    margin-top: 6%;
+    margin-left: 43%;
+    font-weight: bold;
+}
+/*.fields{*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: space-between;*/
+  /*width: 40%;*/
+  /*margin-top: 12%;*/
+  /*margin-left: 50%;*/
+/*}*/
+
+.inputs{
+  width: 40%;
+  margin: 0.4rem;
+}
+.button{
+  background: green;
+  color:white;
+  width: 15%;
+  height: 2rem;
+  margin-top: 0.6rem;
+  margin-left: 0.4rem;  
+  border: 0;
+}
+
+.componentsLab{
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    margin-left: 30%;
+    margin-top: 2%;
+
+}
+.fieldsLab{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: 2%;
+    margin-top: 1rem;
+}
