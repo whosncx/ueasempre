@@ -5,26 +5,43 @@
   
   .imgLoginLogo-signUpScreen{
     border-radius: 25px;
-    border: 2px solid #73AD21;
+    border: 2px solid #06995F;
     padding: 20px; 
     width: 250px;
     height: 200px;
   }
   
   .labTitle-signUpScreen{
-      color: green;
+      color: #06995F;
       margin-top: 6%;
       margin-left: 43%;
       font-weight: bold;
   }
   
-  .inputs-signUpScreen{
+  .inputsDinamico-signUpScreen{
+    padding: 0.1rem 0.5rem;
+    font-size: 1rem;
+    color: green;
+    background-color: #fff;
     width: 40%;
-    margin: 0.4rem;
+    margin: 0.3rem;
+    border-radius: 1rem;
+    border: 0.1rem solid #ced4da;
+  }
+
+  .inputs-signUpScreen{
+    padding: 0.1rem 0.5rem;
+    font-size: 1rem;
+    color: green;
+    background-color: #fff;
+    width: 40%;
+    margin: 0.3rem;
+    border-radius: 1rem;
+    border: 0.1rem solid #ced4da;
   }
 
   .buttonVoltar-signUpScreen{
-    background: orange;
+    background: #E9B526;
     opacity: 0.7;
     color:white;
     width: 6rem;
@@ -36,7 +53,7 @@
   }
 
   .buttonSalvar-signUpScreen{
-    background: green;
+    background: #06995F;
     opacity: 0.7;
     color:white;
     width: 6rem;
@@ -55,6 +72,7 @@
       margin-top: 2%;
   
   }
+
   .fieldsLab-signUpScreen{
       display: flex;
       flex-direction: column;
@@ -62,3 +80,12 @@
       margin-left: 2%;
       margin-top: 1rem;
   }
+
+  .fieldsLabDinamico-signUpScreen{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    margin-left: 0.1rem;
+    margin-top: 1rem;
+}

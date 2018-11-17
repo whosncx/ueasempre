@@ -15,6 +15,13 @@ class SignUpScreen extends Component{
         <div className='componentsLab-signUpScreen'>
           <div className='imgLogo-signUpScreen'>
               <img src={uea} height="200" />
+              <div className='fieldsLabDinamico-signUpScreen'> 
+              <input className='inputsDinamico-signUpScreen' id='entryYear' placeholder='Ano de Ingresso' type='entryYear' />
+              <input className='inputsDinamico-signUpScreen' id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
+              <input className='inputsDinamico-signUpScreen' id='institutuion' placeholder='Instituição' type='institutuion' />
+              <input className='inputsDinamico-signUpScreen' id='situation' placeholder='Situação' type='situation' />
+              <input className='inputsDinamico-signUpScreen' id='function' placeholder='Função' type='function' />
+          </div>
           </div>
           <div className='fieldsLab-signUpScreen'>
             <input className='inputs-signUpScreen' id='name' placeholder='Nome Completo' type='name'/>
