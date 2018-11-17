@@ -1,0 +1,72 @@
+.input{
+  display: block;
+  padding: 0.450rem 0.90rem;
+  font-size: 1.20rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1.2px solid #ced4da;
+  border-radius: 0.30rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-bottom: 1rem;
+  width: 100%;
+  /* margin-left: 3.5rem; */
+  /* margin-left: 3.5rem; */
+}
+
+.btnLogin{
+  display: block;
+  width: 30%;
+  padding: 0.450rem 0.90rem;
+  font-size: 1.20rem;
+  font-weight: bold;
+  line-height: 1.5;
+  color: #fff;
+  background-color: #06995F;
+  background-clip: padding-box;
+  border: none;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 767px){
+  .logo{width: 100%;}
+  .logoContainer {width: 50%; margin-left: 25%; margin-right: 25%;}
+  .formLoginContainer {width: 80%; margin-left: 10%; margin-right: 10%; margin-top: 5%;}
+  .loginContainer{
+      margin-top: 20%;
+  }
+  .btnLogin{height: 2.5rem;}
+}
+
+@media screen and (min-width: 768px){
+  .logoContainer, .formLoginContainer{
+      width: 50%;
+      height: 100vh;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+
+  .logoContainer{width: 40%;float:left;}
+  .formLoginContainer{width:60%;float:left;}   
+
+  .logo {width: 27.5vw; height: 27.5vw; margin-left: 35%; margin-right: 10%;}
+  .formLogin {width: 70%; margin-right: 25%; margin-left: 5%;}
+
+}
+
+
+@media screen and (min-width: 1024px){
+  .logo {width: 22.5vw; height: 22.5vw; margin-left: 48%; margin-right: 7%;}
+  .formLogin {width: 65%; margin-right: 30%; margin-left: 5%;} 
+}
+
+@media screen and (min-width: 1440px){
+  .logo {width: 17.5vw; height: 17.5vw; margin-left: 58%; margin-right: 7%;}
+  .formLogin {width: 55%; margin-right: 40%; margin-left: 5%;} 
+
+}
