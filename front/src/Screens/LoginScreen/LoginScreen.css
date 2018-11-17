@@ -5,11 +5,11 @@
 /*}*/
 
 
-.a{
+.a-loginScreen{
   text-decoration: underline;
 }
 
-.imgLoginLogo{
+.imgLoginLogo-loginScreen{
   border-radius: 25px;
   border: 2px solid #73AD21;
   padding: 20px; 
@@ -17,7 +17,7 @@
   height: 200px;
 }
 
-.labTitle{
+.labTitle-loginScreen{
     color: gray;
     margin-top: 6%;
     margin-left: 43%;
@@ -33,11 +33,11 @@
 /*}*/
 
 
-.inputs{
+.inputs-loginScreen{
   width: 40%;
   margin: 0.4rem;
 }
-.button{
+.button-loginScreen{
   background: green;
   color:white;
   width: 15%;
@@ -47,7 +47,7 @@
   border: 0;
 }
 
-.componentsLab{
+.componentsLab-loginScreen{
     display: flex;
     flex-direction: row;
     height: 90%;
@@ -55,7 +55,7 @@
     margin-top: 2%;
 
 }
-.fieldsLab{
+.fieldsLab-loginScreen{
     display: flex;
     flex-direction: column;
     width: 60%;

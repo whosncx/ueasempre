@@ -15,15 +15,15 @@ class LoginScreen extends Component{
         <header>
           <Header></Header>
         </header>
-        <div className='componentsLab'>
+        <div className='componentsLab-loginScreen'>
             <div className='imgLoginLogo'>
                 <img src={uea} height="200" />
             </div>
-          <div className='fieldsLab'>
-            <input className='inputs' id='user' placeholder='Insira seu email ou CPF'/>
-            <input className='inputs' id='password' placeholder='Insira sua senha' type='password' />
+          <div className='fieldsLab-loginScreen'>
+            <input className='inputs-loginScreen' id='user' placeholder='Insira seu email ou CPF'/>
+            <input className='inputs-loginScreen' id='password' placeholder='Insira sua senha' type='password' />
             <p><a href="https://www.google.com.br/" target="_blank">Esqueci minha senha</a></p>
-            <button className='button'>
+            <button className='button-loginScreen'>
               Entrar
             </button>
             <p><a href="https://www.google.com.br/" target="_blank">Novo Usuário?</a></p>
