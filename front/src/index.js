@@ -9,9 +9,6 @@ import {BrowserRouter, Switch, Route } from 'react-router-dom';
 import LoginScreen from './Screens/LoginScreen/LoginScreen';
 import SignUpScreen from './Screens/SignUpScreen/SignUpScreen';
 
-//ReactDOM.render(<LoginScreen />, document.getElementById('root'));
-// 
-
 ReactDOM.render(
     <BrowserRouter basename="ueasempre">
       <Switch>
