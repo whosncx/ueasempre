@@ -1,4 +1,4 @@
-from teste import db
+from controllers import db
 
 
 class Aluno(db.Model):
@@ -6,6 +6,7 @@ class Aluno(db.Model):
 
     aluno_id = db.Column(db.String(12), primary_key=True)
     aluno_nome = db.Column(db.String(100))
+    aluno_senha = db.Column(db.Text)
     aluno_email = db.Column(db.String(200))
     aluno_facebook = db.Column(db.String(200))
     aluno_linkedin = db.Column(db.String(200))
