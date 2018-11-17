@@ -1,19 +1,17 @@
 import React, {Component} from 'react';
 import './Header.css';
+import uea from '../../Assets/uea.svg';
 
 class Header extends Component{
     render(){
       return(
-      <div class="header">
-        <a href="#default" class="logo">CompanyLogo</a>
-        <div class="header-right">
-          <a class="active" href="#home">Home</a>
-          <a href="#contact">Contact</a>
-          <a href="#about">About</a>
-       </div>
+      <div className="makeGreen">
+          <div className="sempreLogo">
+          <div><img src={uea} alt='logo da uea'/>
+          </div>
+          </div>
       </div>
       );
     }
   }
-  
   export default Header;
