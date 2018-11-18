@@ -1,10 +1,24 @@
 .sempreLogo{
-  width: 100px;
+  width: 160px;
   padding: 1%;
+}
+
+
+.toRight{
+  text-align: center;
+  justify-content: center;
+  color:white;
+  font-family: serif;
+  font-size: 2.1875rem;
+  padding: 1% 5%;
+  margin-top: 2%;
 }
 
 .makeGreen{
   background-color:green ;
   border-bottom-style: solid;
   border-bottom-color: green;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
 }

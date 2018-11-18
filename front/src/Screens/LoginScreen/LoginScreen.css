@@ -10,10 +10,11 @@
   border-radius: 0.30rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   margin-bottom: 1rem;
-  width: 100%;
+  width: 40%;
   /* margin-left: 3.5rem; */
   /* margin-left: 3.5rem; */
 }
+
 
 .btnLogin{
   display: block;

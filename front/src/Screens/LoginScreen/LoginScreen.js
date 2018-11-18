@@ -6,9 +6,13 @@ import './LoginScreen.css';
 //external components
 import uea from '../../Assets/uea.svg';
 import Header from '../../Components/Header/Header';
+import { Link } from 'react-router-dom';
 
 class LoginScreen extends Component{
 
+    otherFunction() {
+        window.location.replace("http://localhost:3000/cadastro");
+    }
   render(){
     return(
       <div>
@@ -41,6 +45,11 @@ class LoginScreen extends Component{
                                 <button className="btnLogin">
                                     Entrar
                                 </button>
+                            </div >
+                            <div className="btnContainer">
+                                <Link onClick={this.otherFunction.bind(this)} to="/cadastro" >
+                                <a href="http://localhost:3000/cadastro" target="_blank">Novo Usuário?</a>
+                                </Link>
                             </div>
                         </form>
                     </div>
