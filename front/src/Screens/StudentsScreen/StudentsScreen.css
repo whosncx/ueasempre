@@ -1,0 +1,82 @@
+.input{
+    display: block;
+    padding: 0.450rem 0.90rem;
+    font-size: 1.20rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1.2px solid #ced4da;
+    border-radius: 0.30rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin-bottom: 1rem;
+    width: 100%;
+    /* margin-left: 3.5rem; */
+    /* margin-left: 3.5rem; */
+  }
+  
+  .btnStudents{
+    display: block;
+    width: 30%;
+    padding: 0.450rem 0.90rem;
+    font-size: 1.20rem;
+    font-weight: bold;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #06995F;
+    background-clip: padding-box;
+    border: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin-bottom: 1rem;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 25px;
+    grid-row-gap: 20px;
+    background-color: #ffffff;
+    padding: 10px;
+  }
+
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  @media screen and (max-width: 767px){
+    .logo{width: 100%;}
+    .logoContainer {width: 50%; margin-left: 25%; margin-right: 25%;}
+    .studentsContainer{
+      margin-top: 20%;
+    }
+  }
+  
+  @media screen and (min-width: 768px){
+    .logoContainer{
+        width: 50%;
+        height: 100vh;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+  
+    .logoContainer{width: 40%;float:left;}
+  
+    .logo {width: 27.5vw; height: 27.5vw; margin-left: 35%; margin-right: 10%;}
+    
+  }
+  
+  
+  @media screen and (min-width: 1024px){
+    .logo {width: 22.5vw; height: 22.5vw; margin-left: 48%; margin-right: 7%;} 
+  }
+  
+  @media screen and (min-width: 1440px){
+    .logo {width: 17.5vw; height: 17.5vw; margin-left: 58%; margin-right: 7%;}
+  }

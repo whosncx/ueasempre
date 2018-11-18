@@ -8,12 +8,15 @@ import {BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import LoginScreen from './Screens/LoginScreen/LoginScreen';
 import SignUpScreen from './Screens/SignUpScreen/SignUpScreen';
+import StudentsScreen from './Screens/StudentsScreen/StudentsScreen';
+
 
 ReactDOM.render(
     <BrowserRouter basename="ueasempre">
       <Switch>
         <Route path="/login" exact={true} component={LoginScreen} />
         <Route path="/cadastro" exact={true} component={SignUpScreen}/>
+        <Route path="/alunos" exact={true} component={StudentsScreen}/>
       </Switch>
     </BrowserRouter>,
   document.getElementById('root'));
