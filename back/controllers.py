@@ -1,4 +1,6 @@
-from flask import Flask, jsonify, request
+import jwt
+import datetime
+from flask import Flask, jsonify, request, make_response
 from flask_sqlalchemy import SQLAlchemy #comunicacao com o banco
 
 app = Flask(__name__)
@@ -9,12 +11,13 @@ from models import *
 @app.route('/login')
 def login():
     auth = request.authorization
-
     erro = None
+
     if ((not auth) or (not auth.username) or (not auth.password)):
         erro = 'Login required.'
-       
+
     aluno = Aluno.query.filter_by(aluno_id = auth.username).first()
+    
     if (not aluno):
         erro = 'CPF não cadastrado no sistema.'
     
@@ -23,16 +26,43 @@ def login():
 
     if (erro is None):
         return 'Olá %s' % aluno.aluno_nome
-    print (auth)
-    return 'login '
+
+        token = jwt.encode({'aluno_id': aluno.aluno_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
+        response = make_response(jsonify({'token': token.decode('UTF-8'), 'canLogin':True}))
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        return response
+
+    response = make_response(jsonify({'erro':erro}), 401)
+    response.headers['WWW-Authenticate'] = 'Basic realm={}'.format(erro)
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = None
+
+        if 'x-access-token' in request.headers:
+            token = request.headers['x-access-token']
+
+        if not token:
+            response = make_response(jsonify({'message': 'Token is missing!'}), 401)
+            response.headers['Access-Control-Allow-Origin'] = '*'
+            return response
+
+        try:
+            data = jwt.decode(token, app.config['SECRET_KEY'])
+            current_user = Pesq.query.filter_by(aluno_id=data['aluno_id']).first()
+        except:
+            response = make_response(jsonify({'message': 'Token is missing!'}), 401)
+            response.headers['Access-Control-Allow-Origin'] = '*'
+            return response
+
+        return f(current_user, *args, **kwargs)
+
+    return decorated
 
 
-# @app.route('/alunos/<int:aluno_id>')
-# def aluno(aluno_id):
-#     aluno = Aluno.query.filter_by(aluno_id = str(aluno_id)).first()
-#     if(aluno == None):
-#         return 'Aluno não encontrada!'
-#     return 'Nome: %s' % aluno.aluno_nome
 
 @app.route('/alunos/<string:aluno_id>')
 def aluno(aluno_id):
