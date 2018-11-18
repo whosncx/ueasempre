@@ -14,13 +14,22 @@
   .labTitle-signUpScreen{
       color: #06995F;
       margin-top: 4rem;
-      margin-left: 53rem;
+      margin-left: 57rem;
       font-weight: bold;
       font-size: 2rem;
       display: flex;
       margin-bottom: 0rem;
+      margin-bottom: -2.5rem;
   }
-  
+
+  .imgLogoSubTitle-signUpScreen{
+      color: green;
+      font-weight: bold;
+      margin-top: -1rem;
+      font-size: 0.8rem;
+      margin-left: 2.3rem;
+  }
+    
   .inputsDinamico-signUpScreen{
     padding: 0.1rem 0.5rem;
     font-size: 1rem;
@@ -31,7 +40,8 @@
     border-radius: 1rem;
     border: 0.1rem solid #ced4da;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    height: 1.5rem;
+    height: 1.8rem;
+    margin-left: -0.3rem;
   }
 
   .inputs-signUpScreen{
@@ -39,11 +49,11 @@
     font-size: 1rem;
     color: green;
     background-color: #fff;
-    width: 10rem;
+    width: 20rem;
     margin: 0.3rem;
     border-radius: 1rem;
     border: 0.1rem solid #ced4da;
-    height: 1.5rem;
+    height: 1.8rem;
   }
 
   .buttonVoltar-signUpScreen{
@@ -94,11 +104,11 @@
     flex-direction: column;
     width: 30rem;
     margin-left: 0.1rem;
-    margin-top: 1rem;
+    margin-top: 1.4rem;
 }
 
 .buttons-signUpScreen{
     display: flex;
     flex-direction: row;
-    margin-left: 57rem;
+    margin-left: 59rem;
 }
