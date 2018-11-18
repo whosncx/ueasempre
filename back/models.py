@@ -6,7 +6,7 @@ class Aluno(db.Model):
 
     aluno_id = db.Column(db.String(12), primary_key=True)
     aluno_nome = db.Column(db.String(100))
-    aluno_senha = db.Column(db.Text)
+    aluno_senha = db.Column(db.Text, nullable=False)
     aluno_email = db.Column(db.String(200))
     aluno_facebook = db.Column(db.String(200))
     aluno_linkedin = db.Column(db.String(200))
@@ -31,10 +31,10 @@ class Aluno(db.Model):
 class Unidade(db.Model):
     __tablename__ = 'uea_unidade'
 
-    aluno_id = db.Column(db.Integer, primary_key=True)
-    unidade_nome: db.Column(db.String(200), nullable=False)
-    unidade_sigla: db.Column(db.String(10), nullable=False)
-    aluno_status = db.Column(db.Integer, nullable=False)
+    unidade_id = db.Column(db.Integer, primary_key=True)
+    unidade_nome = db.Column(db.String(200), nullable=False)
+    unidade_sigla = db.Column(db.String(10), nullable=False)
+    unidade_status = db.Column(db.Integer, nullable=False)
 
     alunos = db.relationship('Aluno', backref='unidade', lazy=True)
     cursos = db.relationship('Curso', backref='unidade', lazy=True)
@@ -43,9 +43,10 @@ class Curso(db.Model):
     __tablename__ = 'uea_curso'
 
     curso_id = db.Column(db.Integer, primary_key=True)
+    curso_sigla = db.Column(db.String(10), nullable=False)
     curso_nome = db.Column(db.String(200), nullable=False)
     curso_status = db.Column(db.Integer, nullable=False)
 
     alunos = db.relationship('Aluno', backref='curso', lazy=True)
 
-    curso_unidade_id = db.Column(db.Integer, primary_key=True)
+    curso_unidade_id = db.Column(db.Integer, db.ForeignKey('uea_unidade.unidade_id'), nullable=False)
