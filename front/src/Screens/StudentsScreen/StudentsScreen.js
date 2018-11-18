@@ -15,45 +15,57 @@ class StudentsScreen extends Component{
         <header>
           <Header></Header>
         </header>
-        <div className='studentsContainer'>
-            <div class="grid-container">
-                <div class="grid-item">
-                    <img src={user}/>
-                </div>
-                <div class="grid-item">
-                    <img src={user}/>
-                </div>
-                <div class="grid-item">
-                    <img src={user}/>
-                </div>  
-                <div class="grid-item">
-                    <img src={user}/>
-                </div>
-                <div class="grid-item">
-                    <img src={user}/>
-                </div>
-                <div class="grid-item">
-                    <img src={user}/>
-                </div>
-                <div class="grid-item">
-                    <img src={user}/>
-                </div>  
-                <div class="grid-item">
-                    <img src={user}/>
-                </div>
-                <div class="grid-item">
-                    <img src={user}/>
-                </div>
-                <div class="grid-item">
-                    <img src={user}/>
-                </div>
-                <div class="grid-item">
-                    <img src={user}/>
-                </div>  
-                <div class="grid-item">
-                    <img src={user}/>
-                </div>
-            </div>               
+        <div className='grid-studentsContainer'>
+            <ul>
+                <li className='grid-studentsItem'>
+                    <img className='grid-studentsImg' src={user}/>
+                    <p className='grid-studentsText'>fulano ciclano chales</p>
+                </li>
+                <li className='grid-studentsItem'>
+                    <img className='grid-studentsImg' src={user}/>
+                    <p className='grid-studentsText'>fulano ciclano chales</p>
+                </li>
+                <li className='grid-studentsItem'>
+                    <img className='grid-studentsImg' src={user}/>
+                    <p className='grid-studentsText'>fulano ciclano chales</p>
+                </li>
+                <li className='grid-studentsItem'>
+                    <img className='grid-studentsImg' src={user}/>
+                    <p className='grid-studentsText'>fulano ciclano chales</p>
+                </li>
+                <li className='grid-studentsItem'>
+                    <img className='grid-studentsImg' src={user}/>
+                    <p className='grid-studentsText'>fulano ciclano chales</p>
+                </li>
+                <li className='grid-studentsItem'>
+                    <img className='grid-studentsImg' src={user}/>
+                    <p className='grid-studentsText'>fulano ciclano chales</p>
+                </li>
+                <li className='grid-studentsItem'>
+                    <img className='grid-studentsImg' src={user}/>
+                    <p className='grid-studentsText'>fulano ciclano chales</p>
+                </li>
+                <li className='grid-studentsItem'>
+                    <img className='grid-studentsImg' src={user}/>
+                    <p className='grid-studentsText'>fulano ciclano chales</p>
+                </li>
+                <li className='grid-studentsItem'>
+                    <img className='grid-studentsImg' src={user}/>
+                    <p className='grid-studentsText'>fulano ciclano chales</p>
+                </li>
+                <li className='grid-studentsItem'>
+                    <img className='grid-studentsImg' src={user}/>
+                    <p className='grid-studentsText'>fulano ciclano chales</p>
+                </li>
+                <li className='grid-studentsItem'>
+                    <img className='grid-studentsImg' src={user}/>
+                    <p className='grid-studentsText'>fulano ciclano chales</p>
+                </li>
+                <li className='grid-studentsItem'>
+                    <img className='grid-studentsImg' src={user}/>
+                    <p className='grid-studentsText'>fulano ciclano chales</p>
+                </li>
+            </ul>              
         </div>
       </div>    
     );
