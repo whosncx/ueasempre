@@ -40,8 +40,10 @@ class SignUpScreen extends Component{
             <input className='inputs-signUpScreen' id='email' placeholder='Email' type='email' />
             <input className='inputs-signUpScreen' id='facebook' placeholder='Facebook' type='facebook' />
             <input className='inputs-signUpScreen' id='linkedin' placeholder='Linkedin' type='linkedin' />
-            <input className='inputs-signUpScreen' id='unity' placeholder='Unidade' type='unity' />
-            <input className='inputs-signUpScreen' id='course' placeholder='Curso' type='course' />
+            <div className="fieldsLabSide-signUpScreen">
+              <input className='inputsSide-signUpScreen' id='unity' placeholder='Unidade' type='unity' />             
+              <input className='inputsSide-signUpScreen' id='course' placeholder='Curso' type='course' />
+            </div>
             <input className='inputs-signUpScreen' id='cpf' placeholder='CPF' type='cpf' />
             <input className='inputs-signUpScreen' id='password' placeholder='Senha' type='password' />
             <input className='inputs-signUpScreen' id='password' placeholder='Confirmar Senha' type='password' />
