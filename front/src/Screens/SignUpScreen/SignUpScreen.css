@@ -71,6 +71,9 @@
     border: 0.1rem solid #ced4da;
     height: 1.8rem;
   }
+  .myControlClassName{
+    border: 0px;
+  }
 
   .buttonVoltar-signUpScreen{
     background: #E9B526;
@@ -126,7 +129,7 @@
     flex-direction: column;
     /*width: 30rem;*/
     margin-left: 0.1rem;
-    margin-top: -1rem;
+    /*margin-top: -1rem;*/
 }
 
 .buttons-signUpScreen{

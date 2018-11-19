@@ -166,7 +166,11 @@ def all_unidades():
 
     output = []
     for unidade in unidades:
-        uni = {'Nome': unidade.unidade_nome}
+        uni = {
+            'nome': unidade.unidade_nome,
+            'id': unidade.unidade_id,
+            'sigla': unidade.unidade_sigla
+        }
 
         output.append(uni)
     
@@ -185,7 +189,11 @@ def all_cursos():
     cursos = Curso.query.all()
     output = []
     for curso in cursos:
-        c_data = {'Nome': curso.curso_nome, 'Unidade': curso.curso_nome}
+        c_data = {
+                    'nome': curso.curso_nome,
+                    'sigla': curso.curso_sigla,
+                    'id': curso.curso_id
+                 }
 
         output.append(c_data)
     

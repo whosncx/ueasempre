@@ -4,8 +4,14 @@ import './SignUpScreen.css';
 import Global from '../../Components/global'
 import camera from '../../Assets/photo-camera.svg';
 import Header from '../../Components/Header/Header';
+import Dropdown from 'react-dropdown'
+import 'react-dropdown/style.css'
 
 class SignUpScreen extends Component{
+  cursosNome = [];
+  cursosId = [];
+  unidadesNome = [];
+  unidadesId = [];
   constructor(){
     super();
     this.state = {
@@ -28,6 +34,38 @@ class SignUpScreen extends Component{
 
   componentDidMount() {
     const token = sessionStorage.getItem('jwtToken');
+    
+    fetch(Global.API_URL + '/cursos')
+    .then(function(response){
+      return response.json();
+    })
+    .then(data => {
+      data.forEach(curso => {
+        this.cursosId.push(curso.id);
+        this.cursosNome.push(curso.sigla);
+      });
+      console.log(this.cursosNome);
+    })
+    .catch((e) => {
+      console.log(e);
+      alert('Houve um erro ao realizar pegar cursos, tente novamente mais tarde');
+    });
+
+    fetch(Global.API_URL + '/unidades')
+    .then(function(response){
+      return response.json();
+    })
+    .then(data => {
+      data.forEach(unidade => {
+        this.unidadesId.push(unidade.id);
+        this.unidadesNome.push(unidade.sigla);
+      });
+    })
+    .catch((e) => {
+      console.log(e);
+      alert('Houve um erro ao realizar pegar unidades, tente novamente mais tarde');
+    });
+
     if(!token){
       // this.props.history.push('/login');
       return 
@@ -186,7 +224,7 @@ class SignUpScreen extends Component{
 
     fetch(Global.API_URL + '/cadastro', request).then((response) => {
       response.json().then((data) => {
-        
+        console.log(this.uploadInput.files[0]);
         const form = new FormData();
         form.append('file', this.uploadInput.files[0]);
         form.append('filename', data.id + '.png')
@@ -250,21 +288,28 @@ class SignUpScreen extends Component{
               <input className='inputsDinamico-signUpScreen' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
               <input className='inputsDinamico-signUpScreen' value={this.state.exitYear} onChange={evt => this.handleChange(evt)} id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
               <input className='inputsDinamico-signUpScreen' value={this.state.institutuion} onChange={evt => this.handleChange(evt)} id='institutuion' placeholder='Instituição' type='institutuion' />
-              <input className='inputsDinamico-signUpScreen' value={this.state.situation} onChange={evt => this.handleChange(evt)} id='situation' placeholder='Situação' type='situation' />
+              {
+              /*<input className='inputsDinamico-signUpScreen' value={this.state.situation} onChange={evt => this.handleChange(evt)} id='situation' placeholder='Situação' type='situation' />
+              */}
+              <Dropdown className='inputsDinamico-signUpScreen' options={this.situacao=['discente', 'egresso'] }/>
               <input className='inputsDinamico-signUpScreen' id='function' placeholder='Função' type='function' value={this.state.function} onChange={evt => this.handleChange(evt)}/>
               </div>
           </div>
           <div className='fieldsLab-signUpScreen'>
-            <input className='inputs-signUpScreen' id='name' placeholder='Nome Completo' type='name'/>
-            <input className='inputs-signUpScreen' id='email' placeholder='Email' type='email' />
-            <input className='inputs-signUpScreen' id='facebook' placeholder='Facebook' type='facebook' />
-            <input className='inputs-signUpScreen' id='linkedin' placeholder='Linkedin' type='linkedin' />
+            <input className='inputs-signUpScreen' value={this.state.name} onChange={evt => this.handleChange(evt)} id='name' placeholder='Nome Completo' type='name'/>
+            <input className='inputs-signUpScreen' value={this.state.email} onChange={evt => this.handleChange(evt)} id='email' placeholder='Email' type='email' />
+            <input className='inputs-signUpScreen' value={this.state.facebook} onChange={evt => this.handleChange(evt)} id='facebook' placeholder='Facebook' type='facebook' />
+            <input className='inputs-signUpScreen' value={this.state.linkedin} onChange={evt => this.handleChange(evt)} id='linkedin' placeholder='Linkedin' type='linkedin' />
             <div className="fieldsLabSide-signUpScreen">
-              <input className='inputsSide-signUpScreen' id='unity' placeholder='Unidade' type='unity' />             
-              <input className='inputsSide-signUpScreen' id='course' placeholder='Curso' type='course' />
-            </div>
-            <input className='inputs-signUpScreen' id='cpf' placeholder='CPF' type='cpf' />
-            <input className='inputs-signUpScreen' id='password' placeholder='Senha' type='password' />
+              <Dropdown controlClassName='myControlClassName' className='inputsSide-signUpScreen' options={this.cursosNome} onChange={this._onSelect} placeholder="Curso" />
+              <Dropdown controlClassName='myControlClassName' className='inputsSide-signUpScreen' options={this.unidadesNome} onChange={this._onSelect} placeholder="Unidade" />
+              {/**              
+              <input className='inputsSide-signUpScreen' value={this.state.unity} onChange={evt => this.handleChange(evt)} id='unity' placeholder='Unidade' type='unity' />             
+              <input className='inputsSide-signUpScreen' value={this.state.course} onChange={evt => this.handleChange(evt)} id='course' placeholder='Curso' type='course' />
+              */}
+              </div>
+            <input className='inputs-signUpScreen' value={this.state.cpf} onChange={evt => this.handleChange(evt)} id='cpf' placeholder='CPF' type='cpf' />
+            <input className='inputs-signUpScreen' value={this.state.password} onChange={evt => this.handleChange(evt)} id='password' placeholder='Senha' type='password' />
             <input className='inputs-signUpScreen' id='password' placeholder='Confirmar Senha' type='password' />
             <div className='buttons-signUpScreen'>
               <button className='buttonVoltar-signUpScreen'>
