@@ -10,6 +10,10 @@
     width: 90px;
     height: 90px;
   }
+
+  .labImgContainer{
+    margin-top : 8%;
+  }
   
   .labTitle-signUpScreen{
       color: #06995F;
@@ -25,9 +29,7 @@
   .imgLogoSubTitle-signUpScreen{
       color: green;
       font-weight: bold;
-      margin-top: -1rem;
       font-size: 0.8rem;
-      margin-left: 2.3rem;
   }
     
   .inputsDinamico-signUpScreen{
@@ -104,7 +106,6 @@
     flex-direction: column;
     /*width: 30rem;*/
     margin-left: 0.1rem;
-    margin-top: 1.4rem;
 }
 
 .buttons-signUpScreen{

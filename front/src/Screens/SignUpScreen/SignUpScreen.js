@@ -230,8 +230,8 @@ class SignUpScreen extends Component{
     let $imagePreview = null;
       $imagePreview = (
       <div className="labImgContainer">
-          <img onError={this.handleError.bind(this)} src={this.state.imageURL} className="labImg" alt={this.state.labNome} height='200' />
-          <div className="changePicInputContainer">
+          <img onError={this.handleError.bind(this)} src={this.state.imageURL} className="labImg" alt={this.state.labNome} height='195' width='195'/>
+          <div className="imgLogoSubTitle-signUpScreen">
 
             <input ref={(ref) => { this.uploadInput = ref; }} className="changePicInput" type="file" id="Imagem" name="Imagem" onChange={evt => this.fileChangedHandler(evt)} ></input>
             
@@ -246,7 +246,6 @@ class SignUpScreen extends Component{
         <div className='componentsLab-signUpScreen'>
           <div className='imgLogo-signUpScreen'>
               {$imagePreview}
-              <p className='imgLogoSubTitle-signUpScreen'>insira uma foto aqui</p>
               <div className='fieldsLabDinamico-signUpScreen'> 
               <input className='inputsDinamico-signUpScreen' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
               <input className='inputsDinamico-signUpScreen' value={this.state.exitYear} onChange={evt => this.handleChange(evt)} id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
