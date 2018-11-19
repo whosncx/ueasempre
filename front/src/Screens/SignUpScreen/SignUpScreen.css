@@ -14,7 +14,7 @@
   .labTitle-signUpScreen{
       color: #06995F;
       margin-top: 4rem;
-      margin-left: 57rem;
+      margin-left: 40%;
       font-weight: bold;
       font-size: 2rem;
       display: flex;
@@ -76,7 +76,7 @@
     width: 7rem;
     height: 2rem;
     margin-top: 0.6rem;
-    margin-left: 0.4rem;  
+    margin-left: 2rem;  
     border: 0;
     border-radius: 40px;
   }
@@ -85,7 +85,7 @@
       display: flex;
       flex-direction: row;
       height: 90%;
-      margin-left: 35%;
+      margin-left: 30%;
       margin-right: 5%;
       margin-top: 2%;
   }
@@ -110,5 +110,5 @@
 .buttons-signUpScreen{
     display: flex;
     flex-direction: row;
-    margin-left: 59rem;
+    margin-left: 5%;
 }

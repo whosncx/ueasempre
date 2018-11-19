@@ -45,16 +45,16 @@ class SignUpScreen extends Component{
             <input className='inputs-signUpScreen' id='cpf' placeholder='CPF' type='cpf' />
             <input className='inputs-signUpScreen' id='password' placeholder='Senha' type='password' />
             <input className='inputs-signUpScreen' id='password' placeholder='Confirmar Senha' type='password' />
+            <div className='buttons-signUpScreen'>
+              <button className='buttonVoltar-signUpScreen'>
+                Voltar
+              </button>
+              <button className='buttonSalvar-signUpScreen'>
+                Salvar
+              </button>
+            </div>
           </div>
         </div>
-          <div className='buttons-signUpScreen'>
-            <button className='buttonVoltar-signUpScreen'>
-              Voltar
-            </button>
-            <button className='buttonSalvar-signUpScreen'>
-              Salvar
-            </button>
-          </div>
       </div>
       );
 
