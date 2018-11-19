@@ -110,21 +110,22 @@ def perfilaluno(current_user):
 
 
 # CADASTRO INCOMPLETO
-# @app.route('/cadastro', methods=['POST'])
-# def create_aluno():
-#     data = request.get_json()
+@app.route('/cadastro', methods=['POST'])
+def create_aluno():
+    data = request.get_json()
 
-#     novo_aluno = aluno(aluno_nome=data['name'],aluno_id=data['cpf'],aluno_facebook=data['facebook'],
-#     aluno_linkedin=data['linkedin'],aluno_email=['email'],aluno_uea_unidade=data['unity'],aluno_uea_curso=data['course'],
-#     aluno_senha=data['password'], aluno_ano_ingresso=data['entryYear'], aluno_ano_conclusao=data[exitYear]
-#     aluno_situacao=0,aluno_discente_situacao=0,)
+    novo_aluno = Aluno(aluno_nome=data['name'],aluno_id=data['cpf'],aluno_facebook=data['facebook'],
+    aluno_linkedin=data['linkedin'],aluno_email=data['email'],aluno_uea_unidade=data['unity'],aluno_uea_curso=data['course'],
+    aluno_senha=data['password'], aluno_ano_ingresso=data['entryYear'], aluno_ano_conclusao=data['exitYear'],
+    aluno_situacao=0,aluno_discente_situacao=0, aluno_matricula='123',aluno_discente_funcao=0,aluno_discente_instituicao=data['institutuion'],
+    aluno_status=1)
 
-#     db.session.add(lab)
-#     db.session.commit()
+    db.session.add(novo_aluno)
+    db.session.commit()
 
-#     response = make_response(jsonify({'message': 'Lab created!', 'id':lab.lab_id}))
-#     response.headers['Access-Control-Allow-Origin'] = '*'
-#     return response
+    response = make_response(jsonify({'message': 'Aluno Cadastrado!', 'id':novo_aluno.aluno_id}))
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 
 

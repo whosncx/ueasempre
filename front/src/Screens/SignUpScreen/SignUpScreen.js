@@ -161,7 +161,7 @@ class SignUpScreen extends Component{
             <input className='inputs-signUpScreen' id='linkedin' placeholder='Linkedin' type='linkedin' value={this.state.institutuion} onChange={evt => this.handleChange(evt)}/>
             <input className='inputs-signUpScreen' id='unity' placeholder='Unidade' type='unity' value={this.state.unity} onChange={evt => this.handleChange(evt)}/>
             <input className='inputs-signUpScreen' id='course' placeholder='Curso' type='course' value={this.state.course} onChange={evt => this.handleChange(evt)}/>
-            <input className='inputs-signUpScreen' id='cpf' placeholder='CPF' type='cpf' value={this.state.cpf} onChange={evt => this.handleChange(evt)} />
+            <input className='inputs-signUpScreen' id='cpf' placeholder='CPF' type='cpf' value={this.state.cpf} />
             <input className='inputs-signUpScreen' id='password' placeholder='Senha' type='password' value={this.state.password} onChange={evt => this.handleChange(evt)}/>
             <input className='inputs-signUpScreen' id='password' placeholder='Confirmar Senha' type='password' />
             <div className='buttons-signUpScreen'>
