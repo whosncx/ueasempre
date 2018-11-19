@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import './SignUpScreen.css';
 
-//App Components
-
-//external components
+import Global from '../../Components/global'
 import camera from '../../Assets/photo-camera.svg';
 import Header from '../../Components/Header/Header';
 

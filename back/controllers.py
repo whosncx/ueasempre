@@ -1,10 +1,12 @@
 import jwt
 import datetime
+from flask_cors import CORS
 from flask import Flask, jsonify, request, make_response
 from flask_sqlalchemy import SQLAlchemy #comunicacao com o banco
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ueasistemas:11235813@localhost/uea_sistemas'
+CORS(app)
 db = SQLAlchemy(app)
 from models import *
 
@@ -25,9 +27,8 @@ def login():
         erro = 'Senha Incorreta'
 
     if (erro is None):
-        return 'Olá %s' % aluno.aluno_nome
 
-        token = jwt.encode({'aluno_id': aluno.aluno_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
+        token = jwt.encode({'aluno_id': aluno.aluno_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'sempreuea')
         response = make_response(jsonify({'token': token.decode('UTF-8'), 'canLogin':True}))
         response.headers['Access-Control-Allow-Origin'] = '*'
         return response
@@ -51,7 +52,7 @@ def token_required(f):
             return response
 
         try:
-            data = jwt.decode(token, app.config['SECRET_KEY'])
+            data = jwt.decode(token, 'sempreuea')
             current_user = Pesq.query.filter_by(aluno_id=data['aluno_id']).first()
         except:
             response = make_response(jsonify({'message': 'Token is missing!'}), 401)
@@ -90,6 +91,24 @@ def all_alunos():
         output.append(a_data)
     
     return jsonify(output)
+
+# CADASTRO INCOMPLETO
+# @app.route('/cadastro', methods=['POST'])
+# def create_aluno():
+#     data = request.get_json()
+
+#     novo_aluno = aluno(aluno_nome=data['name'],aluno_id=data['cpf'],aluno_facebook=data['facebook'],
+#     aluno_linkedin=data['linkedin'],aluno_email=['email'],aluno_uea_unidade=data['unity'],aluno_uea_curso=data['course'],
+#     aluno_senha=data['password'], aluno_ano_ingresso=data['entryYear'], aluno_ano_conclusao=data[exitYear]
+#     aluno_situacao=0,aluno_discente_situacao=0,)
+
+#     db.session.add(lab)
+#     db.session.commit()
+
+#     response = make_response(jsonify({'message': 'Lab created!', 'id':lab.lab_id}))
+#     response.headers['Access-Control-Allow-Origin'] = '*'
+#     return response
+
 
 
 @app.route('/unidades')
