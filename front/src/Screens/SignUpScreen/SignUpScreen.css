@@ -12,8 +12,10 @@
   }
 
   .labImgContainer{
-    margin-top : 8%;
+    margin-top : 10%;
+    width: 195px;
   }
+
   
   .labTitle-signUpScreen{
       color: #06995F;
@@ -30,6 +32,7 @@
       color: green;
       font-weight: bold;
       font-size: 0.8rem;
+      text-overflow: clip;
   }
     
   .inputsDinamico-signUpScreen{
