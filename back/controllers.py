@@ -101,7 +101,7 @@ def all_alunos():
 def perfilaluno(current_user):
         
     output = {'nome': current_user.aluno_nome, 'email': current_user.aluno_email, 'facebook': current_user.aluno_facebook, 'linkedin': current_user.aluno_linkedin, 
-        'cpf': current_user.aluno_id, 'curso': current_user.curso.curso_nome, 'unidade': current_user.unidade.unidade_nome, 'senha': current_user.aluno_senha,
+        'cpf': current_user.aluno_id, 'curso': current_user.curso.curso_id, 'unidade': current_user.unidade.unidade_id, 'senha': current_user.aluno_senha,
         'ano_ingresso' : current_user.aluno_ano_ingresso, 'ano_conclusao' : current_user.aluno_ano_conclusao, 'discente_inst' : current_user.aluno_discente_instituicao,
         'discente_situacao' : current_user.aluno_discente_situacao, 'discente_funcao' : current_user.aluno_discente_funcao, 'egresso_inst' : current_user.aluno_egresso_instituicao,
         'egresso_situacao' : current_user.aluno_egresso_situacao, 'egresso_funcao' : current_user.aluno_egresso_funcao }

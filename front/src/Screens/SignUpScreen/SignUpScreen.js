@@ -10,6 +10,7 @@ import 'react-dropdown/style.css'
 class SignUpScreen extends Component{
   cursos = []
   unidades = []
+  situacao=[{value:'0', label:'discente'}, {value:'1', label:'egresso'}]
   constructor(){
     super();
     this.state = {
@@ -39,7 +40,7 @@ class SignUpScreen extends Component{
     })
     .then(data => {
       data.forEach(curso => {
-        this.cursos.push({'value':curso.id, 'label':curso.sigla});
+        this.cursos.push({value:''+curso.id, label:curso.sigla});
       });
       console.log(this.cursos);
     })
@@ -54,7 +55,7 @@ class SignUpScreen extends Component{
     })
     .then(data => {
       data.forEach(unidade => {
-        this.unidades.push({'value':unidade.id, 'label':unidade.sigla});
+        this.unidades.push({value:''+unidade.id, label:unidade.sigla});
       });
     })
     .catch((e) => {
@@ -279,6 +280,8 @@ class SignUpScreen extends Component{
     })
   }
   render(){
+    console.log(this.situacao);
+    console.log(this.cursos);
     let $imagePreview = null;
       $imagePreview = (
       <div className="labImgContainer">
@@ -305,7 +308,7 @@ class SignUpScreen extends Component{
               {
               /*<input className='inputsDinamico-signUpScreen' value={this.state.situation} onChange={evt => this.handleChange(evt)} id='situation' placeholder='Situação' type='situation' />
               */}
-              <Dropdown value={this.state.situation} className='inputsDinamico-signUpScreen' options={this.situacao=[{value:'0', label:'discente'}, {value:'1', label:'egresso'}]} onChange={this.selectSituation.bind(this)} />
+              <Dropdown value={this.state.situation} className='inputsDinamico-signUpScreen' options={this.situacao} onChange={this.selectSituation.bind(this)} />
               <input className='inputsDinamico-signUpScreen' id='function' placeholder='Função' type='function' value={this.state.function} onChange={evt => this.handleChange(evt)}/>
               </div>
           </div>
@@ -315,8 +318,8 @@ class SignUpScreen extends Component{
             <input className='inputs-signUpScreen' value={this.state.facebook} onChange={evt => this.handleChange(evt)} id='facebook' placeholder='Facebook' type='facebook' />
             <input className='inputs-signUpScreen' value={this.state.linkedin} onChange={evt => this.handleChange(evt)} id='linkedin' placeholder='Linkedin' type='linkedin' />
             <div className="fieldsLabSide-signUpScreen">
-              <Dropdown controlClassName='myControlClassName' className='inputsSide-signUpScreen' options={this.cursos} value={this.state.course} onChange={this.selectCurso.bind(this)} placeholder="Curso" />
-              <Dropdown controlClassName='myControlClassName' className='inputsSide-signUpScreen' options={this.unidades} value={this.state.unity} onChange={this.selectUnidade.bind(this)} placeholder="Unidade" />
+              <Dropdown value={this.state.course} controlClassName='myControlClassName' className='inputsSide-signUpScreen' options={this.cursos} onChange={this.selectCurso.bind(this)} placeholder="Curso" />
+              <Dropdown value={this.state.unity} controlClassName='myControlClassName' className='inputsSide-signUpScreen' options={this.unidades} onChange={this.selectUnidade.bind(this)} placeholder="Unidade" />
               {/**              
               <input className='inputsSide-signUpScreen' value={this.state.unity} onChange={evt => this.handleChange(evt)} id='unity' placeholder='Unidade' type='unity' />             
               <input className='inputsSide-signUpScreen' value={this.state.course} onChange={evt => this.handleChange(evt)} id='course' placeholder='Curso' type='course' />
