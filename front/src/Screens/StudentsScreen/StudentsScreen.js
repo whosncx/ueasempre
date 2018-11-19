@@ -13,7 +13,7 @@ class StudentsScreen extends Component{
     return(
       <div>
         <header>
-          <Header></Header>
+          <Header active={1}></Header>
         </header>
         <section className='grid-studentsContainer'>
             <article className='grid-studentsItem'>
