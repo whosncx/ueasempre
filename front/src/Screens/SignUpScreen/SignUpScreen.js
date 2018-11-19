@@ -141,33 +141,48 @@ class SignUpScreen extends Component{
     //   this.updateLab();
     //   return;
     // }
+    const token = sessionStorage.getItem('jwtToken');
+    var request = {};
+    var body = JSON.stringify({
+      "entryYear": this.state.entryYear,
+      "exitYear": this.state.exitYear,
+      "institutuion" : this.state.institutuion,
+      "situation": this.state.situation,
+      "function": this.state.function,
+      "name": this.state.name,
+      "email": this.state.email,
+      "linkedin": this.state.linkedin,
+      "unity": this.state.unity,
+      "course": this.state.course,
+      "cpf": this.state.cpf,
+      "password": this.state.password,
+      "facebook": this.state.facebook
+    })
+    if(token) {
+      request = { 
+        method: 'PUT',
+        headers : new Headers({
+          'Content-Type':'application/json',
+          'x-access-token':token,
+        }),
+        body: body
+      }
+    } else {
+      request = {
+        method: 'post', 
+        headers : new Headers({
+          'Content-Type':'application/json',
+        }),
+        body: body
+      }
+    }
+
     if(this.state.name === '' || this.state.entryYear === '' || this.state.institutuion === '' || this.state.cpf === '' || this.state.password === '' || this.state.course === '' || this.state.unity === '') {
       alert('Prencha todos os valores');
       return;
     }
 
-    fetch(Global.API_URL + '/cadastro', {
-      method: 'post', 
-      headers : new Headers({
-        'Content-Type':'application/json',
-      }),
-      body: JSON.stringify({
-            "entryYear": this.state.entryYear,
-            "exitYear": this.state.exitYear,
-            "institutuion" : this.state.institutuion,
-            "situation": this.state.situation,
-            "function": this.state.function,
-            "name": this.state.name,
-            "email": this.state.email,
-            "linkedin": this.state.linkedin,
-            "unity": this.state.unity,
-            "course": this.state.course,
-            "cpf": this.state.cpf,
-            "password": this.state.password,
-            "facebook": this.state.facebook
- 
-      })
-    }).then((response) => {
+    fetch(Global.API_URL + '/cadastro', request).then((response) => {
       response.json().then((data) => {
         
         // const form = new FormData();

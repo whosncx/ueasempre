@@ -127,6 +127,35 @@ def create_aluno():
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 
+@app.route('/cadastro', methods=['PUT'])
+@token_required
+def update_aluno(current_user):
+    data = request.get_json()
+    aluno = Aluno.query.filter_by(aluno_id=current_user.aluno_id).first()
+
+    aluno.aluno_nome=data['name']
+    aluno.aluno_facebook=data['facebook']
+    aluno.aluno_linkedin=data['linkedin']
+    aluno.aluno_email=data['email']
+    aluno.aluno_uea_unidade=data['unity']
+    aluno.aluno_uea_curso=data['course']
+    aluno.aluno_senha=data['password']
+    aluno.aluno_ano_ingresso=data['entryYear']
+    aluno.aluno_ano_conclusao=data['exitYear']
+    aluno.aluno_situacao=0
+    aluno.aluno_discente_situacao=0
+    aluno.aluno_matricula='123'
+    aluno.aluno_discente_funcao=0
+    aluno.aluno_discente_instituicao=data['institutuion']
+    aluno_status=1
+
+    db.session.add(aluno)
+    db.session.commit()
+
+    response = make_response(jsonify({'message': 'Aluno Cadastrado!', 'id':aluno.aluno_id}))
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
 
 
 @app.route('/unidades')
