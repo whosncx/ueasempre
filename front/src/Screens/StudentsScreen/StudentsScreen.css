@@ -1,23 +1,47 @@
 .grid-studentsContainer{
   border: 2px #352828 solid;
-  display: inline-block;
-}
-
-.grid-studentsItem{
-  display: block;
-  float: left;
-  margin-top: 5%;
-  margin-left: 3%;
-  margin-right: 3%;
-  text-decoration: none;
-  text-align: center;
+  padding: 1rem;
 }
 
 .grid-studentsImg{
   border: #352828 0.2rem solid;
   border-radius: 2rem;
+  transition: all 1s;
 }
 
 .grid-studentsImg:hover{
   background: #69ee40
+}
+
+.grid-studentsImg{
+  height: 8rem;
+  width: 8rem;
+}
+
+.grid-studentsContainer{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 12rem 12rem 12rem 12rem 12rem 12rem;
+}
+
+.grid-studentsItem{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 48.75rem){
+  .grid-studentsContainer{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 12rem 12rem 12rem 12rem;
+  }
+}
+
+@media screen and (min-width: 70rem){
+  .grid-studentsContainer{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 12rem 12rem 12rem;
+  }
 }
