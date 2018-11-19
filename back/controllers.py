@@ -1,7 +1,9 @@
+import os
 import jwt
 import datetime
 from flask_cors import CORS
-from flask import Flask, jsonify, request, make_response
+from werkzeug.utils import secure_filename
+from flask import Flask, jsonify, request, make_response, send_file
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy #comunicacao com o banco
 
@@ -196,6 +198,32 @@ def curso(curso_id):
         return 'Curso não encontrado!'
         
     return 'Nome: %s' % curso.curso_nome
+
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    target=os.path.join('imgs/uploads')
+    if not os.path.isdir(target):
+        os.mkdir(target)
+    file = request.files['file']
+
+    filename = request.form['filename']
+    destination="/".join([target, filename])
+    if os.path.isfile(destination):
+        os.remove(destination)
+    file.save(destination)
+    session['uploadFilePath']=destination
+    response = make_response(jsonify({'message': destination}))
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'static')
+
+@app.route('/imgs/uploads/<path>', methods=['GET'])
+def serve_file_in_dir(path):
+    return send_file('imgs/uploads/' + path)
+
+
 
 if __name__ == '__main__':
     app.run(debug=1)

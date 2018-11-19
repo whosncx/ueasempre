@@ -21,7 +21,8 @@ class SignUpScreen extends Component{
       course: '',
       cpf: '',
       password: '',
-      facebook: ''
+      facebook: '',
+      imageURL: ''
     }
   }
 
@@ -55,7 +56,8 @@ class SignUpScreen extends Component{
             course: data.curso,
             cpf: data.cpf,
             password: data.senha,
-            facebook: data.facebook
+            facebook: data.facebook,
+            imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now()
           })
         });
       }).catch((e) => {
@@ -185,18 +187,18 @@ class SignUpScreen extends Component{
     fetch(Global.API_URL + '/cadastro', request).then((response) => {
       response.json().then((data) => {
         
-        // const form = new FormData();
-        // form.append('file', this.uploadInput.files[0]);
-        // form.append('filename', data.id + '.png')
+        const form = new FormData();
+        form.append('file', this.uploadInput.files[0]);
+        form.append('filename', data.id + '.png')
     
-        // fetch('http://localhost:5000/upload', {
-        //   method: 'POST',
-        //   body: form,
-        // }).then((response) => {
-        //   response.json().then((body) => {
-        //     this.setState({ imageURL: `http://localhost:5000/${body.file}` });
-        //   });
-        // });
+        fetch('http://localhost:5000/upload', {
+          method: 'POST',
+          body: form,
+        }).then((response) => {
+          response.json().then((body) => {
+            this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+          });
+        });
         alert('Cadastro Realizado com Sucesso')
         this.props.history.push('/login')
       });      
@@ -206,8 +208,44 @@ class SignUpScreen extends Component{
     });
   }
 
+  fileChangedHandler = (evt) => {
+    const file = evt.target.files[0];
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      this.setState({
+        imageURL: e.target.result,
+      });
+    };
+    if(file){
+      reader.readAsDataURL(file);
+    }
+  } 
 
   render(){
+    let $imagePreview = null;
+    if (this.state.imageURL) {
+      $imagePreview = (
+      <div className="labImgContainer">
+          <img src={this.state.imageURL} className="labImg" alt={this.state.labNome} height='200'/>
+          <div className="changePicInputContainer">
+
+            <input ref={(ref) => { this.uploadInput = ref; }} className="changePicInput" type="file" id="Imagem" name="Imagem" onChange={evt => this.fileChangedHandler(evt)} ></input>
+            
+          </div>
+      </div> );
+    } else {
+      
+      $imagePreview = (
+        <div>
+            
+            <img src={camera} className="labImg" alt={this.state.name} height='200'/>
+            <div className="changePicInputContainer">
+
+              <input ref={(ref) => { this.uploadInput = ref; }} className="changePicInput" type="file" id="Imagem" name="Imagem" onChange={evt => this.fileChangedHandler(evt)}></input>
+              
+            </div>
+        </div> );
+    }
     return(
       <div>
         <header>
@@ -216,7 +254,7 @@ class SignUpScreen extends Component{
         <p className='labTitle-signUpScreen'>Cadastro do Usuário</p>
         <div className='componentsLab-signUpScreen'>
           <div className='imgLogo-signUpScreen'>
-              <img src={camera} height="200" />
+              {$imagePreview}
               <p className='imgLogoSubTitle-signUpScreen'>insira uma foto aqui</p>
               <div className='fieldsLabDinamico-signUpScreen'> 
               <input className='inputsDinamico-signUpScreen' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
