@@ -7,6 +7,7 @@ import Header from '../../Components/Header/Header';
 
 class SignUpScreen extends Component{
   constructor(){
+    super();
     this.state = {
       entryYear:'',
       exitYear: '',
@@ -19,7 +20,8 @@ class SignUpScreen extends Component{
       unity: '',
       course: '',
       cpf: '',
-      password: ''
+      password: '',
+      facebook: ''
     }
   }
 
@@ -34,28 +36,30 @@ class SignUpScreen extends Component{
         })
       }).then((response) => {
         if(response.status === 401){
-          sessionStorage.setItem('jwtToken', '');
+          sessionStorage.setItem('jwtToken','');
           this.props.history.push('/login');
         }
         response.json().then((data) => {
+          console.log(data)
           this.setState({
-            entryYear:'',
-            exitYear: '',
-            institutuion : '',
-            situation: '',
-            function:'',
-            name: '',
-            email:'',
-            linkedin:'',
-            unity: '',
-            course: '',
-            cpf: '',
-            password: ''
+            entryYear: data.ano_ingresso,
+            exitYear: data.ano_conclusao,
+            institutuion : data.discente_inst,
+            situation: data.discente_situacao,
+            function: data.discente_funcao,
+            name: data.nome,
+            email: data.email,
+            linkedin: data.linkedin,
+            unity: data.unidade,
+            course: data.curso,
+            cpf: data.cpf,
+            password: data.senha,
+            facebook: data.facebook
           })
         });
       }).catch((e) => {
         sessionStorage.setItem('jwtToken', '');
-        alert('Houve um erro ao listar lab, tente novamente mais tarde');
+        alert('Houve um erro ao listar perfil, tente novamente mais tarde');
         this.props.history.push('/login');
       });
     }    
@@ -143,7 +147,7 @@ class SignUpScreen extends Component{
               <img src={camera} height="200" />
               <p className='imgLogoSubTitle-signUpScreen'>insira uma foto aqui</p>
               <div className='fieldsLabDinamico-signUpScreen'> 
-              <input className='inputsDinamico-signUpScreen' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear' />
+              <input className='inputsDinamico-signUpScreen' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
               <input className='inputsDinamico-signUpScreen' value={this.state.exitYear} onChange={evt => this.handleChange(evt)} id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
               <input className='inputsDinamico-signUpScreen' value={this.state.institutuion} onChange={evt => this.handleChange(evt)} id='institutuion' placeholder='Instituição' type='institutuion' />
               <input className='inputsDinamico-signUpScreen' value={this.state.situation} onChange={evt => this.handleChange(evt)} id='situation' placeholder='Situação' type='situation' />

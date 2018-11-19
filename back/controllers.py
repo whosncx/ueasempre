@@ -2,6 +2,7 @@ import jwt
 import datetime
 from flask_cors import CORS
 from flask import Flask, jsonify, request, make_response
+from functools import wraps
 from flask_sqlalchemy import SQLAlchemy #comunicacao com o banco
 
 app = Flask(__name__)
@@ -53,7 +54,7 @@ def token_required(f):
 
         try:
             data = jwt.decode(token, 'sempreuea')
-            current_user = Pesq.query.filter_by(aluno_id=data['aluno_id']).first()
+            current_user = Aluno.query.filter_by(aluno_id=data['aluno_id']).first()
         except:
             response = make_response(jsonify({'message': 'Token is missing!'}), 401)
             response.headers['Access-Control-Allow-Origin'] = '*'
@@ -73,9 +74,9 @@ def aluno(aluno_id):
         
     output = {'nome': aluno.aluno_nome, 'email': aluno.aluno_email, 'facebook': aluno.aluno_facebook, 'linkedin': aluno.aluno_linkedin, 
         'cpf': aluno.aluno_id, 'curso': aluno.curso.curso_nome, 'unidade': aluno.unidade.unidade_nome, 'senha': aluno.aluno_senha,
-        'ano-ingresso' : aluno.aluno_ano_ingresso, 'ano-conclusao' : aluno.aluno_ano_conclusao, 'discente-inst' : aluno.aluno_discente_instituicao,
-        'discente-situacao' : aluno.aluno_discente_situacao, 'discente-funcao' : aluno.aluno_discente_funcao, 'egresso-inst' : aluno.aluno_egresso_instituicao,
-        'egresso-situacao' : aluno.aluno_egresso_situacao, 'egresso-funcao' : aluno.aluno_egresso_funcao }
+        'ano_ingresso' : aluno.aluno_ano_ingresso, 'ano_conclusao' : aluno.aluno_ano_conclusao, 'discente_inst' : aluno.aluno_discente_instituicao,
+        'discente_situacao' : aluno.aluno_discente_situacao, 'discente_funcao' : aluno.aluno_discente_funcao, 'egresso_inst' : aluno.aluno_egresso_instituicao,
+        'egresso_situacao' : aluno.aluno_egresso_situacao, 'egresso_funcao' : aluno.aluno_egresso_funcao }
 
     return jsonify(output)
     
@@ -91,6 +92,22 @@ def all_alunos():
         output.append(a_data)
     
     return jsonify(output)
+
+
+@app.route('/perfilaluno', methods=['GET'])
+@token_required
+def perfilaluno(current_user):
+        
+    output = {'nome': current_user.aluno_nome, 'email': current_user.aluno_email, 'facebook': current_user.aluno_facebook, 'linkedin': current_user.aluno_linkedin, 
+        'cpf': current_user.aluno_id, 'curso': current_user.curso.curso_nome, 'unidade': current_user.unidade.unidade_nome, 'senha': current_user.aluno_senha,
+        'ano_ingresso' : current_user.aluno_ano_ingresso, 'ano_conclusao' : current_user.aluno_ano_conclusao, 'discente_inst' : current_user.aluno_discente_instituicao,
+        'discente_situacao' : current_user.aluno_discente_situacao, 'discente_funcao' : current_user.aluno_discente_funcao, 'egresso_inst' : current_user.aluno_egresso_instituicao,
+        'egresso_situacao' : current_user.aluno_egresso_situacao, 'egresso_funcao' : current_user.aluno_egresso_funcao }
+
+    response = make_response(jsonify(output))
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
 
 # CADASTRO INCOMPLETO
 # @app.route('/cadastro', methods=['POST'])

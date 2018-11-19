@@ -89,7 +89,7 @@ class LoginScreen extends Component{
                             </div >
                             <div className="btnContainer">
                                 <Link  to="/cadastro" >
-                                <a href="http://localhost:3000/cadastro" target="_blank">Novo Usuário?</a>
+                                    Novo Usuário?
                                 </Link>
                             </div>
                         </form>
