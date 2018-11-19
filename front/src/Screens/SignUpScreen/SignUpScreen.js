@@ -221,31 +221,22 @@ class SignUpScreen extends Component{
     }
   } 
 
+  handleError(){
+    this.setState({
+      imageURL : camera
+    })
+  }
   render(){
     let $imagePreview = null;
-    if (this.state.imageURL) {
       $imagePreview = (
       <div className="labImgContainer">
-          <img src={this.state.imageURL} className="labImg" alt={this.state.labNome} height='200'/>
+          <img onError={this.handleError.bind(this)} src={this.state.imageURL} className="labImg" alt={this.state.labNome} height='200' />
           <div className="changePicInputContainer">
 
             <input ref={(ref) => { this.uploadInput = ref; }} className="changePicInput" type="file" id="Imagem" name="Imagem" onChange={evt => this.fileChangedHandler(evt)} ></input>
             
           </div>
       </div> );
-    } else {
-      
-      $imagePreview = (
-        <div>
-            
-            <img src={camera} className="labImg" alt={this.state.name} height='200'/>
-            <div className="changePicInputContainer">
-
-              <input ref={(ref) => { this.uploadInput = ref; }} className="changePicInput" type="file" id="Imagem" name="Imagem" onChange={evt => this.fileChangedHandler(evt)}></input>
-              
-            </div>
-        </div> );
-    }
     return(
       <div>
         <header>
