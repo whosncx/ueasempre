@@ -28,7 +28,8 @@ class SignUpScreen extends Component{
   componentDidMount() {
     const token = sessionStorage.getItem('jwtToken');
     if(!token){
-      this.props.history.push('/login');
+      // this.props.history.push('/login');
+      return 
     } else {
       fetch(Global.API_URL + '/perfilaluno', {
         headers : new Headers({
@@ -135,6 +136,62 @@ class SignUpScreen extends Component{
     }
   }
 
+  addAluno(){        
+    // if(this.props.location.state){
+    //   this.updateLab();
+    //   return;
+    // }
+    if(this.state.name === '' || this.state.entryYear === '' || this.state.institutuion === '' || this.state.cpf === '' || this.state.password === '' || this.state.course === '' || this.state.unity === '') {
+      alert('Prencha todos os valores');
+      return;
+    }
+
+    fetch(Global.API_URL + '/cadastro', {
+      method: 'post', 
+      headers : new Headers({
+        'Content-Type':'application/json',
+      }),
+      body: JSON.stringify({
+            "entryYear": this.state.entryYear,
+            "exitYear": this.state.exitYear,
+            "institutuion" : this.state.institutuion,
+            "situation": this.state.situation,
+            "function": this.state.function,
+            "name": this.state.name,
+            "email": this.state.email,
+            "linkedin": this.state.linkedin,
+            "unity": this.state.unity,
+            "course": this.state.course,
+            "cpf": this.state.cpf,
+            "password": this.state.password,
+            "facebook": this.state.facebook
+ 
+      })
+    }).then((response) => {
+      response.json().then((data) => {
+        
+        // const form = new FormData();
+        // form.append('file', this.uploadInput.files[0]);
+        // form.append('filename', data.id + '.png')
+    
+        // fetch('http://localhost:5000/upload', {
+        //   method: 'POST',
+        //   body: form,
+        // }).then((response) => {
+        //   response.json().then((body) => {
+        //     this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+        //   });
+        // });
+        alert('Cadastro Realizado com Sucesso')
+        this.props.history.push('/login')
+      });      
+    }).catch((e) => {
+      console.log(e);
+      alert('Houve um erro ao adicionar Aluno, tente novamente mais tarde');
+    });
+  }
+
+
   render(){
     return(
       <div>
@@ -158,17 +215,17 @@ class SignUpScreen extends Component{
             <input className='inputs-signUpScreen' id='name' placeholder='Nome Completo' type='name' value={this.state.name} onChange={evt => this.handleChange(evt)}/>
             <input className='inputs-signUpScreen' id='email' placeholder='Email' type='email' value={this.state.email} onChange={evt => this.handleChange(evt)} />
             <input className='inputs-signUpScreen' id='facebook' placeholder='Facebook' type='facebook' value={this.state.facebook} onChange={evt => this.handleChange(evt)}/>
-            <input className='inputs-signUpScreen' id='linkedin' placeholder='Linkedin' type='linkedin' value={this.state.institutuion} onChange={evt => this.handleChange(evt)}/>
+            <input className='inputs-signUpScreen' id='linkedin' placeholder='Linkedin' type='linkedin' value={this.state.linkedin} onChange={evt => this.handleChange(evt)}/>
             <input className='inputs-signUpScreen' id='unity' placeholder='Unidade' type='unity' value={this.state.unity} onChange={evt => this.handleChange(evt)}/>
             <input className='inputs-signUpScreen' id='course' placeholder='Curso' type='course' value={this.state.course} onChange={evt => this.handleChange(evt)}/>
-            <input className='inputs-signUpScreen' id='cpf' placeholder='CPF' type='cpf' value={this.state.cpf} />
+            <input className='inputs-signUpScreen' id='cpf' placeholder='CPF' type='cpf' value={this.state.cpf} onChange={evt => this.handleChange(evt)}/>
             <input className='inputs-signUpScreen' id='password' placeholder='Senha' type='password' value={this.state.password} onChange={evt => this.handleChange(evt)}/>
             <input className='inputs-signUpScreen' id='password' placeholder='Confirmar Senha' type='password' />
             <div className='buttons-signUpScreen'>
               <button className='buttonVoltar-signUpScreen'>
                 Voltar
               </button>
-              <button className='buttonSalvar-signUpScreen'>
+              <button className='buttonSalvar-signUpScreen' onClick={this.addAluno.bind(this)} >
                 Salvar
               </button>
             </div>
