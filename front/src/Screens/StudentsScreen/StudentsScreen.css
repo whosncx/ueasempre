@@ -1,6 +1,26 @@
 .grid-studentsContainer{
   border: 2px #352828 solid;
   padding: 1rem;
+  
+}
+
+.grid-studentsHref{
+  text-decoration: none;
+  
+}
+
+.grid-studentsText{
+  text-shadow: 0px 0px 10px #ccc;
+  text-align: center;
+  text-transform: capitalize;
+  color: black;
+  transition: all 1s;
+  text-shadow: 1px 1px 3px #555353;
+}
+
+.grid-studentsText:hover{
+  color: green;
+  font-size: 1.05rem;
 }
 
 .grid-studentsImg{
@@ -10,7 +30,7 @@
 }
 
 .grid-studentsImg:hover{
-  background: #69ee40
+  background: green;
 }
 
 .grid-studentsImg{

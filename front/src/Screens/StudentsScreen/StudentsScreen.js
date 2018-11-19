@@ -17,73 +17,73 @@ class StudentsScreen extends Component{
         </header>
         <section className='grid-studentsContainer'>
             <article className='grid-studentsItem'>
-                <a href="./cadastro">
+                <a className='grid-studentsHref' href="./cadastro">
                     <img className='grid-studentsImg' alt='aluno' src={user}/>
                     <p className='grid-studentsText'>fulano ciclano chales</p>
                 </a>
             </article>
             <article className='grid-studentsItem'>
-                <a href="./cadastro">
+                <a className='grid-studentsHref' href="./cadastro">
                     <img className='grid-studentsImg' alt='aluno' src={user}/>
                     <p className='grid-studentsText'>fulano ciclano chales</p>
                 </a>
             </article>
             <article className='grid-studentsItem'>
-                <a href="./cadastro">
+                <a className='grid-studentsHref' href="./cadastro">
                     <img className='grid-studentsImg' alt='aluno' src={user}/>
                     <p className='grid-studentsText'>fulano ciclano chales</p>
                 </a>
             </article>
             <article className='grid-studentsItem'>
-                <a href="./cadastro">
+                <a className='grid-studentsHref' href="./cadastro">
                     <img className='grid-studentsImg' alt='aluno' src={user}/>
                     <p className='grid-studentsText'>fulano ciclano chales</p>
                 </a>
             </article>
             <article className='grid-studentsItem'>
-                <a href="./cadastro">
+                <a className='grid-studentsHref' href="./cadastro">
                     <img className='grid-studentsImg' alt='aluno' src={user}/>
                     <p className='grid-studentsText'>fulano ciclano chales</p>
                 </a>
             </article>
             <article className='grid-studentsItem'>
-                <a href="./cadastro">
+                <a className='grid-studentsHref' href="./cadastro">
                     <img className='grid-studentsImg' alt='aluno' src={user}/>
                     <p className='grid-studentsText'>fulano ciclano chales</p>
                 </a>
             </article>
             <article className='grid-studentsItem'>
-                <a href="./cadastro">
+                <a className='grid-studentsHref' href="./cadastro">
                     <img className='grid-studentsImg' alt='aluno' src={user}/>
                     <p className='grid-studentsText'>fulano ciclano chales</p>
                 </a>
             </article>
             <article className='grid-studentsItem'>
-                <a href="./cadastro">
+                <a className='grid-studentsHref' href="./cadastro">
                     <img className='grid-studentsImg' alt='aluno' src={user}/>
                     <p className='grid-studentsText'>fulano ciclano chales</p>
                 </a>
             </article>
             <article className='grid-studentsItem'>
-                <a href="./cadastro">
+                <a className='grid-studentsHref' href="./cadastro">
                     <img className='grid-studentsImg' alt='aluno' src={user}/>
                     <p className='grid-studentsText'>fulano ciclano chales</p>
                 </a>
             </article>
             <article className='grid-studentsItem'>
-                <a href="./cadastro">
+                <a className='grid-studentsHref' href="./cadastro">
                     <img className='grid-studentsImg' alt='aluno' src={user}/>
                     <p className='grid-studentsText'>fulano ciclano chales</p>
                 </a>
             </article>
             <article className='grid-studentsItem'>
-                <a href="./cadastro">
+                <a className='grid-studentsHref' href="./cadastro">
                     <img className='grid-studentsImg' alt='aluno' src={user}/>
                     <p className='grid-studentsText'>fulano ciclano chales</p>
                 </a>
             </article>
             <article className='grid-studentsItem'>
-                <a href="./cadastro">
+                <a className='grid-studentsHref' href="./cadastro">
                     <img className='grid-studentsImg' alt='aluno' src={user}/>
                     <p className='grid-studentsText'>fulano ciclano chales</p>
                 </a>
