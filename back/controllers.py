@@ -106,11 +106,25 @@ def all_alunos():
 @token_required
 def perfilaluno(current_user):
         
-    output = {'nome': current_user.aluno_nome, 'email': current_user.aluno_email, 'facebook': current_user.aluno_facebook, 'linkedin': current_user.aluno_linkedin, 
-        'cpf': current_user.aluno_id, 'curso': current_user.curso.curso_id, 'unidade': current_user.unidade.unidade_id, 'senha': current_user.aluno_senha,
-        'ano_ingresso' : current_user.aluno_ano_ingresso, 'ano_conclusao' : current_user.aluno_ano_conclusao, 'discente_inst' : current_user.aluno_discente_instituicao,
-        'discente_situacao' : current_user.aluno_discente_situacao, 'discente_funcao' : current_user.aluno_discente_funcao, 'egresso_inst' : current_user.aluno_egresso_instituicao,
-        'egresso_situacao' : current_user.aluno_egresso_situacao, 'egresso_funcao' : current_user.aluno_egresso_funcao }
+    output = {
+        'nome': current_user.aluno_nome, 
+        'email': current_user.aluno_email, 
+        'facebook': current_user.aluno_facebook, 
+        'linkedin': current_user.aluno_linkedin, 
+        'cpf': current_user.aluno_id, 
+        'curso': current_user.curso.curso_id, 
+        'unidade': current_user.unidade.unidade_id, 
+        'senha': current_user.aluno_senha,
+        'ano_ingresso' : current_user.aluno_ano_ingresso, 
+        'ano_conclusao' : current_user.aluno_ano_conclusao, 
+        'situacao' : current_user.aluno_situacao,
+        'discente_inst' : current_user.aluno_discente_instituicao,
+        'discente_situacao' : current_user.aluno_discente_situacao, 
+        'discente_funcao' : current_user.aluno_discente_funcao, 
+        'egresso_inst' : current_user.aluno_egresso_instituicao,
+        'egresso_situacao' : current_user.aluno_egresso_situacao, 
+        'egresso_funcao' : current_user.aluno_egresso_funcao 
+    }
 
     db.session.commit()
     response = make_response(jsonify(output))
@@ -151,11 +165,14 @@ def update_aluno(current_user):
     aluno.aluno_senha=data['password']
     aluno.aluno_ano_ingresso=data['entryYear']
     aluno.aluno_ano_conclusao=data['exitYear']
-    aluno.aluno_situacao=0
-    aluno.aluno_discente_situacao=0
+    aluno.aluno_situacao=data['situation']
     aluno.aluno_matricula='123'
-    aluno.aluno_discente_funcao=data['function']
-    aluno.aluno_discente_instituicao=data['institutuion']
+    aluno.aluno_discente_situacao=data['discente_situation']
+    aluno.aluno_discente_funcao=data['discente_function']
+    aluno.aluno_discente_instituicao=data['discente_institutuion']
+    aluno.aluno_egresso_situacao=data['egresso_situation']
+    aluno.aluno_egresso_funcao=data['egresso_function']
+    aluno.aluno_egresso_instituicao=data['egresso_institutuion']
     aluno_status=1
 
     db.session.add(aluno)

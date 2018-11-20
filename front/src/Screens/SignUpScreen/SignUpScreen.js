@@ -12,23 +12,30 @@ class SignUpScreen extends Component{
   unidades = []
   havePhoto = true;
   situacao=[{value:'0', label:'discente'}, {value:'1', label:'egresso'}]
+  discente_situacao=[{value:'0', label:'Não Trabalha'}, {value:'1', label:'Bolsista'}, {value:'2', label:'Estágio'}, {value:'3', label:'Clt'}, {value:'4', label:'Outros'}]
+  egresso_situacao=[{value:'0', label:'Não Trabalha'}, {value:'1', label:'Bolsista pos-graduação'}, {value:'2', label:'Clt'}, {value:'3', label:'Outros'}]
   constructor(){
     super();
     this.havePhoto = true;
     this.state = {
-      entryYear:'',
-      exitYear: '',
-      institutuion : '',
-      situation: '',
-      function:'',
+      cpf: '',
+      password: '',
       name: '',
       email:'',
       linkedin:'',
+      facebook: '',
+      whatsapp: '',
+      situation: '',
       unity: '',
       course: '',
-      cpf: '',
-      password: '',
-      facebook: '',
+      entryYear:'',
+      exitYear: '',
+      discente_situation:'',
+      discente_institutuion : '',
+      discente_function : '',
+      egresso_situation:'',
+      egresso_institutuion : '',
+      egresso_function : '',
       imageURL: ''
     }
   }
@@ -79,11 +86,6 @@ class SignUpScreen extends Component{
         }
         response.json().then((data) => {
           this.setState({
-            entryYear: data.ano_ingresso,
-            exitYear: data.ano_conclusao,
-            institutuion : data.discente_inst,
-            situation: data.discente_situacao,
-            function: data.discente_funcao,
             name: data.nome,
             email: data.email,
             linkedin: data.linkedin,
@@ -92,6 +94,15 @@ class SignUpScreen extends Component{
             cpf: data.cpf,
             password: data.senha,
             facebook: data.facebook,
+            entryYear: data.ano_ingresso,
+            exitYear: data.ano_conclusao,
+            situation: data.situacao,
+            discente_institutuion : data.discente_inst,
+            discente_function :data.discente_funcao,
+            discente_situation :data.discente_situacao,            
+            egresso_institutuion : data.egresso_inst,
+            egresso_function :data.egresso_funcao,
+            egresso_situation :data.egresso_situacao,          
             imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now()
           })
         });
@@ -103,85 +114,10 @@ class SignUpScreen extends Component{
     }    
   }
 
-  handleChange(evt) {
-    switch(evt.target.id){
-      case 'entryYear':
-        this.setState({
-          entryYear : evt.target.value
-        });
-      break;
-      case 'exitYear':
-        this.setState({
-          exitYear : evt.target.value
-        });
-      break;
-      case 'institutuion':
-        this.setState({
-          institutuion : evt.target.value
-        });
-      break;
-      case 'situation':
-        this.setState({
-          situation : evt.target.value
-        });
-      break;
-      case 'function':
-        this.setState({
-          function : evt.target.value
-        });
-      break;
-      case 'name':
-        this.setState({
-          name : evt.target.value
-        });
-      break;
-      case 'email':
-        this.setState({
-          email : evt.target.value
-        });
-      break;
-      case 'facebook':
-        this.setState({
-          facebook : evt.target.value
-        });
-      break;
-      case 'linkedin':
-        this.setState({
-          linkedin : evt.target.value
-        });
-      break;
-      case 'unity':
-        this.setState({
-          unity : evt.target.value
-        });
-      break;
-      case 'course':
-        this.setState({
-          course : evt.target.value
-        });
-      break;
-      case 'cpf':
-        this.setState({
-          cpf : evt.target.value
-        });
-      break;
-      case 'password':
-        this.setState({
-          password : evt.target.value
-        });
-      break;
-    }
-  }
-
   addAluno(){
     const token = sessionStorage.getItem('jwtToken');
     var request = {};
     var body = JSON.stringify({
-      "entryYear": this.state.entryYear,
-      "exitYear": this.state.exitYear,
-      "institutuion" : this.state.institutuion,
-      "situation": this.state.situation,
-      "function": this.state.function,
       "name": this.state.name,
       "email": this.state.email,
       "linkedin": this.state.linkedin,
@@ -189,7 +125,16 @@ class SignUpScreen extends Component{
       "course": this.state.course,
       "cpf": this.state.cpf,
       "password": this.state.password,
-      "facebook": this.state.facebook
+      "facebook": this.state.facebook,
+      "entryYear": this.state.entryYear,
+      "exitYear": this.state.exitYear,
+      "situation": this.state.situation,
+      "discente_institutuion" : this.state.discente_institutuion,
+      "discente_situation": this.state.discente_situation,
+      "discente_function": this.state.discente_function,
+      "egresso_institutuion" : this.state.egresso_institutuion,
+      "egresso_situation": this.state.egresso_situation,
+      "egresso_function": this.state.egresso_function,
     })
     if(token) {
       request = { 
@@ -260,8 +205,18 @@ class SignUpScreen extends Component{
     this.setState({
       situation: evt.value
     })
-    var status = document.getElementById("exitYear").disabled;//pega o status do input(se ta habilitado ou não)
-    document.getElementById("exitYear").disabled = !(status);//nega o status(se tiver habilitado desabilita, e vece versa)
+  }
+
+  selectDiscenteSituation(evt){
+    this.setState({
+      discente_situation: evt.value
+    })
+  }
+
+  selectEgressoSituation(evt){
+    this.setState({
+      egresso_situation: evt.value
+    })
   }
 
   selectCurso(evt){
@@ -275,6 +230,83 @@ class SignUpScreen extends Component{
       unity: evt.value
     })
   }
+
+  
+  handleChange(evt) {
+    switch(evt.target.id){
+      case 'entryYear':
+        this.setState({
+          entryYear : evt.target.value
+        });
+      break;
+      case 'exitYear':
+        this.setState({
+          exitYear : evt.target.value
+        });
+      break;
+      case 'discente_institutuion':
+        this.setState({
+          discente_institutuion : evt.target.value
+        });
+      break;
+      case 'egresso_institutuion':
+        this.setState({
+          egresso_institutuion : evt.target.value
+        });
+      break;
+      case 'situation':
+        this.setState({
+          situation : evt.target.value
+        });
+      break;
+      case 'function':
+        this.setState({
+          function : evt.target.value
+        });
+      break;
+      case 'name':
+        this.setState({
+          name : evt.target.value
+        });
+      break;
+      case 'email':
+        this.setState({
+          email : evt.target.value
+        });
+      break;
+      case 'facebook':
+        this.setState({
+          facebook : evt.target.value
+        });
+      break;
+      case 'linkedin':
+        this.setState({
+          linkedin : evt.target.value
+        });
+      break;
+      case 'unity':
+        this.setState({
+          unity : evt.target.value
+        });
+      break;
+      case 'course':
+        this.setState({
+          course : evt.target.value
+        });
+      break;
+      case 'cpf':
+        this.setState({
+          cpf : evt.target.value
+        });
+      break;
+      case 'password':
+        this.setState({
+          password : evt.target.value
+        });
+      break;
+    }
+  }
+
 
   handleError(){
     this.havePhoto = false;
@@ -294,7 +326,30 @@ class SignUpScreen extends Component{
             
           </div>
       </div> );
-  
+    let $infoDiscente = (
+      <div className='fieldsLabDinamico-signUpScreen'> 
+        <Dropdown value={''+this.state.situation} className='inputsDinamico-signUpScreen' options={this.situacao} onChange={this.selectSituation.bind(this)} />
+        <input className='inputsDinamico-signUpScreen' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
+        <Dropdown value={''+this.state.discente_situation} className='inputsDinamico-signUpScreen' options={this.discente_situacao} onChange={this.selectDiscenteSituation.bind(this)} />
+        {this.state.discente_situation!=='0'&&this.state.discente_situation!=='null' ? <div>
+          <input className='inputsDinamico-signUpScreen' value={this.state.discente_institutuion} onChange={evt => this.handleChange(evt)} id='institutuion' placeholder='Instituição' type='discente_institutuion' />
+          <input className='inputsDinamico-signUpScreen' value={this.state.discente_function} onChange={evt => this.handleChange(evt)} id='function' placeholder='Função' type='discente_function' />
+        </div>:<div/>}
+      </div>
+    );
+    let $infoEgresso = (
+      <div className='fieldsLabDinamico-signUpScreen'> 
+        <Dropdown value={''+this.state.situation} className='inputsDinamico-signUpScreen' options={this.situacao} onChange={this.selectSituation.bind(this)} />
+        <input className='inputsDinamico-signUpScreen' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
+        <input className='inputsDinamico-signUpScreen' value={this.state.exitYear} onChange={evt => this.handleChange(evt)} id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
+        <Dropdown value={''+this.state.egresso_situation} className='inputsDinamico-signUpScreen' options={this.egresso_situacao} onChange={this.selectEgressoSituation.bind(this)} />
+        {this.state.egresso_situation!=='0'&&this.state.egresso_situation!=='null'? <div>
+          <input className='inputsDinamico-signUpScreen' value={this.state.egresso_institutuion} onChange={evt => this.handleChange(evt)} id='institutuion' placeholder='Instituição' type='egresso_institutuion' />
+          <input className='inputsDinamico-signUpScreen' value={this.state.egresso_function} onChange={evt => this.handleChange(evt)} id='function' placeholder='Função' type='egresso_function' />
+        </div> : <div/>}
+      </div>
+    );
+    console.log(this.state.situation);  
     return(
       <div>
         <header>
@@ -304,16 +359,7 @@ class SignUpScreen extends Component{
         <div className='componentsLab-signUpScreen'>
           <div className='imgLogo-signUpScreen'>
               {$imagePreview}
-              <div className='fieldsLabDinamico-signUpScreen'> 
-              <input className='inputsDinamico-signUpScreen' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
-              <input className='inputsDinamico-signUpScreen' value={this.state.exitYear} onChange={evt => this.handleChange(evt)} id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
-              <input className='inputsDinamico-signUpScreen' value={this.state.institutuion} onChange={evt => this.handleChange(evt)} id='institutuion' placeholder='Instituição' type='institutuion' />
-              {
-              /*<input className='inputsDinamico-signUpScreen' value={this.state.situation} onChange={evt => this.handleChange(evt)} id='situation' placeholder='Situação' type='situation' />
-              */}
-              <Dropdown value={''+this.state.situation} className='inputsDinamico-signUpScreen' options={this.situacao} onChange={this.selectSituation.bind(this)} />
-              <input className='inputsDinamico-signUpScreen' id='function' placeholder='Função' type='function' value={this.state.function} onChange={evt => this.handleChange(evt)} placeholder="Situacao"/>
-              </div>
+              {this.state.situation==='0'||this.state.situation==='null' ? $infoDiscente : $infoEgresso}
           </div>
           <div className='fieldsLab-signUpScreen'>
             <input className='inputs-signUpScreen' value={this.state.name} onChange={evt => this.handleChange(evt)} id='name' placeholder='Nome Completo' type='name'/>
