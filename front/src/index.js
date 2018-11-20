@@ -18,7 +18,7 @@ ReactDOM.render(
         <Route path="/login" exact={true} component={LoginScreen} />
         <Route path="/cadastro" exact={true} component={SignUpScreen}/>
         <Route path="/alunos" exact={true} component={StudentsScreen}/>
-        <Route path="/perfil" exact={true} component={PerfilPage}/>
+        <Route path="/perfil/:aluno" exact={true} component={PerfilPage}/>
       </Switch>
     </BrowserRouter>,
   document.getElementById('root'));

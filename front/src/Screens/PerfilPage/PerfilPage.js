@@ -11,8 +11,9 @@ class PerfilPage extends Component{
   cursos = []
   unidades = []
   situacao=[{value:'0', label:'discente'}, {value:'1', label:'egresso'}]
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
+    
     this.state = {
       entryYear:'',
       exitYear: '',
@@ -32,8 +33,8 @@ class PerfilPage extends Component{
   }
 
   componentDidMount() {
-
-      fetch(Global.API_URL + '/perfilaluno', {
+      console.log(this.props.match.params)
+      fetch(Global.API_URL + '/alunos/'+this.props.match.params.aluno, {
         headers : new Headers({
         })
       }).then((response) => {
@@ -63,194 +64,16 @@ class PerfilPage extends Component{
         this.props.history.push('/login');
       });   
   }
-
-  handleChange(evt) {
-    switch(evt.target.id){
-      case 'entryYear':
-        this.setState({
-          entryYear : evt.target.value
-        });
-      break;
-      case 'exitYear':
-        this.setState({
-          exitYear : evt.target.value
-        });
-      break;
-      case 'institutuion':
-        this.setState({
-          institutuion : evt.target.value
-        });
-      break;
-      case 'situation':
-        this.setState({
-          situation : evt.target.value
-        });
-      break;
-      case 'function':
-        this.setState({
-          function : evt.target.value
-        });
-      break;
-      case 'name':
-        this.setState({
-          name : evt.target.value
-        });
-      break;
-      case 'email':
-        this.setState({
-          email : evt.target.value
-        });
-      break;
-      case 'facebook':
-        this.setState({
-          facebook : evt.target.value
-        });
-      break;
-      case 'linkedin':
-        this.setState({
-          linkedin : evt.target.value
-        });
-      break;
-      case 'unity':
-        this.setState({
-          unity : evt.target.value
-        });
-      break;
-      case 'course':
-        this.setState({
-          course : evt.target.value
-        });
-      break;
-      case 'cpf':
-        this.setState({
-          cpf : evt.target.value
-        });
-      break;
-      case 'password':
-        this.setState({
-          password : evt.target.value
-        });
-      break;
-    }
-  }
-
-  addAluno(){        
-    // if(this.props.location.state){
-    //   this.updateLab();
-    //   return;
-    // }
-    const token = sessionStorage.getItem('jwtToken');
-    var request = {};
-    var body = JSON.stringify({
-      "entryYear": this.state.entryYear,
-      "exitYear": this.state.exitYear,
-      "institutuion" : this.state.institutuion,
-      "situation": this.state.situation,
-      "function": this.state.function,
-      "name": this.state.name,
-      "email": this.state.email,
-      "linkedin": this.state.linkedin,
-      "unity": this.state.unity,
-      "course": this.state.course,
-      "cpf": this.state.cpf,
-      "password": this.state.password,
-      "facebook": this.state.facebook
-    })
-    if(token) {
-      request = { 
-        method: 'PUT',
-        headers : new Headers({
-          'Content-Type':'application/json',
-          'x-access-token':token,
-        }),
-        body: body
-      }
-    } else {
-      request = {
-        method: 'post', 
-        headers : new Headers({
-          'Content-Type':'application/json',
-        }),
-        body: body
-      }
-    }
-
-    if(this.state.name === '' || this.state.entryYear === '' || this.state.institutuion === '' || this.state.cpf === '' || this.state.password === '' || this.state.course === '' || this.state.unity === '') {
-      alert('Prencha todos os valores');
-      return;
-    }
-
-    fetch(Global.API_URL + '/cadastro', request).then((response) => {
-      response.json().then((data) => {
-        console.log(this.uploadInput.files[0]);
-        const form = new FormData();
-        form.append('file', this.uploadInput.files[0]);
-        form.append('filename', data.id + '.png')
-    
-        fetch('http://localhost:5000/upload', {
-          method: 'POST',
-          body: form,
-        }).then((response) => {
-          response.json().then((body) => {
-            this.setState({ imageURL: `http://localhost:5000/${body.file}` });
-          });
-        });
-        alert('Cadastro Realizado com Sucesso')
-        this.props.history.push('/login')
-      });      
-    }).catch((e) => {
-      console.log(e);
-      alert('Houve um erro ao adicionar Aluno, tente novamente mais tarde');
-    });
-  }
-
-  fileChangedHandler = (evt) => {
-    const file = evt.target.files[0];
-    let reader = new FileReader();
-    reader.onload = (e) => {
-      this.setState({
-        imageURL: e.target.result,
-      });
-    };
-    if(file){
-      reader.readAsDataURL(file);
-    }
-  } 
-
-  selectSituation(evt){
-    this.setState({
-      situation: evt.value
-    })
-  }
-
-  selectCurso(evt){
-    this.setState({
-      course: evt.value
-    })
-  }
-
-  selectUnidade(evt){
-    this.setState({
-      unity: evt.value
-    })
-  }
-
-  handleError(){
-    this.setState({
-      imageURL : camera
-    })
-  }
-
     goBack() {
         this.props.history.push('/alunos'); // Imprementar com goBack()
     }
   render(){
-    console.log(this.situacao);
-    console.log(this.cursos);
+
+        console.log(this.props.params)
     let $imagePreview = null;
       $imagePreview = (
       <div className="labImgContainer">
-          <img onError={this.handleError.bind(this)} src={this.state.imageURL} className="labImg" alt={this.state.labNome} height='195' width='195'/>
+          <img  src={this.state.imageURL} className="labImg" alt={this.state.labNome} height='195' width='195'/>
           <div className="imgLogoSubTitle-signUpScreen">
 
             <h ref={(ref) => { this.uploadInput = ref; }} className="changePicInput" type="file" id="Imagem" name="Imagem" onChange={evt => this.fileChangedHandler(evt)} ></h>
@@ -267,22 +90,22 @@ class PerfilPage extends Component{
           <div className='imgLogo-signUpScreen'>
               {$imagePreview}
               <div className='fieldsLabDinamico-signUpScreen'> 
-              <h className='inputsDinamico-signUpScreen' value={this.state.entryYear}  id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
-              <h className='inputsDinamico-signUpScreen' value={this.state.exitYear}  id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
-              <h className='inputsDinamico-signUpScreen' value={this.state.institutuion}  id='institutuion' placeholder='Instituição' type='institutuion' />
+              <h className='inputsDinamico-signUpScreen' id='entryYear' placeholder='Ano de Ingresso' type='entryYear'>{this.state.entryYear}</h>
+              <h className='inputsDinamico-signUpScreen' id='exitYear' placeholder='Ano de Egresso' type='exitYear'>{this.state.exitYear}</h>
+              <h className='inputsDinamico-signUpScreen' id='institutuion' placeholder='Instituição' type='institutuion'>{this.state.institutuion}</h>
               
-              <h className='inputsDinamico-signUpScreen' value={this.state.situation} onChange={evt => this.handleChange(evt)} id='situation' placeholder='Situação' type='situation' />
-              <h className='inputsDinamico-signUpScreen' id='function' placeholder='Função' type='function' value={this.state.function} />
+              <h className='inputsDinamico-signUpScreen' id='situation' placeholder='Situação' type='situation'>{this.state.situation}</h>
+              <h className='inputsDinamico-signUpScreen' id='function' placeholder='Função' type='function'>{this.state.function}</h>
               </div>
           </div>
           <div className='fieldsLab-signUpScreen'>
-            <h className='inputs-signUpScreen' value={this.state.name}  id='name' placeholder='Nome Completo' type='name'/>
-            <h className='inputs-signUpScreen' value={this.state.email}  id='email' placeholder='Email' type='email' />
-            <h className='inputs-signUpScreen' value={this.state.facebook}  id='facebook' placeholder='Facebook' type='facebook' />
-            <h className='inputs-signUpScreen' value={this.state.linkedin}  id='linkedin' placeholder='Linkedin' type='linkedin' />
+            <h className='inputs-signUpScreen' id='name' placeholder='Nome Completo' type='name'>{this.state.name} </h>
+            <h className='inputs-signUpScreen' id='email' placeholder='Email' type='email'>{this.state.email} </h>
+            <h className='inputs-signUpScreen' id='facebook' placeholder='Facebook' type='facebook'>{this.state.facebook}</h>
+            <h className='inputs-signUpScreen' id='linkedin' placeholder='Linkedin' type='linkedin'>{this.state.linkedin} </h>
             <div className="fieldsLabSide-signUpScreen">        
-              <h className='inputsSide-signUpScreen' value={this.state.unity} id='unity' placeholder='Unidade' type='unity' />             
-              <h className='inputsSide-signUpScreen' value={this.state.course} id='course' placeholder='Curso' type='course' />
+              <h className='inputsSide-signUpScreen' id='unity' placeholder='Unidade' type='unity'>{this.state.unity}</h>             
+              <h className='inputsSide-signUpScreen' id='course' placeholder='Curso' type='course'>{this.state.course}</h>
              
               </div>
             <div className='buttons-signUpScreen'>

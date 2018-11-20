@@ -13,7 +13,8 @@ class StudentsScreen extends Component{
     constructor(){
         super();
         this.state = {
-            alunos: []
+            alunos: [],
+            selected: ''
         } 
     }
 
@@ -25,7 +26,7 @@ class StudentsScreen extends Component{
             response.json().then((data) => {
                 // console.log(data)
                 console.log(data.alunos)
-                this.alunos = data['alunos']
+                this.setState({alunos:data.alunos}) 
                 // data.forEach(element => {
                 //     console.log(element)
                 //     this.alunos.push({nome:element['nome'], id:element['id']})
@@ -36,99 +37,33 @@ class StudentsScreen extends Component{
             alert('Houve um erro ao adicionar Aluno, tente novamente mais tarde');
         });
     }
+
+    goPerfil(id){
+        console.log(id)
+        this.props.history.push(
+            "/perfil/"+id
+        );
+      }
+    
     
   render(){
-    //   console.log(this.alunos)
+     console.log(this.state.alunos)
     return(
       <div>
         <header>
           <Header active={1}></Header>
         </header>
-
-        {this.alunos.map(c => 
-            <article className='grid-studentsItem'>
-                <a className='grid-studentsHref' href="./perfil">
-                    <img className='grid-studentsImg' alt='aluno' src={user}/>
-                    <p className='grid-studentsText'>{c.nome}</p>
-                </a>
-            </article>
-        )}
-
-       {/* <section className='grid-studentsContainer'>
-            <article className='grid-studentsItem'>
-                <a className='grid-studentsHref' href="./perfil">
-                    <img className='grid-studentsImg' alt='aluno' src={user}/>
-                    <p className='grid-studentsText'></p>
-                </a>
-            </article>
-            <article className='grid-studentsItem'>
-                <a className='grid-studentsHref' href="./perfil">
-                    <img className='grid-studentsImg' alt='aluno' src={user}/>
-                    <p className='grid-studentsText'>fulano ciclano chales</p>
-                </a>
-            </article>
-            <article className='grid-studentsItem'>
-                <a className='grid-studentsHref' href="./perfil">
-                    <img className='grid-studentsImg' alt='aluno' src={user}/>
-                    <p className='grid-studentsText'>fulano ciclano chales</p>
-                </a>
-            </article>
-            <article className='grid-studentsItem'>
-                <a className='grid-studentsHref' href="./perfil">
-                    <img className='grid-studentsImg' alt='aluno' src={user}/>
-                    <p className='grid-studentsText'>fulano ciclano chales</p>
-                </a>
-            </article>
-            <article className='grid-studentsItem'>
-                <a className='grid-studentsHref' href="./perfil">
-                    <img className='grid-studentsImg' alt='aluno' src={user}/>
-                    <p className='grid-studentsText'>fulano ciclano chales</p>
-                </a>
-            </article>
-            <article className='grid-studentsItem'>
-                <a className='grid-studentsHref' href="./perfil">
-                    <img className='grid-studentsImg' alt='aluno' src={user}/>
-                    <p className='grid-studentsText'>fulano ciclano chales</p>
-                </a>
-            </article>
-            <article className='grid-studentsItem'>
-                <a className='grid-studentsHref' href="./perfil">
-                    <img className='grid-studentsImg' alt='aluno' src={user}/>
-                    <p className='grid-studentsText'>fulano ciclano chales</p>
-                </a>
-            </article>
-            <article className='grid-studentsItem'>
-                <a className='grid-studentsHref' href="./perfil">
-                    <img className='grid-studentsImg' alt='aluno' src={user}/>
-                    <p className='grid-studentsText'>fulano ciclano chales</p>
-                </a>
-            </article>
-            <article className='grid-studentsItem'>
-                <a className='grid-studentsHref' href="./perfil">
-                    <img className='grid-studentsImg' alt='aluno' src={user}/>
-                    <p className='grid-studentsText'>fulano ciclano chales</p>
-                </a>
-            </article>
-            <article className='grid-studentsItem'>
-                <a className='grid-studentsHref' href="./perfil">
-                    <img className='grid-studentsImg' alt='aluno' src={user}/>
-                    <p className='grid-studentsText'>fulano ciclano chales</p>
-                </a>
-            </article>
-            <article className='grid-studentsItem'>
-                <a className='grid-studentsHref' href="./perfil">
-                    <img className='grid-studentsImg' alt='aluno' src={user}/>
-                    <p className='grid-studentsText'>fulano ciclano chales</p>
-                </a>
-            </article>
-            <article className='grid-studentsItem'>
-                <a className='grid-studentsHref' href="./perfil">
-                    <img className='grid-studentsImg' alt='aluno' src={user}/>
-                    <p className='grid-studentsText'>fulano ciclano chales</p>
-                </a>
-            </article>
-            
-        </section> */}
+        
+        <section className='grid-studentsContainer'>
+            {this.state.alunos.map(c => 
+                <article className='grid-studentsItem'>
+                    <a onClick={()=>this.goPerfil(c.id)} className='grid-studentsHref'>
+                        <img className='grid-studentsImg' alt='aluno' src={Global.API_URL + '/imgs/uploads/' + c.id + '.png?v=' + Date.now()}/>
+                        <p className='grid-studentsText'>{c.nome}</p>
+                    </a>
+                </article>
+            )}
+        </section>
       </div>    
     );
   } 

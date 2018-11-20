@@ -222,20 +222,24 @@ class SignUpScreen extends Component{
     fetch(Global.API_URL + '/cadastro', request).then((response) => {
       response.json().then((data) => {
         console.log(this.uploadInput.files[0]);
-        const form = new FormData();
-        form.append('file', this.uploadInput.files[0]);
-        form.append('filename', data.id + '.png')
-    
-        fetch('http://localhost:5000/upload', {
-          method: 'POST',
-          body: form,
-        }).then((response) => {
-          response.json().then((body) => {
-            this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+        if (this.uploadInput.files[0] != null) {
+          const form = new FormData();
+          form.append('file', this.uploadInput.files[0]);
+          form.append('filename', data.id + '.png')
+      
+          fetch('http://localhost:5000/upload', {
+            method: 'POST',
+            body: form,
+          }).then((response) => {
+            response.json().then((body) => {
+              this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+            });
           });
-        });
-        alert('Cadastro Realizado com Sucesso')
-        this.props.history.push('/login')
+          alert('Cadastro Realizado com Sucesso')
+          this.props.history.push('/login')
+        }else{
+          alert('Insira uma foto')
+        }
       });      
     }).catch((e) => {
       console.log(e);
