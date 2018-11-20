@@ -88,8 +88,8 @@ class LoginScreen extends Component{
                                 </button>
                             </div >
                             <div className="btnContainer">
-                                <Link onClick={sessionStorage.setItem('jwtToken', '')}  to="/cadastro" >
-                                    Novo Usuário?
+                                <Link to='/cadastro'>
+                                    <a className='btnLink'>Novo Usuário?</a>
                                 </Link>
                             </div>
                         </form>
