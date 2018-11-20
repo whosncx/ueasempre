@@ -130,10 +130,10 @@ class SignUpScreen extends Component{
       "exitYear": this.state.exitYear,
       "situation": this.state.situation,
       "discente_institutuion" : this.state.discente_institutuion,
-      "discente_situation": this.state.discente_situation,
+      "discente_situation": (this.state.discente_situation=="null"? 0 : this.state.discente_situation),
       "discente_function": this.state.discente_function,
       "egresso_institutuion" : this.state.egresso_institutuion,
-      "egresso_situation": this.state.egresso_situation,
+      "egresso_situation": (this.state.egresso_situation=="null"? 0 : this.state.egresso_situation),
       "egresso_function": this.state.egresso_function,
     })
     if(token) {
@@ -177,7 +177,7 @@ class SignUpScreen extends Component{
             });
           });
           alert('Cadastro Realizado com Sucesso')
-          this.props.history.push('/login')
+          // this.props.history.push('/login')
         }else{
           alert('Insira uma foto')
         }
