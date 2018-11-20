@@ -92,7 +92,7 @@ class PerfilPage extends Component{
               <h className='inputsDinamico-signUpScreen' id='exitYear' placeholder='Ano de Egresso' type='exitYear'>{this.state.exitYear}</h>
               <h className='inputsDinamico-signUpScreen' id='institutuion' placeholder='Instituição' type='institutuion'>{this.state.institutuion}</h>
               
-              <h className='inputsDinamico-signUpScreen' id='situation' placeholder='Situação' type='situation'>{this.state.situation}</h>
+              <h className='inputsDinamico-signUpScreen' id='situation' placeholder='Situação' type='situation'>{this.state.situation ? 'Egresso' : 'Discente'}</h>
               <h className='inputsDinamico-signUpScreen' id='function' placeholder='Função' type='function'>{this.state.function}</h>
               </div>
           </div>
@@ -101,11 +101,8 @@ class PerfilPage extends Component{
             <h className='inputs-signUpScreen' id='email' placeholder='Email' type='email'>{this.state.email} </h>
             <h className='inputs-signUpScreen' id='facebook' placeholder='Facebook' type='facebook'>{this.state.facebook}</h>
             <h className='inputs-signUpScreen' id='linkedin' placeholder='Linkedin' type='linkedin'>{this.state.linkedin} </h>
-            <div className="fieldsLabSide-signUpScreen">        
-              <h className='inputsSide-signUpScreen' id='unity' placeholder='Unidade' type='unity'>{this.state.unity}</h>             
-              <h className='inputsSide-signUpScreen' id='course' placeholder='Curso' type='course'>{this.state.course}</h>
-             
-              </div>
+            <h className='inputs-signUpScreen' id='unity' placeholder='Unidade' type='unity'>{this.state.unity}</h>             
+            <h className='inputs-signUpScreen' id='course' placeholder='Curso' type='course'>{this.state.course}</h>
             <div className='buttons-signUpScreen'>
               <button className='buttonVoltar-signUpScreen' onClick={this.goBack.bind(this)}>voltar</button>
             </div>
