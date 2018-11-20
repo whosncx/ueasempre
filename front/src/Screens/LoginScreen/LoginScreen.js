@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './LoginScreen.css';
+import uea1 from '../../Assets/uea1.svg';
 
 //App Components
 
@@ -67,7 +68,7 @@ class LoginScreen extends Component{
         <div className='loginContainer'>
                 
                     <div className="logoContainer">
-                        <img className = "logo" src={uea} alt='Logo da fapeam'/>
+                        <img className = "logo" src={uea1} alt='Logo da fapeam'/>
                     </div>
                     
                     <div className="formLoginContainer">
