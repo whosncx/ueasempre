@@ -6,7 +6,6 @@ import uea1 from '../../Assets/uea1.svg';
 
 //external components
 import Global from '../../Components/global'
-import uea from '../../Assets/uea.svg';
 import Header from '../../Components/Header/Header';
 import { Link } from 'react-router-dom';
 
@@ -44,7 +43,6 @@ class LoginScreen extends Component{
               return response.json();
             })
             .then(data => {
-                console.log(data)
                 if(data.canLogin){
                         sessionStorage.setItem('jwtToken', data.token);
                         this.props.history.push('/cadastro')
@@ -90,7 +88,7 @@ class LoginScreen extends Component{
                             </div >
                             <div className="btnContainer">
                                 <Link to='/cadastro'>
-                                    <a className='btnLink'>Novo Usuário?</a>
+                                    Novo Usuário?
                                 </Link>
                             </div>
                         </form>

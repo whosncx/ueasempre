@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import './PerfilPage.css';
 
 import Global from '../../Components/global'
-import camera from '../../Assets/photo-camera.svg';
 import Header from '../../Components/Header/Header';
-import { Link } from 'react-router-dom';
 import 'react-dropdown/style.css'
 
 class PerfilPage extends Component{

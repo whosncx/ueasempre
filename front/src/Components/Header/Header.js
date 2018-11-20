@@ -58,12 +58,9 @@ class Header extends Component{
       <Link to="/alunos" onClick={this.headerClicked.bind(this)} className={classnames({'selected' : this.state.selected === 0 }, 'option')}>
         <a>Lista de Alunos</a>
       </Link>
-      <a href="javascript:void(0);" className="icon" onClick={this.myFunction.bind(this)}>
-        <i className="fa fa-bars"></i>
-      </a>
     </div>
   </div>
-  if (this.state.selected==1){
+  if (this.state.selected===1){
     div = <div>
     <div className="topnav" id="myTopnav">
       <div className="initLogo">
@@ -71,9 +68,6 @@ class Header extends Component{
       <Link to="/login" onClick={this.headerClicked.bind(this)} className={classnames({'selected' : this.state.selected === 0 }, 'option')}>
         <a>Entrar</a>
       </Link>
-      <a href="javascript:void(0);" className="icon" onClick={this.myFunction.bind(this)}>
-        <i className="fa fa-bars"></i>
-      </a>
     </div>
   </div>
   }

@@ -3,12 +3,13 @@ import jwt
 import datetime
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
-from flask import Flask, jsonify, request, make_response, send_file
+from flask import Flask, jsonify, request, make_response, send_file, session
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy #comunicacao com o banco
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ueasistemas:11235813@localhost/uea_sistemas'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 CORS(app)
 db = SQLAlchemy(app)
 from models import *
@@ -35,6 +36,8 @@ def login():
         response = make_response(jsonify({'token': token.decode('UTF-8'), 'canLogin':True}))
         response.headers['Access-Control-Allow-Origin'] = '*'
         return response
+    
+    db.session.commit()
 
     response = make_response(jsonify({'erro':erro}), 401)
     response.headers['WWW-Authenticate'] = 'Basic realm={}'.format(erro)
@@ -80,6 +83,7 @@ def aluno(aluno_id):
         'discente_situacao' : aluno.aluno_discente_situacao, 'discente_funcao' : aluno.aluno_discente_funcao, 'egresso_inst' : aluno.aluno_egresso_instituicao,
         'egresso_situacao' : aluno.aluno_egresso_situacao, 'egresso_funcao' : aluno.aluno_egresso_funcao }
 
+    db.session.commit()
     return jsonify(output)
     
 
@@ -92,6 +96,8 @@ def all_alunos():
         a_data = {'nome': aluno.aluno_nome, 'id': aluno.aluno_id}
 
         output.append(a_data)
+        
+    db.session.commit()
     response = make_response(jsonify({'alunos': output}))
     return response
 
@@ -106,6 +112,7 @@ def perfilaluno(current_user):
         'discente_situacao' : current_user.aluno_discente_situacao, 'discente_funcao' : current_user.aluno_discente_funcao, 'egresso_inst' : current_user.aluno_egresso_instituicao,
         'egresso_situacao' : current_user.aluno_egresso_situacao, 'egresso_funcao' : current_user.aluno_egresso_funcao }
 
+    db.session.commit()
     response = make_response(jsonify(output))
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
@@ -174,6 +181,7 @@ def all_unidades():
 
         output.append(uni)
     
+    db.session.commit()
     return jsonify(output)
 
 @app.route('/unidades/<int:unidade_id>')
@@ -181,6 +189,8 @@ def unidade(unidade_id):
     unidade = Unidade.query.filter_by(unidade_id = (unidade_id)).first()
     if(unidade == None):
         return 'Unidade não encontrada!'
+        
+    db.session.commit()
     return 'Nome: %s' % unidade.unidade_nome
 
 
@@ -197,6 +207,7 @@ def all_cursos():
 
         output.append(c_data)
     
+    db.session.commit()
     return jsonify(output)
 
 @app.route('/cursos/<int:curso_id>')
@@ -205,6 +216,7 @@ def curso(curso_id):
     if(curso == None):
         return 'Curso não encontrado!'
         
+    db.session.commit()
     return 'Nome: %s' % curso.curso_nome
 
 

@@ -5,7 +5,6 @@ import './StudentsScreen.css';
 
 //external components
 import Global from '../../Components/global'
-import user from '../../Assets/user.png';
 import Header from '../../Components/Header/Header';
 
 class StudentsScreen extends Component{
