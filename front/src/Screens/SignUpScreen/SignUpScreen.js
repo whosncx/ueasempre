@@ -163,25 +163,26 @@ class SignUpScreen extends Component{
     fetch(Global.API_URL + '/cadastro', request).then((response) => {
       response.json().then((data) => {
         console.log(this.state.imageURL);
-        if (this.uploadInput.files[0] != null) {
-          const form = new FormData();
-          form.append('file', this.uploadInput.files[0]);
-          form.append('filename', data.id + '.png')
+        // if (this.uploadInput.files[0] != null) {
+        //   const form = new FormData();
+        //   form.append('file', this.uploadInput.files[0]);
+        //   form.append('filename', data.id + '.png')
       
-          fetch('http://localhost:5000/upload', {
-            method: 'POST',
-            body: form,
-          }).then((response) => {
-            response.json().then((body) => {
-              this.setState({ imageURL: `http://localhost:5000/${body.file}` });
-            });
-          });
-          alert('Cadastro Realizado com Sucesso')
-          // this.props.history.push('/login')
-        }else{
-          alert('Insira uma foto')
-        }
-      });      
+        //   fetch('http://localhost:5000/upload', {
+        //     method: 'POST',
+        //     body: form,
+        //   }).then((response) => {
+        //     response.json().then((body) => {
+        //       this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+        //     });
+        //   });
+        //   alert('Cadastro Realizado com Sucesso')
+        //   // this.props.history.push('/login')
+        // }else{
+        //   alert('Insira uma foto')
+        // }
+      }); 
+      alert('Cadastro Realizado com Sucesso')     
     }).catch((e) => {
       console.log(e);
       alert('Houve um erro ao adicionar Aluno, tente novamente mais tarde');
@@ -309,6 +310,7 @@ class SignUpScreen extends Component{
 
 
   handleError(){
+    console.log(this.havePhoto)
     this.havePhoto = false;
     this.setState({
       imageURL : camera
