@@ -89,11 +89,11 @@ def all_alunos():
 
     output = []
     for aluno in alunos:
-        a_data = {'nome': aluno.aluno_nome, 'curso': aluno.curso.curso_nome}
+        a_data = {'nome': aluno.aluno_nome, 'id': aluno.aluno_id}
 
         output.append(a_data)
-    
-    return jsonify(output)
+    response = make_response(jsonify({'alunos': output}))
+    return response
 
 
 @app.route('/perfilaluno', methods=['GET'])
