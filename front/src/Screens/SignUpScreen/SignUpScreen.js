@@ -260,6 +260,8 @@ class SignUpScreen extends Component{
     this.setState({
       situation: evt.value
     })
+    var status = document.getElementById("exitYear").disabled;//pega o status do input(se ta habilitado ou não)
+    document.getElementById("exitYear").disabled = !(status);//nega o status(se tiver habilitado desabilita, e vece versa)
   }
 
   selectCurso(evt){
@@ -280,6 +282,7 @@ class SignUpScreen extends Component{
       imageURL : camera
     })
   }
+
   render(){
     let $imagePreview = null;
       $imagePreview = (
@@ -291,6 +294,7 @@ class SignUpScreen extends Component{
             
           </div>
       </div> );
+  
     return(
       <div>
         <header>
