@@ -96,13 +96,13 @@ class SignUpScreen extends Component{
             facebook: data.facebook,
             entryYear: data.ano_ingresso,
             exitYear: data.ano_conclusao,
-            situation: data.situacao,
+            situation: ''+data.situacao,
             discente_institutuion : data.discente_inst,
             discente_function :data.discente_funcao,
-            discente_situation :data.discente_situacao,            
+            discente_situation : ''+data.discente_situacao,            
             egresso_institutuion : data.egresso_inst,
             egresso_function :data.egresso_funcao,
-            egresso_situation :data.egresso_situacao,          
+            egresso_situation : ''+data.egresso_situacao,          
             imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now()
           })
         });
@@ -331,7 +331,7 @@ class SignUpScreen extends Component{
         <Dropdown value={''+this.state.situation} className='inputsDinamico-signUpScreen' options={this.situacao} onChange={this.selectSituation.bind(this)} />
         <input className='inputsDinamico-signUpScreen' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
         <Dropdown value={''+this.state.discente_situation} className='inputsDinamico-signUpScreen' options={this.discente_situacao} onChange={this.selectDiscenteSituation.bind(this)} />
-        {this.state.discente_situation!=='0'&&this.state.discente_situation!=='null' ? <div>
+        {this.state.discente_situation!=='0' ? <div>
           <input className='inputsDinamico-signUpScreen' value={this.state.discente_institutuion} onChange={evt => this.handleChange(evt)} id='institutuion' placeholder='Instituição' type='discente_institutuion' />
           <input className='inputsDinamico-signUpScreen' value={this.state.discente_function} onChange={evt => this.handleChange(evt)} id='function' placeholder='Função' type='discente_function' />
         </div>:<div/>}
@@ -343,7 +343,7 @@ class SignUpScreen extends Component{
         <input className='inputsDinamico-signUpScreen' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
         <input className='inputsDinamico-signUpScreen' value={this.state.exitYear} onChange={evt => this.handleChange(evt)} id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
         <Dropdown value={''+this.state.egresso_situation} className='inputsDinamico-signUpScreen' options={this.egresso_situacao} onChange={this.selectEgressoSituation.bind(this)} />
-        {this.state.egresso_situation!=='0'&&this.state.egresso_situation!=='null'? <div>
+        {this.state.egresso_situation!=='0' ? <div>
           <input className='inputsDinamico-signUpScreen' value={this.state.egresso_institutuion} onChange={evt => this.handleChange(evt)} id='institutuion' placeholder='Instituição' type='egresso_institutuion' />
           <input className='inputsDinamico-signUpScreen' value={this.state.egresso_function} onChange={evt => this.handleChange(evt)} id='function' placeholder='Função' type='egresso_function' />
         </div> : <div/>}
@@ -359,7 +359,7 @@ class SignUpScreen extends Component{
         <div className='componentsLab-signUpScreen'>
           <div className='imgLogo-signUpScreen'>
               {$imagePreview}
-              {this.state.situation==='0'||this.state.situation==='null' ? $infoDiscente : $infoEgresso}
+              {this.state.situation==='0' ? $infoDiscente : $infoEgresso}
           </div>
           <div className='fieldsLab-signUpScreen'>
             <input className='inputs-signUpScreen' value={this.state.name} onChange={evt => this.handleChange(evt)} id='name' placeholder='Nome Completo' type='name'/>
