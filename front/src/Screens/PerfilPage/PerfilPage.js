@@ -112,16 +112,15 @@ class PerfilPage extends Component{
         <header>
           <Header></Header>
         </header>
-        <p className='labTitle-signUpScreen'>Cadastro do Usuário</p>
         <div className='componentsLab-signUpScreen'>
           <div className='imgLogo-signUpScreen'>
               {$imagePreview}
               <div className='fieldsLabDinamico-signUpScreen'> 
               <h className='inputsDinamico-signUpScreen' id='situation' placeholder='Situação' type='situation'>{this.state.situation==0 ? 'Discente' : 'Egresso'}</h>
-              <h className='inputsDinamico-signUpScreen' id='entryYear' placeholder='Ano de Ingresso' type='entryYear'>{this.state.entryYear}</h>
+              <h className='inputsDinamico-signUpScreen' id='entryYear' placeholder='Ano de Ingresso' type='entryYear'><h>Ingresso: </h>{this.state.entryYear}</h>
               {
                 this.state.situation ? 
-                <h className='inputsDinamico-signUpScreen' id='exitYear' placeholder='Ano de Egresso' type='exitYear'>{this.state.exitYear}</h> : 
+                <h className='inputsDinamico-signUpScreen' id='exitYear' placeholder='Ano de Egresso' type='exitYear'><h>Conclusão: </h>{this.state.exitYear}</h> : 
                 <h/>
               }
               {!this.state.situation ? <h className='inputsDinamico-signUpScreen' id='disc_situacao' placeholder='Situação' type='disc_situacao'>{this.selectDiscSituation()}</h>
@@ -129,23 +128,23 @@ class PerfilPage extends Component{
               }
               {!this.state.situation && this.state.disc_situation!==0 ? 
               <h>
-                <h className='inputsDinamico-signUpScreen' id='disc_institutuion' placeholder='Instituição' type='disc_institutuion'>{this.state.disc_institutuion}</h>
-                <h className='inputsDinamico-signUpScreen' id='disc_function' placeholder='Função' type='disc_function'>{this.state.disc_function}</h>             
+                <h className='inputsDinamico-signUpScreen' id='disc_institutuion' placeholder='Instituição' type='disc_institutuion'><h>Instituição: </h>{this.state.disc_institutuion}</h>
+                <h className='inputsDinamico-signUpScreen' id='disc_function' placeholder='Função' type='disc_function'><h>Função: </h>{this.state.disc_function}</h>             
               </h>: <h/>}
               {this.state.situation && this.state.egresso_situation!==0 ? 
               <h>
-                <h className='inputsDinamico-signUpScreen' id='egresso_institutuion' placeholder='Instituição' type='egresso_institutuion'>{this.state.egresso_institutuion}</h>
-                <h className='inputsDinamico-signUpScreen' id='egresso_function' placeholder='Função' type='egresso_function'>{this.state.egresso_function}</h>             
+                <h className='inputsDinamico-signUpScreen' id='egresso_institutuion' placeholder='Instituição' type='egresso_institutuion'><h>Instituição: </h>{this.state.egresso_institutuion}</h>
+                <h className='inputsDinamico-signUpScreen' id='egresso_function' placeholder='Função' type='egresso_function'><h>Função: </h>{this.state.egresso_function}</h>             
               </h>: <h/>}
           </div>
           </div>
           <div className='fieldsLab-signUpScreen'>
-            <h className='inputs-signUpScreen' id='name' placeholder='Nome Completo' type='name'>{this.state.name} </h>
-            <h className='inputs-signUpScreen' id='email' placeholder='Email' type='email'>{this.state.email} </h>
+            <h className='inputs-signUpScreen' id='name' placeholder='Nome Completo' type='name'><h>Nome: </h>{this.state.name} </h>
+            <h className='inputs-signUpScreen' id='email' placeholder='Email' type='email'><h>Email: </h>{this.state.email} </h>
             <h className='inputs-signUpScreen' id='facebook' placeholder='Facebook' type='facebook'>{this.state.facebook}</h>
-            <h className='inputs-signUpScreen' id='linkedin' placeholder='Linkedin' type='linkedin'>{this.state.linkedin} </h>
-            <h className='inputs-signUpScreen' id='unity' placeholder='Unidade' type='unity'>{this.state.unity}</h>             
-            <h className='inputs-signUpScreen' id='course' placeholder='Curso' type='course'>{this.state.course}</h>
+            <h className='inputs-signUpScreen' id='linkedin' placeholder='Linkedin' type='linkedin'><h>Linkedin: </h>{this.state.linkedin} </h>
+            <h className='inputs-signUpScreen' id='unity' placeholder='Unidade' type='unity'><h>Unidade: </h>{this.state.unity}</h>             
+            <h className='inputs-signUpScreen' id='course' placeholder='Curso' type='course'><h>Curso: </h>{this.state.course}</h>
             <div className='buttons-signUpScreen'>
               <button className='buttonVoltar-signUpScreen' onClick={this.goBack.bind(this)}>voltar</button>
             </div>

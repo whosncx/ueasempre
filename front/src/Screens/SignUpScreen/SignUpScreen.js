@@ -195,7 +195,7 @@ class SignUpScreen extends Component{
               this.setState({ imageURL: `http://localhost:5000/${body.file}` });
             });
           });
-          alert('Cadastro Realizado com Sucesso')
+          // alert('Cadastro Realizado com Sucesso')
           // this.props.history.push('/login')
       }); 
       alert('Cadastro Realizado com Sucesso')     
@@ -407,7 +407,10 @@ class SignUpScreen extends Component{
             <input className='inputs-signUpScreen' value={this.state.password} onChange={evt => this.handleChange(evt)} id='password' placeholder='Senha' type='password' />
             <input className='inputs-signUpScreen' placeholder='Confirmar Senha' type='password' />
             <div className='buttons-signUpScreen'>
-              <button className='buttonVoltar-signUpScreen' onClick={() => this.props.history.push('/login')}>
+              
+            </div>
+            <div>
+            <button className='buttonVoltar-signUpScreen' onClick={() => this.props.history.push('/login')}>
                 Voltar
               </button>
               <button className='buttonSalvar-signUpScreen' onClick={this.addAluno.bind(this)} >
