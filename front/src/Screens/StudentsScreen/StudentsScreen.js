@@ -6,6 +6,7 @@ import './StudentsScreen.css';
 //external components
 import Global from '../../Components/global'
 import Header from '../../Components/Header/Header';
+import camera from '../../Assets/user.png';
 
 class StudentsScreen extends Component{
     alunos = []
@@ -43,7 +44,9 @@ class StudentsScreen extends Component{
             "/perfil/"+id
         );
       }
-    
+    handleError(e){
+        e.target.src = camera;
+      }
     
   render(){
      console.log(this.state.alunos)
@@ -57,7 +60,7 @@ class StudentsScreen extends Component{
             {this.state.alunos.map(c => 
                 <article className='grid-studentsItem'>
                     <a onClick={()=>this.goPerfil(c.id)} className='grid-studentsHref'>
-                        <img className='grid-studentsImg' alt='aluno' src={Global.API_URL + '/imgs/uploads/' + c.id + '.png?v=' + Date.now()}/>
+                        <img onError={this.handleError} className='grid-studentsImg' alt='aluno' src={Global.API_URL + '/imgs/uploads/' + c.id + '.png?v=' + Date.now()}/>
                         <p className='grid-studentsText'>{c.nome}</p>
                     </a>
                 </article>

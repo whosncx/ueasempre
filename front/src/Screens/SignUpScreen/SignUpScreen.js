@@ -206,6 +206,7 @@ class SignUpScreen extends Component{
   }
 
   fileChangedHandler = (evt) => {
+    console.log(evt.target.files[0]);
     const file = evt.target.files[0];
     let reader = new FileReader();
     reader.onload = (e) => {
@@ -338,11 +339,10 @@ class SignUpScreen extends Component{
 
 
   handleError(){
-    console.log(this.havePhoto)
-    this.havePhoto = false;
     this.setState({
       imageURL : camera
     })
+    this.havePhoto = false;
   }
 
   render(){
@@ -379,8 +379,7 @@ class SignUpScreen extends Component{
         </div> : <div/>}
       </div>
     );
-    console.log(this.state.situation);  
-    return(
+   return(
       <div>
         <header>
           <Header></Header>

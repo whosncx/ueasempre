@@ -3,6 +3,7 @@ import './PerfilPage.css';
 
 import Global from '../../Components/global'
 import Header from '../../Components/Header/Header';
+import userImg from '../../Assets/user.png';
 import 'react-dropdown/style.css'
 
 class PerfilPage extends Component{
@@ -89,13 +90,17 @@ class PerfilPage extends Component{
       }
     }
 
+    handleError(e){
+      e.target.src = userImg;
+    }
+
   render(){
 
         console.log(this.state.situation)
     let $imagePreview = null;
       $imagePreview = (
       <div className="labImgContainer">
-          <img  src={this.state.imageURL} className="labImg" alt={this.state.labNome} height='195' width='195'/>
+          <img onError={this.handleError} src={this.state.imageURL} className="labImg" alt={this.state.labNome} height='195' width='195'/>
           <div className="imgLogoSubTitle-signUpScreen">
 
             <h ref={(ref) => { this.uploadInput = ref; }} className="changePicInput" type="file" id="Imagem" name="Imagem" onChange={evt => this.fileChangedHandler(evt)} ></h>
