@@ -81,7 +81,7 @@ def aluno(aluno_id):
         'cpf': aluno.aluno_id, 'curso': aluno.curso.curso_nome, 'unidade': aluno.unidade.unidade_nome, 'senha': aluno.aluno_senha,
         'ano_ingresso' : aluno.aluno_ano_ingresso, 'ano_conclusao' : aluno.aluno_ano_conclusao, 'discente_inst' : aluno.aluno_discente_instituicao,
         'discente_situacao' : aluno.aluno_discente_situacao, 'discente_funcao' : aluno.aluno_discente_funcao, 'egresso_inst' : aluno.aluno_egresso_instituicao,
-        'egresso_situacao' : aluno.aluno_egresso_situacao, 'egresso_funcao' : aluno.aluno_egresso_funcao }
+        'egresso_situacao' : aluno.aluno_egresso_situacao, 'egresso_funcao' : aluno.aluno_egresso_funcao , 'situacao' : aluno.aluno_situacao}
 
     db.session.commit()
     return jsonify(output)

@@ -43,7 +43,7 @@ class PerfilPage extends Component{
             entryYear: data.ano_ingresso,
             exitYear: data.ano_conclusao,
             institutuion : data.discente_inst,
-            situation: data.discente_situacao,
+            situation: data.situacao,
             function: data.discente_funcao,
             name: data.nome,
             email: data.email,
@@ -67,7 +67,7 @@ class PerfilPage extends Component{
     }
   render(){
 
-        console.log(this.props.params)
+        console.log(this.state.situation)
     let $imagePreview = null;
       $imagePreview = (
       <div className="labImgContainer">
@@ -92,7 +92,7 @@ class PerfilPage extends Component{
               <h className='inputsDinamico-signUpScreen' id='exitYear' placeholder='Ano de Egresso' type='exitYear'>{this.state.exitYear}</h>
               <h className='inputsDinamico-signUpScreen' id='institutuion' placeholder='Instituição' type='institutuion'>{this.state.institutuion}</h>
               
-              <h className='inputsDinamico-signUpScreen' id='situation' placeholder='Situação' type='situation'>{this.state.situation ? 'Egresso' : 'Discente'}</h>
+              <h className='inputsDinamico-signUpScreen' id='situation' placeholder='Situação' type='situation'>{this.state.situation==0 ? 'Discente' : 'Egresso'}</h>
               <h className='inputsDinamico-signUpScreen' id='function' placeholder='Função' type='function'>{this.state.function}</h>
               </div>
           </div>

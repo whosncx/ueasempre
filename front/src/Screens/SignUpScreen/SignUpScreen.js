@@ -130,10 +130,10 @@ class SignUpScreen extends Component{
       "exitYear": (this.state.exitYear==""? 0 : this.state.exitYear),
       "situation": this.state.situation,
       "discente_institutuion" : this.state.discente_institutuion,
-      "discente_situation": (this.state.discente_situation=="null"? 0 : this.state.discente_situation),
+      "discente_situation": (this.state.discente_situation=="null" || this.state.discente_situation=="" ? 0 : this.state.discente_situation),
       "discente_function": this.state.discente_function,
       "egresso_institutuion" : this.state.egresso_institutuion,
-      "egresso_situation": (this.state.egresso_situation=="null"? 0 : this.state.egresso_situation),
+      "egresso_situation": ((this.state.egresso_situation=="null" || this.state.egresso_situation=="") ? 0 : this.state.egresso_situation),
       "egresso_function": this.state.egresso_function,
     })
     console.log(body)
@@ -161,27 +161,42 @@ class SignUpScreen extends Component{
       return;
     }
 
+    function toBase64(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                callback(reader.result);
+            }
+            reader.readAsDataURL(xhr.response);
+        };
+        xhr.open('GET', url);
+        xhr.responseType = 'blob';
+        xhr.send();
+      }
+
     fetch(Global.API_URL + '/cadastro', request).then((response) => {
       response.json().then((data) => {
-        console.log(this.state.imageURL);
-        // if (this.uploadInput.files[0] != null) {
-        //   const form = new FormData();
-        //   form.append('file', this.uploadInput.files[0]);
-        //   form.append('filename', data.id + '.png')
-      
-        //   fetch('http://localhost:5000/upload', {
-        //     method: 'POST',
-        //     body: form,
-        //   }).then((response) => {
-        //     response.json().then((body) => {
-        //       this.setState({ imageURL: `http://localhost:5000/${body.file}` });
-        //     });
-        //   });
-        //   alert('Cadastro Realizado com Sucesso')
-        //   // this.props.history.push('/login')
-        // }else{
-        //   alert('Insira uma foto')
-        // }
+          var file = this.uploadInput.files[0]
+          const form = new FormData();
+          form.append('file', file);
+
+          // toBase64(camera, function(dataUrl) {
+          //   this.state.imageURL =  dataUrl 
+          // })
+          // console.log(this.state.imageURL)
+          form.append('filename', data.id + '.png')
+    
+          fetch('http://localhost:5000/upload', {
+            method: 'POST',
+            body: form,
+          }).then((response) => {
+            response.json().then((body) => {
+              this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+            });
+          });
+          alert('Cadastro Realizado com Sucesso')
+          // this.props.history.push('/login')
       }); 
       alert('Cadastro Realizado com Sucesso')     
     }).catch((e) => {
@@ -306,6 +321,18 @@ class SignUpScreen extends Component{
           password : evt.target.value
         });
       break;
+      
+      case 'discente_function':
+        this.setState({
+          discente_function : evt.target.value
+        });
+      break;
+      
+      case 'egresso_function':
+        this.setState({
+          egresso_function : evt.target.value
+        });
+      break;
     }
   }
 
@@ -335,8 +362,8 @@ class SignUpScreen extends Component{
         <input className='inputsDinamico-signUpScreen' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
         <Dropdown value={''+this.state.discente_situation} className='inputsDinamico-signUpScreen' options={this.discente_situacao} onChange={this.selectDiscenteSituation.bind(this)} />
         {this.state.discente_situation!=='0' ? <div>
-          <input className='inputsDinamico-signUpScreen' value={this.state.discente_institutuion} onChange={evt => this.handleChange(evt)} id='institutuion' placeholder='Instituição' type='discente_institutuion' />
-          <input className='inputsDinamico-signUpScreen' value={this.state.discente_function} onChange={evt => this.handleChange(evt)} id='function' placeholder='Função' type='discente_function' />
+          <input className='inputsDinamico-signUpScreen' value={this.state.discente_institutuion} onChange={evt => this.handleChange(evt)} id='discente_institutuion' placeholder='Instituição' type='discente_institutuion' />
+          <input className='inputsDinamico-signUpScreen' value={this.state.discente_function} onChange={evt => this.handleChange(evt)} id='discente_function' placeholder='Função' type='discente_function' />
         </div>:<div/>}
       </div>
     );
@@ -347,8 +374,8 @@ class SignUpScreen extends Component{
         <input className='inputsDinamico-signUpScreen' value={this.state.exitYear} onChange={evt => this.handleChange(evt)} id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
         <Dropdown value={''+this.state.egresso_situation} className='inputsDinamico-signUpScreen' options={this.egresso_situacao} onChange={this.selectEgressoSituation.bind(this)} />
         {this.state.egresso_situation!=='0' ? <div>
-          <input className='inputsDinamico-signUpScreen' value={this.state.egresso_institutuion} onChange={evt => this.handleChange(evt)} id='institutuion' placeholder='Instituição' type='egresso_institutuion' />
-          <input className='inputsDinamico-signUpScreen' value={this.state.egresso_function} onChange={evt => this.handleChange(evt)} id='function' placeholder='Função' type='egresso_function' />
+          <input className='inputsDinamico-signUpScreen' value={this.state.egresso_institutuion} onChange={evt => this.handleChange(evt)} id='egresso_institutuion' placeholder='Instituição' type='egresso_institutuion' />
+          <input className='inputsDinamico-signUpScreen' value={this.state.egresso_function} onChange={evt => this.handleChange(evt)} id='egresso_function' placeholder='Função' type='egresso_function' />
         </div> : <div/>}
       </div>
     );

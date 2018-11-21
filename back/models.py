@@ -15,11 +15,11 @@ class Aluno(db.Model):
     aluno_ano_conclusao = db.Column(db.Integer)
     aluno_situacao = db.Column(db.Integer, nullable=False)
     aluno_discente_situacao = db.Column(db.Integer, nullable=False)
-    aluno_discente_funcao = db.Column(db.Integer, nullable=False)
+    aluno_discente_funcao = db.Column(db.String(200), nullable=False)
     aluno_discente_instituicao = db.Column(db.String(200), nullable=False)
 
     aluno_egresso_situacao = db.Column(db.Integer)
-    aluno_egresso_funcao = db.Column(db.Integer)
+    aluno_egresso_funcao = db.Column(db.String(200))
     aluno_egresso_instituicao = db.Column(db.String(200))
 
     aluno_status = db.Column(db.Integer,nullable=False)
