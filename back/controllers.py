@@ -140,8 +140,11 @@ def create_aluno():
     novo_aluno = Aluno(aluno_nome=data['name'],aluno_id=data['cpf'],aluno_facebook=data['facebook'],
     aluno_linkedin=data['linkedin'],aluno_email=data['email'],aluno_uea_unidade=data['unity'],aluno_uea_curso=data['course'],
     aluno_senha=data['password'], aluno_ano_ingresso=data['entryYear'], aluno_ano_conclusao=data['exitYear'],
-    aluno_situacao=0,aluno_discente_situacao=0, aluno_matricula='123',aluno_discente_funcao=data['function'],aluno_discente_instituicao=data['institutuion'],
-    aluno_status=1)
+    aluno_situacao=data['situation'],aluno_discente_situacao=data['discente_situation'], aluno_matricula='123',
+    aluno_discente_funcao=data['discente_function'],aluno_discente_instituicao=data['discente_institutuion'],
+    aluno_status=1, 
+    aluno_egresso_situacao=data['egresso_situation'],aluno_egresso_instituicao=data['egresso_institutuion'], 
+    aluno_egresso_funcao=data['egresso_function'])
 
     db.session.add(novo_aluno)
     db.session.commit()

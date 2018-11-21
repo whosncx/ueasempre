@@ -127,7 +127,7 @@ class SignUpScreen extends Component{
       "password": this.state.password,
       "facebook": this.state.facebook,
       "entryYear": this.state.entryYear,
-      "exitYear": this.state.exitYear,
+      "exitYear": (this.state.exitYear==""? 0 : this.state.exitYear),
       "situation": this.state.situation,
       "discente_institutuion" : this.state.discente_institutuion,
       "discente_situation": (this.state.discente_situation=="null"? 0 : this.state.discente_situation),
@@ -136,6 +136,7 @@ class SignUpScreen extends Component{
       "egresso_situation": (this.state.egresso_situation=="null"? 0 : this.state.egresso_situation),
       "egresso_function": this.state.egresso_function,
     })
+    console.log(body)
     if(token) {
       request = { 
         method: 'PUT',
