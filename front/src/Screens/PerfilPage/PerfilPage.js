@@ -15,9 +15,10 @@ class PerfilPage extends Component{
     this.state = {
       entryYear:'',
       exitYear: '',
-      institutuion : '',
       situation: '',
-      function:'',
+      disc_institutuion : '',
+      disc_situation: '',
+      disc_function:'',
       name: '',
       email:'',
       linkedin:'',
@@ -42,9 +43,13 @@ class PerfilPage extends Component{
           this.setState({
             entryYear: data.ano_ingresso,
             exitYear: data.ano_conclusao,
-            institutuion : data.discente_inst,
             situation: data.situacao,
-            function: data.discente_funcao,
+            disc_situation : data.discente_situacao,
+            disc_function: data.discente_funcao,
+            disc_institutuion : data.discente_inst,
+            egresso_situation : data.egresso_situacao,
+            egresso_function: data.egresso_funcao,
+            egresso_institutuion : data.egresso_inst,
             name: data.nome,
             email: data.email,
             linkedin: data.linkedin,
@@ -65,6 +70,25 @@ class PerfilPage extends Component{
     goBack() {
         this.props.history.push('/alunos'); // Imprementar com goBack()
     }
+    selectDiscSituation(){
+      switch(this.state.disc_situation){
+        case 0: return 'Não Trabalha';
+        case 1: return 'Bolsista';
+        case 2: return 'Estagiario';
+        case 3: return 'CLT';
+        case 4: return 'Outros';
+      }
+    }
+
+    selectEgressoSituation(){
+      switch(this.state.disc_situation){
+        case 0: return 'Não Trabalha';
+        case 1: return 'Bolsista Pós Graduação';
+        case 3: return 'CLT';
+        case 4: return 'Outros';
+      }
+    }
+
   render(){
 
         console.log(this.state.situation)
@@ -88,13 +112,27 @@ class PerfilPage extends Component{
           <div className='imgLogo-signUpScreen'>
               {$imagePreview}
               <div className='fieldsLabDinamico-signUpScreen'> 
-              <h className='inputsDinamico-signUpScreen' id='entryYear' placeholder='Ano de Ingresso' type='entryYear'>{this.state.entryYear}</h>
-              <h className='inputsDinamico-signUpScreen' id='exitYear' placeholder='Ano de Egresso' type='exitYear'>{this.state.exitYear}</h>
-              <h className='inputsDinamico-signUpScreen' id='institutuion' placeholder='Instituição' type='institutuion'>{this.state.institutuion}</h>
-              
               <h className='inputsDinamico-signUpScreen' id='situation' placeholder='Situação' type='situation'>{this.state.situation==0 ? 'Discente' : 'Egresso'}</h>
-              <h className='inputsDinamico-signUpScreen' id='function' placeholder='Função' type='function'>{this.state.function}</h>
-              </div>
+              <h className='inputsDinamico-signUpScreen' id='entryYear' placeholder='Ano de Ingresso' type='entryYear'>{this.state.entryYear}</h>
+              {
+                this.state.situation ? 
+                <h className='inputsDinamico-signUpScreen' id='exitYear' placeholder='Ano de Egresso' type='exitYear'>{this.state.exitYear}</h> : 
+                <h/>
+              }
+              {!this.state.situation ? <h className='inputsDinamico-signUpScreen' id='disc_situacao' placeholder='Situação' type='disc_situacao'>{this.selectDiscSituation()}</h>
+              :<h className='inputsDinamico-signUpScreen' id='egresso_situacao' placeholder='Situação' type='egresso_situacao'>{this.selectEgressoSituation()}</h>
+              }
+              {!this.state.situation && this.state.disc_situation!==0 ? 
+              <h>
+                <h className='inputsDinamico-signUpScreen' id='disc_institutuion' placeholder='Instituição' type='disc_institutuion'>{this.state.disc_institutuion}</h>
+                <h className='inputsDinamico-signUpScreen' id='disc_function' placeholder='Função' type='disc_function'>{this.state.disc_function}</h>             
+              </h>: <h/>}
+              {this.state.situation && this.state.egresso_situation!==0 ? 
+              <h>
+                <h className='inputsDinamico-signUpScreen' id='egresso_institutuion' placeholder='Instituição' type='egresso_institutuion'>{this.state.egresso_institutuion}</h>
+                <h className='inputsDinamico-signUpScreen' id='egresso_function' placeholder='Função' type='egresso_function'>{this.state.egresso_function}</h>             
+              </h>: <h/>}
+          </div>
           </div>
           <div className='fieldsLab-signUpScreen'>
             <h className='inputs-signUpScreen' id='name' placeholder='Nome Completo' type='name'>{this.state.name} </h>
