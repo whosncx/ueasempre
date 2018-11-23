@@ -20,13 +20,14 @@ class LoginScreen extends Component{
           <Header></Header>
         </header>
         <div className='loginContainer'>
-                
-                    {/* <div className="logoContainer">
-                        <img className = "logo" src={uea} alt='Logo da fapeam'/>
-                    </div> */}
-                    
+                    <div className="welcome-login">
+                        <h1>Bem Vindo ao<br></br>Sempre UEA</h1>
+                    </div>
                     <div className="formLoginContainer">
                         {/* <form onSubmit={this.handleSubmit.bind(this)} className="formLogin"> */}
+                        <div className="logoContainer">
+                            <img className = "logo" src={uea} alt='Logo da fapeam'/>
+                        </div>
                         <form>
                             <div className="cpfContainer inputContainer">
                                 {/* <input className="input" id="cpf" placeholder="CPF" onChange={this.handleChange.bind(this)}/> */}
