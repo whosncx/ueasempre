@@ -21,22 +21,22 @@ class LoginScreen extends Component{
         </header>
         <div className='loginContainer'>
                 
-                    <div className="logoContainer">
+                    {/* <div className="logoContainer">
                         <img className = "logo" src={uea} alt='Logo da fapeam'/>
-                    </div>
+                    </div> */}
                     
                     <div className="formLoginContainer">
                         {/* <form onSubmit={this.handleSubmit.bind(this)} className="formLogin"> */}
                         <form>
                             <div className="cpfContainer inputContainer">
                                 {/* <input className="input" id="cpf" placeholder="CPF" onChange={this.handleChange.bind(this)}/> */}
-                                <input className="input" id="cpf" placeholder="CPF"/>
+                                <input className="input-login" id="cpf" placeholder="CPF"/>
                                 <span className=""></span>
                             </div>
                         
                             <div className="passwordContainer inputContainer">
                                 {/* <input className="input" type="password" id="password" placeholder="Senha" onChange={this.handleChange.bind(this)}/> */}
-                                <input className="input" type="password" id="password" placeholder="Senha"/>
+                                <input className="input-login" type="password" id="password" placeholder="Senha"/>
                                 <span className=""></span>
                             </div>
                         
@@ -48,7 +48,7 @@ class LoginScreen extends Component{
                             </div >
                             <div className="btnContainer">
                                 <Link onClick={this.otherFunction.bind(this)} to="/cadastro" >
-                                <a href="http://localhost:3000/cadastro" target="_blank">Novo Usuário?</a>
+                                <a href="http://localhost:3000/cadastro" target="_blank" className="newUser">Novo Usuário?</a>
                                 </Link>
                             </div>
                         </form>
