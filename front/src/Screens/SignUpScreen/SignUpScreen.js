@@ -384,46 +384,56 @@ class SignUpScreen extends Component{
         <header>
           <Header></Header>
         </header>
-        <p className='labTitle-signUpScreen'>Cadastro do Usuário</p>
-        <div className='componentsLab-signUpScreen'>
-          <div className='imgLogo-signUpScreen'>
-              {$imagePreview}
-              {this.state.situation==='0' ? $infoDiscente : $infoEgresso}
-          </div>
-          <div className='fieldsLab-signUpScreen'>
-            <input className='inputs-signUpScreen' value={this.state.name} onChange={evt => this.handleChange(evt)} id='name' placeholder='Nome Completo' type='name'/>
-            <input className='inputs-signUpScreen' value={this.state.email} onChange={evt => this.handleChange(evt)} id='email' placeholder='Email' type='email' />
-            <input className='inputs-signUpScreen' value={this.state.facebook} onChange={evt => this.handleChange(evt)} id='facebook' placeholder='Facebook' type='facebook' />
-            <input className='inputs-signUpScreen' value={this.state.linkedin} onChange={evt => this.handleChange(evt)} id='linkedin' placeholder='Linkedin' type='linkedin' />
-            <div className="fieldsLabSide-signUpScreen">
-              <Dropdown value={''+this.state.course} controlClassName='myControlClassName' className='inputsSide-signUpScreen' options={this.cursos} onChange={this.selectCurso.bind(this)} placeholder="Curso" />
-              <Dropdown value={''+this.state.unity} controlClassName='myControlClassName' className='inputsSide-signUpScreen' options={this.unidades} onChange={this.selectUnidade.bind(this)} placeholder="Unidade" />
-              {/**              
-              <input className='inputsSide-signUpScreen' value={this.state.unity} onChange={evt => this.handleChange(evt)} id='unity' placeholder='Unidade' type='unity' />             
-              <input className='inputsSide-signUpScreen' value={this.state.course} onChange={evt => this.handleChange(evt)} id='course' placeholder='Curso' type='course' />
-              */}
-              </div>
-            <input className='inputs-signUpScreen' value={this.state.cpf} onChange={evt => this.handleChange(evt)} id='cpf' placeholder='CPF' type='cpf' />
-            <input className='inputs-signUpScreen' value={this.state.password} onChange={evt => this.handleChange(evt)} id='password' placeholder='Senha' type='password' />
-            <input className='inputs-signUpScreen' placeholder='Confirmar Senha' type='password' />
-            <div className='buttons-signUpScreen'>
-              
-            </div>
-            <div>
-            <button className='buttonVoltar-signUpScreen' onClick={() => this.props.history.push('/login')}>
-                Voltar
-              </button>
-              <button className='buttonSalvar-signUpScreen' onClick={this.addAluno.bind(this)} >
-                Salvar
-              </button>
-            </div>
-          </div>
-        </div>
+        <section className='grid-register'>
+          <article className='grid-registerTop topp'>
+            <h1 className='grid-registerTopTitle'>Cadastro do Usuário</h1>
+          </article>
+          <article className='grid-registerPhoto photo'>
+            <img className='grid-registerPhotoImg' src={camera}/>
+            <p className='grid-registerPhotoText'>insira uma foto <a href='#'>aqui</a></p>
+          </article>
+          <article className='grid-registerPersonal personal'>
+            <h2 className='grid-registerPersonalTitle'>Pessoal</h2>
+            <p className='grid-registerPersonalText'>Nome Completo</p>
+            <input className='grid-registerPersonalInput' placeholder='Seu nome completo' type='name'/>
+            <p className='grid-registerPersonalText'>Email</p>
+            <input className='grid-registerPersonalInput' placeholder='Seu email' type='email' />
+            <p className='grid-registerPersonalText'>Facebook</p>
+            <input className='grid-registerPersonalInput' placeholder='Sua página do Facebook' type='facebook' />
+            <p className='grid-registerPersonalText'>Linkedin</p>
+            <input className='grid-registerPersonalInput' placeholder='Sua página do Linkedin' type='linkedin' />
+            <p className='grid-registerPersonalText'>CPF</p>
+            <input className='grid-registerPersonalInput' placeholder='Seu CPF' type='cpf' />
+            <p className='grid-registerPersonalText'>Senha</p>
+            <input className='grid-registerPersonalInput' placeholder='Insira sua senha' type='password' />
+            <p className='grid-registerPersonalText'>Confirmar Senha</p>
+            <input className='grid-registerPersonalInput' placeholder='Confirme sua senha' type='password' />
+          </article>
+          <article className='grid-registerAcademic academic'>
+            <h2 className='grid-registerAcademicTitle'>Academico</h2>
+            <p className='grid-registerAcademicText'>Ano de Ingresso</p>
+            <input className='grid-registerAcademicInput' placeholder='Ano de Ingresso' type='entryYear'/>
+            <p className='grid-registerAcademicText'>Ano de Egresso</p>
+            <input className='grid-registerAcademicInput' placeholder='Ano de Egresso' type='exitYear' />
+            <p className='grid-registerAcademicText'>Instituição</p>
+            <input className='grid-registerAcademicInput' placeholder='Instituição' type='institutuion' />
+            <p className='grid-registerAcademicText'>Unidade</p>
+            <input className='grid-registerAcademicInput' placeholder='Unidade' type='unity' /> 
+            <p className='grid-registerAcademicText'>Curso</p>              
+            <input className='grid-registerAcademicInput' placeholder='Curso' type='course' />
+            <p className='grid-registerAcademicText'>Situação</p>
+            <input className='grid-registerAcademicInput' placeholder='Situação' type='situation' />
+            <p className='grid-registerAcademicText'>Função</p>
+            <input className='grid-registerAcademicInput' placeholder='Função' type='function' />
+          </article>
+          <article className='grid-registerButton button'>
+            <a href='#'><button className='grid-registerButtonBoxRight'>Voltar</button></a>
+            <a href='#'><button className='grid-registerButtonBoxLeft'>Salvar</button></a>
+          </article>
+        </section>
       </div>
       );
-
     }
-
 }
 
 export default SignUpScreen;
