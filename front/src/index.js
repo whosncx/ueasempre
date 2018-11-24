@@ -9,7 +9,7 @@ import LoginScreen from './Screens/LoginScreen/LoginScreen';
 import SignUpScreen from './Screens/SignUpScreen/SignUpScreen';
 import StudentsScreen from './Screens/StudentsScreen/StudentsScreen';
 import PerfilPage from './Screens/PerfilPage/PerfilPage'
-
+import PublicHomeScreen from './Screens/PublicHomeScreen/PublicHomeScreen';
 
 ReactDOM.render(
     <BrowserRouter basename="ueasempre">
@@ -18,6 +18,8 @@ ReactDOM.render(
         <Route path="/cadastro" exact={true} component={SignUpScreen}/>
         <Route path="/alunos" exact={true} component={StudentsScreen}/>
         <Route path="/perfil/:aluno" exact={true} component={PerfilPage}/>
+        <Route path="/publichome" exact={true} component={PublicHomeScreen}/>
+        <Route path="/" exact={true} component={PublicHomeScreen}/>
       </Switch>
     </BrowserRouter>,
   document.getElementById('root'));

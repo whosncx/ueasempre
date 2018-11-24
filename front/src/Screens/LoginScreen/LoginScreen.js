@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './LoginScreen.css';
-import uea1 from '../../Assets/uea1.svg';
+import uea from '../../Assets/uea.svg';
 
 //App Components
 
@@ -64,31 +64,32 @@ class LoginScreen extends Component{
           <Header></Header>
         </header>
         <div className='loginContainer'>
-                
-                    <div className="logoContainer">
-                        <img className = "logo" src={uea1} alt='Logo da fapeam'/>
-                    </div>
-                    
                     <div className="formLoginContainer">
-                        <form onSubmit={this.handleSubmit.bind(this)} className="formLogin">
+                        {/* <form onSubmit={this.handleSubmit.bind(this)} className="formLogin"> */}
+                        <div className="logoContainer">
+                            <img className = "logo" src={uea} alt='Logo da fapeam'/>
+                        </div>
+                        <form>
                             <div className="cpfContainer inputContainer">
-                                <input className="input" id="cpf" placeholder="CPF" onChange={this.handleChange.bind(this)}/>
+                                {/* <input className="input" id="cpf" placeholder="CPF" onChange={this.handleChange.bind(this)}/> */}
+                                <input className="input-login" id="cpf" placeholder="CPF"/>
                                 <span className=""></span>
                             </div>
                         
                             <div className="passwordContainer inputContainer">
-                                <input className="input" type="password" id="password" placeholder="Senha" onChange={this.handleChange.bind(this)}/>
+                                {/* <input className="input" type="password" id="password" placeholder="Senha" onChange={this.handleChange.bind(this)}/> */}
+                                <input className="input-login" type="password" id="password" placeholder="Senha"/>
                                 <span className=""></span>
                             </div>
                         
                             <div className="btnContainer">
-                                <button className="btnLogin" type="submit">
+                                <button onClick={this.handleSubmit.bind(this)}  className="btnLogin" type="submit">
                                     Entrar
                                 </button>
                             </div >
                             <div className="btnContainer">
-                                <Link to='/cadastro'>
-                                    Novo Usuário?
+                                <Link to="/cadastro" >
+                                <a href="http://localhost:3000/cadastro" target="_blank" className="newUser">Novo Usuário?</a>
                                 </Link>
                             </div>
                         </form>
