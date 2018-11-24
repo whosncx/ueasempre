@@ -17,6 +17,8 @@ class Aluno(db.Model):
     aluno_discente_situacao = db.Column(db.Integer, nullable=False)
     aluno_discente_funcao = db.Column(db.String(200), nullable=False)
     aluno_discente_instituicao = db.Column(db.String(200), nullable=False)
+    aluno_lattes = db.Column(db.String(200))
+    aluno_data_cadastro = db.Column(db.DateTime)
 
     aluno_egresso_situacao = db.Column(db.Integer)
     aluno_egresso_funcao = db.Column(db.String(200))

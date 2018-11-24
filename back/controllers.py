@@ -100,9 +100,11 @@ def aluno(aluno_id):
     return jsonify(output)
     
 
-@app.route('/alunos')
-def all_alunos():
-    alunos= Aluno.query.all()
+@app.route('/alunos/<int:qtd>')
+def all_alunos(qtd):
+    alunos= Aluno.query.order_by(Aluno.aluno_data_cadastro.desc()).all()
+    if (qtd > 0):
+        alunos= Aluno.query.order_by(Aluno.aluno_data_cadastro.desc()).limit(qtd).all()
 
     output = []
     for aluno in alunos:
@@ -148,6 +150,7 @@ def perfilaluno(current_user):
 # CADASTRO INCOMPLETO
 @app.route('/cadastro', methods=['POST'])
 def create_aluno():
+    
     data = request.get_json()
 
     novo_aluno = Aluno(aluno_nome=data['name'],aluno_id=data['cpf'],aluno_facebook=data['facebook'],
@@ -157,11 +160,10 @@ def create_aluno():
     aluno_discente_funcao=data['discente_function'],aluno_discente_instituicao=data['discente_institutuion'],
     aluno_status=1, 
     aluno_egresso_situacao=data['egresso_situation'],aluno_egresso_instituicao=data['egresso_institutuion'], 
-    aluno_egresso_funcao=data['egresso_function'])
+    aluno_egresso_funcao=data['egresso_function'], aluno_data_cadastro=datetime.datetime.utcnow())
 
     db.session.add(novo_aluno)
     db.session.commit()
-
     response = make_response(jsonify({'message': 'Aluno Cadastrado!', 'id':novo_aluno.aluno_id}))
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response

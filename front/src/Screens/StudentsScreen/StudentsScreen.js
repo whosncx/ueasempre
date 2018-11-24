@@ -22,7 +22,7 @@ class StudentsScreen extends Component{
         var request = {
             method: 'get'
         }
-        fetch(Global.API_URL + '/alunos', request).then((response) => {
+        fetch(Global.API_URL + '/alunos/0', request).then((response) => {
             response.json().then((data) => {
                 // console.log(data)
                 console.log(data.alunos)
