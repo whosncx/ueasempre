@@ -2,6 +2,15 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import './PublicHomeScreen.css';
 export default class PublicHomeScreen extends Component{
+
+    goToLogin(){
+        this.props.history.push('/login');
+    }
+
+    goToRegister(){
+        this.props.history.push('/cadastro');
+    }
+
     render(){
         return(
             <div className="containerPublicHomeScreen">
@@ -11,8 +20,8 @@ export default class PublicHomeScreen extends Component{
                     </div>
                     <div className="signInUpContainer">
                         <div className="buttonsContainer">
-                            <div className="buttonContainer"><button className="btn-signIn">Login</button></div>
-                            <div className="buttonContainer"><button className="btn-signUp">Registrar</button></div>
+                            <div className="buttonContainer"><button className="btn-signIn" onClick={this.goToLogin.bind(this)}>Login</button></div>
+                            <div className="buttonContainer"><button className="btn-signUp" onClick={this.goToRegister.bind(this)}>Registrar</button></div>
                         </div>
                     </div> 
                 </div>

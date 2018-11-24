@@ -20,9 +20,6 @@ class LoginScreen extends Component{
           <Header></Header>
         </header>
         <div className='loginContainer'>
-                    <div className="welcome-login">
-                        <h1>Bem Vindo ao<br></br>Sempre UEA</h1>
-                    </div>
                     <div className="formLoginContainer">
                         {/* <form onSubmit={this.handleSubmit.bind(this)} className="formLogin"> */}
                         <div className="logoContainer">

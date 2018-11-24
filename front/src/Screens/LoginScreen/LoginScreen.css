@@ -42,10 +42,13 @@
   margin-top: 2rem;
   margin-right: 1rem;
   width: 25%;
+  margin-left: 37.5%;
+  margin-right: 37.5%;
   float:right;
   background-color: #ececec;
   padding: 6rem 0rem;
   border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .btnContainer{text-align: center;}
