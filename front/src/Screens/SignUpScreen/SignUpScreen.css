@@ -1,131 +1,216 @@
+.grid-register{
 
-/*.a-signUpScreen{
-    text-decoration: underline;
-  }*/
   
-  .imgLoginLogo-signUpScreen{
-    border-radius: 25px;
-    border: 2px solid #06995F;
-    padding: 20px; 
-    width: 20px;
-    height: 20px;
-  }
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 5rem 18rem 50rem 50rem 5rem;
   
-  .labTitle-signUpScreen{
-      color: #06995F;
-      margin-top: 4rem;
-      margin-left: 40%;
-      font-weight: bold;
-      font-size: 2rem;
-      display: flex;
-      margin-bottom: 0rem;
-      margin-bottom: -2.5rem;
-  }
+  grid-template-areas: 
+      "topp"
+      "photo"
+      "personal"
+      "academic"
+      "button"
+}
+.topp{
+  grid-area: topp;
+}
+.photo{
+  grid-area: photo;
+}
+.persona{
+  grid-area: personal;
+}
+.academic{
+  grid-area: academic;
+}
+.button1{
+  grid-area: button;
+}
 
-  .imgLogoSubTitle-signUpScreen{
-      color: green;
-      font-weight: bold;
-      margin-top: -1rem;
-      font-size: 0.8rem;
-      margin-left: 2.3rem;
-  }
+.grid-registerTop{
+  background-color: #37b467;
+  text-align: center;
+  border-radius: 0.5rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.grid-registerTopTitle{
+  margin-top: 1.2rem;
+}
+
+.grid-registerPhoto{
+  background-color: rgb(121, 255, 132);
+  text-align: center;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.grid-registerPhotoImg{
+  height: 75%;
+}
+
+.grid-registerPhotoText{
+  text-align: center
+}
+
+.grid-registerPersonal{
+  background: rgb(25, 194, 126);
+  padding: 5%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+  margin: 2%;
+
+}
+
+.grid-registerPersonalTitle{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.grid-registerPersonalText{
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.grid-registerPersonalInput{
+  width: 100%;
+  padding: 12px 20px;
+
+  border: 0;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.5s;
+}
+
+.grid-registerPersonalInput:hover{
+  background: #ccc;
+}
+
+.grid-registerPersonalInput:focus{
+  background: #7dff7d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.grid-registerAcademic{
+  background: rgb(25, 194, 126);
+  padding: 5%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+  margin: 2%;
+}
+
+.grid-registerAcademicTitle{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.grid-registerAcademicText{
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.grid-registerAcademicInput{
+  width: 100%;
+  padding: 12px 20px;
+
+  border: 0;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.5s;
+}
+
+.grid-registerAcademicInput:hover{
+  background: #ccc;
+}
+
+.grid-registerAcademicInput:focus{
+  background: #7dff7d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.grid-registerButton{
+  clear: both;
+}
+
+.grid-registerButtonBoxLeft{
+  float: left;
+  margin: 3%;
+  padding: 4% 12%;
+  background: #7dff7d;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.5s;
+  
+}
+
+.grid-registerButtonBoxLeft:hover{
+  background: #3dff3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.grid-registerButtonBoxRight{
+  float: right;
+  margin: 3%; 
+  padding: 4% 12%;
+  background: #7dff7d;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.5s;
+}
+
+.grid-registerButtonBoxRight:hover{
+  background: #3dff3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (min-width: 50rem){
+  .grid-register{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 5rem 50rem 5rem ;
     
-  .inputsDinamico-signUpScreen{
-    padding: 0.1rem 0.5rem;
-    font-size: 1rem;
-    color: green;
-    background-color: #fff;
-    width: 12rem;
-    margin: 0.3rem;
-    border-radius: 1rem;
-    border: 0.1rem solid #ced4da;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    height: 1.8rem;
-    margin-left: -0.3rem;
+    grid-template-areas: 
+        "topp topp topp"
+        "photo personal academic"
+        ". . button"
+
   }
 
-  .inputs-signUpScreen{
-    padding: 0.1rem 0.5rem;
-    font-size: 1rem;
-    color: green;
-    background-color: #fff;
-    width: 20rem;
-    margin: 0.3rem;
-    border-radius: 1rem;
-    border: 0.1rem solid #ced4da;
-    height: 1.8rem;
-  }
-  .inputsSide-signUpScreen{
-    padding: 0.1rem 0.5rem;
-    font-size: 1rem;
-    color: green;
-    background-color: #fff;
-    width: 9rem;
-    margin: 0.3rem;
-    border-radius: 1rem;
-    border: 0.1rem solid #ced4da;
-    height: 1.8rem;
+  .grid-registerTop{
+    margin-bottom: 0.5rem;
+    margin-left: 3rem;
   }
 
-  .buttonVoltar-signUpScreen{
-    background: #E9B526;
-    opacity: 0.7;
-    color:white;
-    width: 7rem;
-    height: 2rem;
-    margin-top: 0.6rem;
-    margin-left: 0rem;
-    margin-right: 1.5rem;  
-    border: 0;
-    border-radius: 40px;
+  .grid-registerPhoto{
+    margin-bottom: 32rem;
   }
 
-  .buttonSalvar-signUpScreen{
-    background: #06995F;
-    opacity: 0.7;
-    color:white;
-    width: 7rem;
-    height: 2rem;
-    margin-top: 0.6rem;
-    margin-left: 2rem;  
-    border: 0;
-    border-radius: 40px;
-  }
-  
-  .componentsLab-signUpScreen{
-      display: flex;
-      flex-direction: row;
-      height: 90%;
-      margin-left: 30%;
-      margin-right: 5%;
-      margin-top: 2%;
+  .grid-registerPhotoImg{
+    height: 12rem;
   }
 
-  .fieldsLab-signUpScreen{
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      margin-left: 2%;
-      margin-top: 1rem;
+
+  .grid-registerButton{
+    transform: translateX(165%);
   }
 
-  .fieldsLabSide-signUpScreen{
-    display: flex;
-    flex-direction: row;
-    width: 0.3rem;
-}
+  .grid-registerButtonBoxLeft{
+    transform: translateX(-100%);
+  }
+  .grid-registerButtonBoxRight{
+    transform: translateX(10%);
+  }
 
-  .fieldsLabDinamico-signUpScreen{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    width: 30rem;
-    margin-left: 0.1rem;
-    margin-top: -1rem;
-}
-
-.buttons-signUpScreen{
-    display: flex;
-    flex-direction: row;
-    margin-left: 5%;
 }

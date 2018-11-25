@@ -22,46 +22,56 @@ class SignUpScreen extends Component{
         <header>
           <Header></Header>
         </header>
-        <p className='labTitle-signUpScreen'>Cadastro do Usuário</p>
-        <div className='componentsLab-signUpScreen'>
-          <div className='imgLogo-signUpScreen'>
-              <img src={camera} height="200" />
-              <p className='imgLogoSubTitle-signUpScreen'>insira uma foto aqui</p>
-              <div className='fieldsLabDinamico-signUpScreen'> 
-              <input className='inputsDinamico-signUpScreen' id='entryYear' placeholder='Ano de Ingresso' type='entryYear' />
-              <input className='inputsDinamico-signUpScreen' id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
-              <input className='inputsDinamico-signUpScreen' id='institutuion' placeholder='Instituição' type='institutuion' />
-              <input className='inputsDinamico-signUpScreen' id='situation' placeholder='Situação' type='situation' />
-              <input className='inputsDinamico-signUpScreen' id='function' placeholder='Função' type='function' />
-              </div>
-          </div>
-          <div className='fieldsLab-signUpScreen'>
-            <input className='inputs-signUpScreen' id='name' placeholder='Nome Completo' type='name'/>
-            <input className='inputs-signUpScreen' id='email' placeholder='Email' type='email' />
-            <input className='inputs-signUpScreen' id='facebook' placeholder='Facebook' type='facebook' />
-            <input className='inputs-signUpScreen' id='linkedin' placeholder='Linkedin' type='linkedin' />
-            <div className="fieldsLabSide-signUpScreen">
-              <input className='inputsSide-signUpScreen' id='unity' placeholder='Unidade' type='unity' />             
-              <input className='inputsSide-signUpScreen' id='course' placeholder='Curso' type='course' />
-            </div>
-            <input className='inputs-signUpScreen' id='cpf' placeholder='CPF' type='cpf' />
-            <input className='inputs-signUpScreen' id='password' placeholder='Senha' type='password' />
-            <input className='inputs-signUpScreen' id='password' placeholder='Confirmar Senha' type='password' />
-            <div className='buttons-signUpScreen'>
-              <button className='buttonVoltar-signUpScreen'>
-                Voltar
-              </button>
-              <button className='buttonSalvar-signUpScreen'>
-                Salvar
-              </button>
-            </div>
-          </div>
-        </div>
+        <section className='grid-register'>
+          <article className='grid-registerTop topp'>
+            <h1 className='grid-registerTopTitle'>Cadastro do Usuário</h1>
+          </article>
+          <article className='grid-registerPhoto photo'>
+            <img className='grid-registerPhotoImg' src={camera}/>
+            <p className='grid-registerPhotoText'>insira uma foto <a href='#'>aqui</a></p>
+          </article>
+          <article className='grid-registerPersonal personal'>
+            <h2 className='grid-registerPersonalTitle'>Pessoal</h2>
+            <p className='grid-registerPersonalText'>Nome Completo</p>
+            <input className='grid-registerPersonalInput' placeholder='Seu nome completo' type='name'/>
+            <p className='grid-registerPersonalText'>Email</p>
+            <input className='grid-registerPersonalInput' placeholder='Seu email' type='email' />
+            <p className='grid-registerPersonalText'>Facebook</p>
+            <input className='grid-registerPersonalInput' placeholder='Sua página do Facebook' type='facebook' />
+            <p className='grid-registerPersonalText'>Linkedin</p>
+            <input className='grid-registerPersonalInput' placeholder='Sua página do Linkedin' type='linkedin' />
+            <p className='grid-registerPersonalText'>CPF</p>
+            <input className='grid-registerPersonalInput' placeholder='Seu CPF' type='cpf' />
+            <p className='grid-registerPersonalText'>Senha</p>
+            <input className='grid-registerPersonalInput' placeholder='Insira sua senha' type='password' />
+            <p className='grid-registerPersonalText'>Confirmar Senha</p>
+            <input className='grid-registerPersonalInput' placeholder='Confirme sua senha' type='password' />
+          </article>
+          <article className='grid-registerAcademic academic'>
+            <h2 className='grid-registerAcademicTitle'>Academico</h2>
+            <p className='grid-registerAcademicText'>Ano de Ingresso</p>
+            <input className='grid-registerAcademicInput' placeholder='Ano de Ingresso' type='entryYear'/>
+            <p className='grid-registerAcademicText'>Ano de Egresso</p>
+            <input className='grid-registerAcademicInput' placeholder='Ano de Egresso' type='exitYear' />
+            <p className='grid-registerAcademicText'>Instituição</p>
+            <input className='grid-registerAcademicInput' placeholder='Instituição' type='institutuion' />
+            <p className='grid-registerAcademicText'>Unidade</p>
+            <input className='grid-registerAcademicInput' placeholder='Unidade' type='unity' /> 
+            <p className='grid-registerAcademicText'>Curso</p>              
+            <input className='grid-registerAcademicInput' placeholder='Curso' type='course' />
+            <p className='grid-registerAcademicText'>Situação</p>
+            <input className='grid-registerAcademicInput' placeholder='Situação' type='situation' />
+            <p className='grid-registerAcademicText'>Função</p>
+            <input className='grid-registerAcademicInput' placeholder='Função' type='function' />
+          </article>
+          <article className='grid-registerButton button'>
+            <a href='#'><button className='grid-registerButtonBoxRight'>Voltar</button></a>
+            <a href='#'><button className='grid-registerButtonBoxLeft'>Salvar</button></a>
+          </article>
+        </section>
       </div>
       );
-
     }
-
 }
 
 export default SignUpScreen;
