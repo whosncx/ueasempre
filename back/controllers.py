@@ -160,7 +160,8 @@ def create_aluno():
     aluno_discente_funcao=data['discente_function'],aluno_discente_instituicao=data['discente_institutuion'],
     aluno_status=1, 
     aluno_egresso_situacao=data['egresso_situation'],aluno_egresso_instituicao=data['egresso_institutuion'], 
-    aluno_egresso_funcao=data['egresso_function'], aluno_data_cadastro=datetime.datetime.utcnow())
+    aluno_egresso_funcao=data['egresso_function'], aluno_data_cadastro=datetime.datetime.utcnow(),
+    aluno_lattes=data['lattes'],aluno_whatsapp=data['whatsapp'])
 
     db.session.add(novo_aluno)
     db.session.commit()
@@ -191,6 +192,8 @@ def update_aluno(current_user):
     aluno.aluno_egresso_situacao=data['egresso_situation']
     aluno.aluno_egresso_funcao=data['egresso_function']
     aluno.aluno_egresso_instituicao=data['egresso_institutuion']
+    aluno.aluno_lattes=data['lattes']
+    aluno.aluno_whatsapp=data['whatsapp']
     aluno_status=1
 
     db.session.add(aluno)
