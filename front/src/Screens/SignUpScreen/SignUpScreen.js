@@ -401,7 +401,6 @@ class SignUpScreen extends Component{
             {$imagePreview}
           </article>
           <article className='grid-registerPersonal personal'>
-            <h2 className='grid-registerPersonalTitle'>Pessoal</h2>
             <p className='grid-registerPersonalText'>Nome Completo</p>
             <input className='grid-registerPersonalInput' placeholder='Seu nome completo' type='name'/>
             <p className='grid-registerPersonalText'>Email</p>
