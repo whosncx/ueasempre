@@ -1,0 +1,217 @@
+.grid-profile{
+
+  
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 5rem 18rem 50rem 50rem 5rem;
+    
+    grid-template-areas: 
+        "topp"
+        "photo"
+        "personal"
+        "academic"
+        "button"
+  }
+  .topp{
+    grid-area: topp;
+  }
+  .photo{
+    grid-area: photo;
+  }
+  .persona{
+    grid-area: personal;
+  }
+  .academic{
+    grid-area: academic;
+  }
+  .button1{
+    grid-area: button;
+  }
+  
+  .grid-profileTop{
+    background-color: #37b467;
+    text-align: center;
+    border-radius: 0.5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .grid-profileTopTitle{
+    margin-top: 1.2rem;
+  }
+  
+  .grid-profilePhoto{
+    background-color: rgb(121, 255, 132);
+    text-align: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .grid-profilePhotoImg{
+    height: 75%;
+  }
+  
+  .grid-profilePhotoText{
+    text-align: center
+  }
+  
+  .grid-profilePersonal{
+    background: rgb(25, 194, 126);
+    padding: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 8px;
+    margin: 2%;
+  
+  }
+  
+  .grid-profilePersonalTitle{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .grid-profilePersonalText{
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .grid-profilePersonalInput{
+    width: 100%;
+    padding: 12px 20px;
+  
+    border: 0;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 0.5s;
+  }
+  
+  .grid-profilePersonalInput:hover{
+    background: #ccc;
+  }
+  
+  .grid-profilePersonalInput:focus{
+    background: #7dff7d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .grid-profileAcademic{
+    background: rgb(25, 194, 126);
+    padding: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 8px;
+    margin: 2%;
+  }
+  
+  .grid-profileAcademicTitle{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .grid-profileAcademicText{
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .grid-profileAcademicInput{
+    width: 100%;
+    padding: 12px 20px;
+  
+    border: 0;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 0.5s;
+  }
+  
+  .grid-profileAcademicInput:hover{
+    background: #ccc;
+  }
+  
+  .grid-profileAcademicInput:focus{
+    background: #7dff7d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+  }
+  
+  .grid-profileButton{
+    clear: both;
+  }
+  
+  .grid-profileButtonBoxLeft{
+    float: left;
+    margin: 3%;
+    padding: 4% 12%;
+    background: #7dff7d;
+    border-radius: 5px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 0.5s;
+    
+  }
+  
+  .grid-profileButtonBoxLeft:hover{
+    background: #3dff3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+  }
+  
+  .grid-profileButtonBoxRight{
+    float: right;
+    margin: 3%; 
+    padding: 4% 12%;
+    background: #7dff7d;
+    border-radius: 5px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 0.5s;
+  }
+  
+  .grid-profileButtonBoxRight:hover{
+    background: #3dff3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+  }
+  
+  @media screen and (min-width: 50rem){
+    .grid-profile{
+      display: grid;
+      grid-template-columns: 33% 33% 33%;
+      grid-template-rows: 5rem 50rem 5rem ;
+      
+      grid-template-areas: 
+          "topp topp topp"
+          "photo personal academic"
+          ". . button"
+  
+    }
+  
+    .grid-profileTop{
+      margin-bottom: 0.5rem;
+      margin-left: 3rem;
+    }
+  
+    .grid-profilePhoto{
+      margin-bottom: 32rem;
+    }
+  
+    .grid-profilePhotoImg{
+      height: 12rem;
+    }
+  
+  
+    .grid-profileButton{
+      transform: translateX(165%);
+    }
+  
+    .grid-profileButtonBoxLeft{
+      transform: translateX(-100%);
+    }
+    .grid-profileButtonBoxRight{
+      transform: translateX(10%);
+    }
+      
+  }
+  
