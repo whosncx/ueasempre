@@ -36,7 +36,9 @@ class SignUpScreen extends Component{
       egresso_situation:'',
       egresso_institutuion : '',
       egresso_function : '',
-      imageURL: ''
+      imageURL: '',
+      lattes: '',
+      whatsapp: ''
     }
   }
 
@@ -103,7 +105,9 @@ class SignUpScreen extends Component{
             egresso_institutuion : data.egresso_inst,
             egresso_function :data.egresso_funcao,
             egresso_situation : ''+data.egresso_situacao,          
-            imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now()
+            imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now(),
+            lattes: data.lattes,
+            whatsapp: data.whatsapp
           })
         });
       }).catch((e) => {
@@ -128,13 +132,15 @@ class SignUpScreen extends Component{
       "facebook": this.state.facebook,
       "entryYear": this.state.entryYear,
       "exitYear": (this.state.exitYear==""? 0 : this.state.exitYear),
-      "situation": this.state.situation,
-      "discente_institutuion" : this.state.discente_institutuion,
-      "discente_situation": (this.state.discente_situation=="null" || this.state.discente_situation=="" ? 0 : this.state.discente_situation),
+      "situation": (this.state.discente_situation=="null" || this.state.discente_situation=="" ? 0 : this.state.discente_situation),
       "discente_function": this.state.discente_function,
+      "discente_institutuion" : this.state.discente_institutuion,
+      "discente_situation": this.state.discente_function,
       "egresso_institutuion" : this.state.egresso_institutuion,
-      "egresso_situation": ((this.state.egresso_situation=="null" || this.state.egresso_situation=="") ? 0 : this.state.egresso_situation),
+      "egresso_situation": (this.state.egresso_situation=="null" || this.state.egresso_situation=="" ? 0 : this.state.egresso_situation),
       "egresso_function": this.state.egresso_function,
+      "lattes": this.state.lattes,
+      "whatsapp": this.state.whatsapp
     })
     console.log(body)
     if(token) {
@@ -156,35 +162,17 @@ class SignUpScreen extends Component{
       }
     }
 
-    if(this.state.name === '' || this.state.entryYear === '' || this.state.institutuion === '' || this.state.cpf === '' || this.state.password === '' || this.state.course === '' || this.state.unity === '') {
+    if(this.state.name === '' || this.state.entryYear === '' || this.state.cpf === '' || this.state.password === '' || this.state.course === '' || this.state.unity === '') {
       alert('Prencha todos os valores');
       return;
     }
 
-    function toBase64(url, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.onload = function() {
-            var reader = new FileReader();
-            reader.onloadend = function() {
-                callback(reader.result);
-            }
-            reader.readAsDataURL(xhr.response);
-        };
-        xhr.open('GET', url);
-        xhr.responseType = 'blob';
-        xhr.send();
-      }
 
     fetch(Global.API_URL + '/cadastro', request).then((response) => {
       response.json().then((data) => {
           var file = this.uploadInput.files[0]
           const form = new FormData();
           form.append('file', file);
-
-          // toBase64(camera, function(dataUrl) {
-          //   this.state.imageURL =  dataUrl 
-          // })
-          // console.log(this.state.imageURL)
           form.append('filename', data.id + '.png')
     
           fetch('http://localhost:5000/upload', {
@@ -334,6 +322,16 @@ class SignUpScreen extends Component{
           egresso_function : evt.target.value
         });
       break;
+      case 'lattes':
+        this.setState({
+          lattes : evt.target.value
+        });
+      break;
+      case 'whatsapp':
+        this.setState({
+          whatsapp: evt.target.value
+        });
+      break;
     }
   }
 
@@ -401,7 +399,7 @@ class SignUpScreen extends Component{
             {$imagePreview}
           </article>
           <article className='grid-registerPersonal personal'>
-            <p className='grid-registerPersonalText'>Nome Completo</p>
+            <p className='grid-registerPersonalText'>Nome Completo*</p>
             <input className='grid-registerPersonalInput' placeholder='Seu nome completo' type='name'/>
             <p className='grid-registerPersonalText'>Email</p>
             <input className='grid-registerPersonalInput' placeholder='Seu email' type='email' />
@@ -409,15 +407,23 @@ class SignUpScreen extends Component{
             <input className='grid-registerPersonalInput' placeholder='Sua página do Facebook' type='facebook' />
             <p className='grid-registerPersonalText'>Linkedin</p>
             <input className='grid-registerPersonalInput' placeholder='Sua página do Linkedin' type='linkedin' />
-            <p className='grid-registerPersonalText'>CPF</p>
+           
+            <p className='grid-registerPersonalText'>Lattes</p>
+            <input className='grid-registerPersonalInput' placeholder='Link do seu Lattes' type='lattes' />
+            
+            <p className='grid-registerPersonalText'>CPF*</p>
             <input className='grid-registerPersonalInput' placeholder='Seu CPF' type='cpf' />
-            <p className='grid-registerPersonalText'>Senha</p>
+            <p className='grid-registerPersonalText'>Senha*</p>
             <input className='grid-registerPersonalInput' placeholder='Insira sua senha' type='password' />
-            <p className='grid-registerPersonalText'>Confirmar Senha</p>
+            <p className='grid-registerPersonalText'>Confirmar Senha*</p>
             <input className='grid-registerPersonalInput' placeholder='Confirme sua senha' type='password' />
           </article>
           <article className='grid-registerAcademic academic'>
-            <h2 className='grid-registerAcademicTitle'>Academico</h2>
+            <p className='grid-registerPersonalText'>Whatsapp</p>
+              <input className='grid-registerPersonalInput' placeholder='Whatsapp' type='whatsapp' />
+
+              <Dropdown value={''+this.state.unity} controlClassName='myControlClassName' className='grid-registerPersonalInput' options={this.unidades} onChange={this.selectUnidade.bind(this)} placeholder="Unidade" />
+              <Dropdown value={''+this.state.course} controlClassName='myControlClassName' className='grid-registerPersonalInput' options={this.cursos} onChange={this.selectCurso.bind(this)} placeholder="Curso" />
             {/*
             <p className='grid-registerAcademicText'>Ano de Ingresso</p>
             <input className='grid-registerAcademicInput' placeholder='Ano de Ingresso' type='entryYear'/>
@@ -433,12 +439,13 @@ class SignUpScreen extends Component{
             <input className='grid-registerAcademicInput' placeholder='Situação' type='situation' />
             <p className='grid-registerAcademicText'>Função</p>
             <input className='grid-registerAcademicInput' placeholder='Função' type='function' />
-            */}            
+            */}  
+          
             {this.state.situation==='0' ? $infoDiscente : $infoEgresso}
           </article>
           <article className='grid-registerButton button'>
             <a href='#'><button className='grid-registerButtonBoxRight'>Voltar</button></a>
-            <a href='#'><button className='grid-registerButtonBoxLeft'>Salvar</button></a>
+            <a  onClick={this.addAluno.bind(this)}><button className='grid-registerButtonBoxLeft'>Salvar</button></a>
           </article>
         </section>
       </div>
