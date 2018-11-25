@@ -393,7 +393,6 @@ class SignUpScreen extends Component{
             <p className='grid-registerPhotoText'>insira uma foto <a href='#'>aqui</a></p>
           </article>
           <article className='grid-registerPersonal personal'>
-            <h2 className='grid-registerPersonalTitle'>Pessoal</h2>
             <p className='grid-registerPersonalText'>Nome Completo</p>
             <input className='grid-registerPersonalInput' placeholder='Seu nome completo' type='name'/>
             <p className='grid-registerPersonalText'>Email</p>
@@ -410,7 +409,6 @@ class SignUpScreen extends Component{
             <input className='grid-registerPersonalInput' placeholder='Confirme sua senha' type='password' />
           </article>
           <article className='grid-registerAcademic academic'>
-            <h2 className='grid-registerAcademicTitle'>Academico</h2>
             <p className='grid-registerAcademicText'>Ano de Ingresso</p>
             <input className='grid-registerAcademicInput' placeholder='Ano de Ingresso' type='entryYear'/>
             <p className='grid-registerAcademicText'>Ano de Egresso</p>

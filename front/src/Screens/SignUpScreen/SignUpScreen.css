@@ -29,7 +29,9 @@
 }
 
 .grid-registerTop{
-  background-color: #37b467;
+  /* background-color:#82b74b; */
+  background:  #405d27;
+  color: white;
   text-align: center;
   border-radius: 0.5rem;
   margin-left: 2rem;
@@ -43,7 +45,7 @@
 }
 
 .grid-registerPhoto{
-  background-color: rgb(121, 255, 132);
+  background-color: #bdcebe;
   text-align: center;
   margin-left: 2rem;
   margin-right: 2rem;
@@ -62,7 +64,7 @@
 }
 
 .grid-registerPersonal{
-  background: rgb(25, 194, 126);
+  background: #b5e7a0;
   padding: 5%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 8px;
@@ -96,12 +98,13 @@
 }
 
 .grid-registerPersonalInput:focus{
-  background: #7dff7d;
+  background: #deeaee;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .grid-registerAcademic{
-  background: rgb(25, 194, 126);
+  /* background: rgb(25, 194, 126); */
+  background:#bdcebe;
   padding: 5%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 8px;
@@ -134,7 +137,7 @@
 }
 
 .grid-registerAcademicInput:focus{
-  background: #7dff7d;
+  background: #b5e7a0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
@@ -146,12 +149,12 @@
   float: left;
   margin: 3%;
   padding: 4% 12%;
-  background: #7dff7d;
+  background: #86af49;
   border-radius: 5px;
   text-decoration: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transition: all 0.5s;
-  
+  cursor: pointer;
 }
 
 .grid-registerButtonBoxLeft:hover{
@@ -163,15 +166,16 @@
   float: right;
   margin: 3%; 
   padding: 4% 12%;
-  background: #7dff7d;
+  background:  #405d27;
   border-radius: 5px;
   text-decoration: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transition: all 0.5s;
+  cursor: pointer;
 }
 
 .grid-registerButtonBoxRight:hover{
-  background: #3dff3d;
+  background: grey;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
