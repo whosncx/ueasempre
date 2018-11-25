@@ -11,8 +11,7 @@ class PerfilPage extends Component{
   unidades = []
   situacao=[{value:'0', label:'discente'}, {value:'1', label:'egresso'}]
   constructor(props){
-    super(props);
-    
+    super(props);    
     this.state = {
       entryYear:'',
       exitYear: '',
@@ -37,8 +36,7 @@ class PerfilPage extends Component{
       fetch(Global.API_URL + '/alunos/'+this.props.match.params.aluno, {
         headers : new Headers({
         })
-      }).then((response) => {
-       
+      }).then((response) => {       
         response.json().then((data) => {
           console.log(data)
           this.setState({

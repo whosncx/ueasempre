@@ -1,0 +1,154 @@
+import React, {Component} from 'react';
+import './ProfileScreen.css';
+
+//App Components
+
+//external components
+import user from '../../Assets/user.png';
+import Header from '../../Components/Header/Header';
+import Global from '../../Components/global'
+import userImg from '../../Assets/user.png';
+
+class ProfileScreen extends Component{
+  cursos = []
+  unidades = []
+  situacao=[{value:'0', label:'discente'}, {value:'1', label:'egresso'}]
+  constructor(props){
+    super(props);    
+    this.state = {
+      entryYear:'',
+      exitYear: '',
+      situation: '',
+      disc_institutuion : '',
+      disc_situation: '',
+      disc_function:'',
+      name: '',
+      email:'',
+      linkedin:'',
+      unity: '',
+      course: '',
+      cpf: '',
+      password: '',
+      facebook: '',
+      imageURL: ''
+    }
+  }
+
+  componentDidMount() {
+      console.log(this.props.match.params)
+      fetch(Global.API_URL + '/perfilaluno', {
+        headers : new Headers({
+          'x-access-token' : sessionStorage.getItem('jwtToken')
+        })
+      }).then((response) => {       
+        response.json().then((data) => {
+          console.log(data)
+          this.setState({
+            entryYear: data.ano_ingresso,
+            exitYear: data.ano_conclusao,
+            situation: data.situacao,
+            disc_situation : data.discente_situacao,
+            disc_function: data.discente_funcao,
+            disc_institutuion : data.discente_inst,
+            egresso_situation : data.egresso_situacao,
+            egresso_function: data.egresso_funcao,
+            egresso_institutuion : data.egresso_inst,
+            name: data.nome,
+            email: data.email,
+            linkedin: data.linkedin,
+            unity: data.unidade,
+            course: data.curso,
+            cpf: data.cpf,
+            password: data.senha,
+            facebook: data.facebook,
+            imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now()
+          })
+        });
+      }).catch((e) => {
+        sessionStorage.setItem('jwtToken', '');
+        alert('Houve um erro ao listar perfil, tente novamente mais tarde');
+        this.props.history.push('/login');
+      });   
+  }
+    goBack() {
+        this.props.history.push('/alunos'); // Imprementar com goBack()
+    }
+    selectDiscSituation(){
+      switch(this.state.disc_situation){
+        case 0: return 'Não Trabalha';
+        case 1: return 'Bolsista';
+        case 2: return 'Estagiario';
+        case 3: return 'CLT';
+        case 4: return 'Outros';
+      }
+    }
+
+    selectEgressoSituation(){
+      switch(this.state.disc_situation){
+        case 0: return 'Não Trabalha';
+        case 1: return 'Bolsista Pós Graduação';
+        case 3: return 'CLT';
+        case 4: return 'Outros';
+      }
+    }
+
+    handleError(e){
+      e.target.src = userImg;
+    }
+
+  render(){
+    return(
+      <div>
+        <header>
+        
+          <Header></Header>
+        </header>
+        <section className='grid-profile'>
+          <article className='grid-profileTop topp'>
+            <h1 className='grid-profileTopTitle'>Perfil do Usuário</h1>
+          </article>
+          <article className='grid-profilePhoto photo'>
+            <img onError={this.handleError} src={this.state.imageURL} className='grid-profilePhotoImg' alt='foto' src={user}/>
+            <p className='grid-profilePhotoText'>Fulano Ciclano Chales</p>
+          </article>
+          <article className='grid-profilePersonal personal'>
+            <h2 className='grid-profilePersonalTitle'>Pessoal</h2>
+            <p className='grid-profilePersonalText'>Nome Completo</p>
+            <p disabled className='grid-profilePersonalInput' placeholder='Seu nome completo' type='name'>{this.state.name}</p>
+            <p className='grid-profilePersonalText'>Email</p>
+            <p disabled className='grid-profilePersonalInput' placeholder='Seu email' type='email' >{this.state.email}</p>
+            <p className='grid-profilePersonalText'>Facebook</p>
+            <p disabled className='grid-profilePersonalInput' placeholder='Sua página do Facebook' type='facebook' >{this.state.facebook}</p>
+            <p className='grid-profilePersonalText'>Linkedin</p>
+            <p disabled className='grid-profilePersonalInput' placeholder='Sua página do Linkedin' type='linkedin' >{this.state.linkedin}</p>
+            <p className='grid-profilePersonalText'>CPF</p>
+            <p disabled className='grid-profilePersonalInput' placeholder='Seu CPF' type='cpf' >{this.state.cpf}</p>
+          </article>
+          <article className='grid-profileAcademic academic'>
+            <h2 className='grid-profileAcademicTitle'>Academico</h2>
+            <p className='grid-profileAcademicText'>Ano de Ingresso</p>
+            <p disabled className='grid-profileAcademicInput' placeholder='Ano de Ingresso' type='entryYear'>{this.state.entryYear}</p>
+            <p className='grid-profileAcademicText'>Ano de Egresso</p>
+            <p disabled className='grid-profileAcademicInput' placeholder='Ano de Egresso' type='exitYear' >{this.state.exitYear}</p>
+            <p className='grid-profileAcademicText'>Instituição</p>
+            <p disabled className='grid-profileAcademicInput' placeholder='Instituição' type='institutuion' >{this.state.discente_inst}</p>
+            <p className='grid-profileAcademicText'>Unidade</p>
+            <p disabled className='grid-profileAcademicInput' placeholder='Unidade' type='unity' >{this.state.unity}</p>
+            <p className='grid-profileAcademicText'>Curso</p>              
+            <p disabled className='grid-profileAcademicInput' placeholder='Curso' type='course' >{this.state.course}</p>
+            <p className='grid-profileAcademicText'>Situação</p>
+            <p disabled className='grid-profileAcademicInput' placeholder='Situação' type='situation' >{this.state.disc_situation}</p>
+            <p className='grid-profileAcademicText'>Função</p>
+            <p disabled className='grid-profileAcademicInput' placeholder='Função' type='function' >{this.state.disc_function}</p>
+          </article>
+          <article className='grid-profileButton button'>
+            <a href='#'><button className='grid-profileButtonBoxRight'>Voltar</button></a>
+            <a href='#'><button className='grid-registerButtonBoxLeft'>Editar</button></a>
+          </article>
+        </section>
+      </div>    
+    );
+  } 
+}
+
+export default ProfileScreen;

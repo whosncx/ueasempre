@@ -45,7 +45,7 @@ class LoginScreen extends Component{
             .then(data => {
                 if(data.canLogin){
                         sessionStorage.setItem('jwtToken', data.token);
-                        this.props.history.push('/cadastro')
+                        this.props.history.push('/perfil')
                     } else{
                         alert('Verifique as informações e tente novamente');
                     }
@@ -72,13 +72,13 @@ class LoginScreen extends Component{
                         <form>
                             <div className="cpfContainer inputContainer">
                                 {/* <input className="input" id="cpf" placeholder="CPF" onChange={this.handleChange.bind(this)}/> */}
-                                <input className="input-login" id="cpf" placeholder="CPF"/>
+                                <input className="input-login" id="cpf" placeholder="CPF" onChange={this.handleChange.bind(this)}/>
                                 <span className=""></span>
                             </div>
                         
                             <div className="passwordContainer inputContainer">
                                 {/* <input className="input" type="password" id="password" placeholder="Senha" onChange={this.handleChange.bind(this)}/> */}
-                                <input className="input-login" type="password" id="password" placeholder="Senha"/>
+                                <input className="input-login" type="password" id="password" placeholder="Senha" onChange={this.handleChange.bind(this)}/>
                                 <span className=""></span>
                             </div>
                         
@@ -89,7 +89,6 @@ class LoginScreen extends Component{
                             </div >
                             <div className="btnContainer">
                                 <Link to="/cadastro" >
-                                <a href="http://localhost:3000/cadastro" target="_blank" className="newUser">Novo Usuário?</a>
                                 </Link>
                             </div>
                         </form>
