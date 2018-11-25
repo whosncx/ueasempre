@@ -348,34 +348,43 @@ class SignUpScreen extends Component{
   render(){
     let $imagePreview = null;
       $imagePreview = (
-      <div className="labImgContainer">
+      <div>
           <img onError={this.handleError.bind(this)} src={this.state.imageURL} className="labImg" alt={this.state.labNome} height='195' width='195'/>
-          <div className="imgLogoSubTitle-signUpScreen">
-
-            <input ref={(ref) => { this.uploadInput = ref; }} className="changePicInput" type="file" id="Imagem" name="Imagem" onChange={evt => this.fileChangedHandler(evt)} ></input>
-            
+          <div className="grid-registerPhotoImg">
+            <input ref={(ref) => { this.uploadInput = ref; }} className="grid-registerPhotoText" type="file" id="Imagem" name="Imagem" onChange={evt => this.fileChangedHandler(evt)} ></input>
           </div>
       </div> );
     let $infoDiscente = (
-      <div className='fieldsLabDinamico-signUpScreen'> 
-        <Dropdown value={''+this.state.situation} className='inputsDinamico-signUpScreen' options={this.situacao} onChange={this.selectSituation.bind(this)} />
-        <input className='inputsDinamico-signUpScreen' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
-        <Dropdown value={''+this.state.discente_situation} className='inputsDinamico-signUpScreen' options={this.discente_situacao} onChange={this.selectDiscenteSituation.bind(this)} />
+      <div> 
+        <p className='grid-registerAcademicText'>Aluno/Egresso</p>
+        <Dropdown value={''+this.state.situation} className='grid-registerAcademicDropdown' options={this.situacao} onChange={this.selectSituation.bind(this)} />
+        <p className='grid-registerAcademicText'>Ano de Ingresso</p>
+        <input className='grid-registerAcademicInput' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
+        <p className='grid-registerAcademicText'>Situação</p>
+        <Dropdown value={''+this.state.discente_situation} className='grid-registerAcademicDropdown' options={this.discente_situacao} onChange={this.selectDiscenteSituation.bind(this)} />
         {this.state.discente_situation!=='0' ? <div>
-          <input className='inputsDinamico-signUpScreen' value={this.state.discente_institutuion} onChange={evt => this.handleChange(evt)} id='discente_institutuion' placeholder='Instituição' type='discente_institutuion' />
-          <input className='inputsDinamico-signUpScreen' value={this.state.discente_function} onChange={evt => this.handleChange(evt)} id='discente_function' placeholder='Função' type='discente_function' />
+          <p className='grid-registerAcademicText'>Instituição</p>
+          <input className='grid-registerAcademicInput' value={this.state.discente_institutuion} onChange={evt => this.handleChange(evt)} id='discente_institutuion' placeholder='Instituição' type='discente_institutuion' />
+          <p className='grid-registerAcademicText'>Função</p>
+          <input className='grid-registerAcademicInput' value={this.state.discente_function} onChange={evt => this.handleChange(evt)} id='discente_function' placeholder='Função' type='discente_function' />
         </div>:<div/>}
       </div>
     );
     let $infoEgresso = (
-      <div className='fieldsLabDinamico-signUpScreen'> 
-        <Dropdown value={''+this.state.situation} className='inputsDinamico-signUpScreen' options={this.situacao} onChange={this.selectSituation.bind(this)} />
-        <input className='inputsDinamico-signUpScreen' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
-        <input className='inputsDinamico-signUpScreen' value={this.state.exitYear} onChange={evt => this.handleChange(evt)} id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
-        <Dropdown value={''+this.state.egresso_situation} className='inputsDinamico-signUpScreen' options={this.egresso_situacao} onChange={this.selectEgressoSituation.bind(this)} />
+      <div> 
+        <p className='grid-registerAcademicText'>Aluno/Egresso</p>
+        <Dropdown value={''+this.state.situation} controlClassName='myControlClassName' className='grid-registerAcademicDropdown' options={this.situacao} onChange={this.selectSituation.bind(this)} />
+        <p className='grid-registerAcademicText'>Ano de Ingresso</p>
+        <input className='grid-registerAcademicInput' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
+        <p className='grid-registerAcademicText'>Ano de Egresso</p>
+        <input className='grid-registerAcademicInput' value={this.state.exitYear} onChange={evt => this.handleChange(evt)} id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
+        <p className='grid-registerAcademicText'>Situação</p>
+        <Dropdown value={''+this.state.egresso_situation} controlClassName='myControlClassName' className='grid-registerAcademicDropdown' options={this.egresso_situacao} onChange={this.selectEgressoSituation.bind(this)} />
         {this.state.egresso_situation!=='0' ? <div>
-          <input className='inputsDinamico-signUpScreen' value={this.state.egresso_institutuion} onChange={evt => this.handleChange(evt)} id='egresso_institutuion' placeholder='Instituição' type='egresso_institutuion' />
-          <input className='inputsDinamico-signUpScreen' value={this.state.egresso_function} onChange={evt => this.handleChange(evt)} id='egresso_function' placeholder='Função' type='egresso_function' />
+          <p className='grid-registerAcademicText'>Instituição</p>
+          <input className='grid-registerAcademicInput' value={this.state.egresso_institutuion} onChange={evt => this.handleChange(evt)} id='egresso_institutuion' placeholder='Instituição' type='egresso_institutuion' />
+          <p className='grid-registerAcademicText'>Função</p>
+          <input className='grid-registerAcademicInput' value={this.state.egresso_function} onChange={evt => this.handleChange(evt)} id='egresso_function' placeholder='Função' type='egresso_function' />
         </div> : <div/>}
       </div>
     );
@@ -389,8 +398,7 @@ class SignUpScreen extends Component{
             <h1 className='grid-registerTopTitle'>Cadastro do Usuário</h1>
           </article>
           <article className='grid-registerPhoto photo'>
-            <img className='grid-registerPhotoImg' src={camera}/>
-            <p className='grid-registerPhotoText'>insira uma foto <a href='#'>aqui</a></p>
+            {$imagePreview}
           </article>
           <article className='grid-registerPersonal personal'>
             <h2 className='grid-registerPersonalTitle'>Pessoal</h2>
@@ -411,6 +419,7 @@ class SignUpScreen extends Component{
           </article>
           <article className='grid-registerAcademic academic'>
             <h2 className='grid-registerAcademicTitle'>Academico</h2>
+            {/*
             <p className='grid-registerAcademicText'>Ano de Ingresso</p>
             <input className='grid-registerAcademicInput' placeholder='Ano de Ingresso' type='entryYear'/>
             <p className='grid-registerAcademicText'>Ano de Egresso</p>
@@ -425,6 +434,8 @@ class SignUpScreen extends Component{
             <input className='grid-registerAcademicInput' placeholder='Situação' type='situation' />
             <p className='grid-registerAcademicText'>Função</p>
             <input className='grid-registerAcademicInput' placeholder='Função' type='function' />
+            */}            
+            {this.state.situation==='0' ? $infoDiscente : $infoEgresso}
           </article>
           <article className='grid-registerButton button'>
             <a href='#'><button className='grid-registerButtonBoxRight'>Voltar</button></a>

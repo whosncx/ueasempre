@@ -129,6 +129,21 @@
   transition: all 0.5s;
 }
 
+.grid-registerAcademicDropdown{
+  width: 100%;
+  height: 40px;
+
+  border: 0;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.5s;
+}
+.myControlClassName{  
+  height: 40px;
+  border: 0px;
+  color: white;
+}
+
 .grid-registerAcademicInput:hover{
   background: #ccc;
 }
@@ -188,16 +203,11 @@
 
   }
   
-  .Dropdown-control {
+  #content .Dropdown-control {
     margin-top : -0.1rem;
-    height: 1.7rem;
-    /*position: relative;*/
+    height: 40px;
     overflow: hidden;
-    /*background-color: white;*/
-    /*border: 1px solid #ccc;*/
-    /*border-radius: 2px;*/
     box-sizing: border-box;
-    /*color: #333;*/
     cursor: default;
     outline: none;
     padding: 8px 52px 8px 10px;
@@ -211,9 +221,6 @@
 
   .grid-registerPhoto{
     margin-bottom: 32rem;
-  }
-  .myControlClassName{
-    border: 0px;
   }
 
   .grid-registerPhotoImg{
