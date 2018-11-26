@@ -247,6 +247,9 @@ class SignUpScreen extends Component{
       data.forEach(curso => {
         this.cursos.push({value:''+curso.id, label:curso.nome});
       });
+      this.setState({
+        state : this.state
+      });
     })
     .catch((e) => {
       console.log(e);
@@ -457,7 +460,7 @@ class SignUpScreen extends Component{
             <input className='grid-registerAcademicInput' placeholder='Função' type='function' />
             */}  
           
-            {this.state.situation==='0' ? $infoDiscente : $infoEgresso}
+            {this.state.situation==='0' ? $infoEgresso : $infoDiscente}
           </article>
           <article className='grid-registerButton button'>
             <a href='/perfil'><button className='grid-registerButtonBoxRight'>Voltar</button></a>

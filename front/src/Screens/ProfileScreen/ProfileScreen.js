@@ -101,34 +101,34 @@ class ProfileScreen extends Component{
     let $infoDiscente = (
       <div> 
         <p className='grid-registerAcademicText'>Aluno/Egresso</p>
-        <p className='grid-registerAcademicDropdown'>{this.state.situation==0? 'discente' : 'egresso'}</p>
+        <p className='grid-profileAcademicInput'>Discente</p>
         <p className='grid-registerAcademicText'>Ano de Ingresso</p>
-        <p className='grid-registerAcademicInput' >{this.state.entryYear}</p>
+        <p className='grid-profileAcademicInput' >{this.state.entryYear}</p>
         <p className='grid-registerAcademicText'>Situação</p>
-        <p className='grid-registerAcademicDropdown'>{this.selectDiscSituation()}</p>
+        <p className='grid-profileAcademicInput'>{this.selectDiscSituation()}</p>
         {this.state.discente_situation!=='0' ? <div>
           <p className='grid-registerAcademicText'>Instituição</p>
-          <p className='grid-registerAcademicInput'>{this.state.disc_institutuion}</p>
+          <p className='grid-profileAcademicInput'>{this.state.disc_institutuion}</p>
           <p className='grid-registerAcademicText'>Função</p>
-          <p className='grid-registerAcademicInput'>{this.state.disc_function}</p>
+          <p className='grid-profileAcademicInput'>{this.state.disc_function}</p>
         </div>:<div/>}
       </div>
     );
     let $infoEgresso = (
       <div> 
         <p className='grid-registerAcademicText'>Aluno/Egresso</p>
-        <p >{this.state.situatio==0? 'discente' : 'egresso'}</p>
+        <p className='grid-profileAcademicInput'>Egresso</p>
         <p className='grid-registerAcademicText'>Ano de Ingresso</p>
-        <p className='grid-registerAcademicInput'>{this.state.entryYear}</p>
+        <p className='grid-profileAcademicInput'>{this.state.entryYear}</p>
         <p className='grid-registerAcademicText'>Ano de Egresso</p>
-        <p className='grid-registerAcademicInput'>{this.state.exitYear}</p>
+        <p className='grid-profileAcademicInput'>{this.state.exitYear}</p>
         <p className='grid-registerAcademicText'>Situação</p>
-        <p className='grid-registerAcademicDropdown'>{this.selectEgressoSituation()}</p>
+        <p className='grid-profileAcademicInput'>{this.selectEgressoSituation()}</p>
         {this.state.egresso_situation!=='0' ? <div>
           <p className='grid-registerAcademicText'>Instituição</p>
-          <p className='grid-registerAcademicInput'>{this.state.egresso_institutuion}</p>
+          <p className='grid-profileAcademicInput'>{this.state.egresso_institutuion}</p>
           <p className='grid-registerAcademicText'>Função</p>
-          <p className='grid-registerAcademicInput'>{this.state.egresso_function}</p>
+          <p className='grid-profileAcademicInput'>{this.state.egresso_function}</p>
         </div> : <div/>}
       </div>
     );
@@ -161,7 +161,7 @@ class ProfileScreen extends Component{
           </article>
           <article className='grid-profileAcademic academic'>
             {/* <h2 className='grid-profileAcademicTitle'>Academico</h2> */}
-            {this.state.situation==='0' ? $infoEgresso :  $infoDiscente}
+            {this.state.situation==='0' ? $infoDiscente : $infoEgresso}
           </article>
           <article className='grid-profileButton button'>
             <a href='/'><button className='grid-profileButtonBoxRight'>Voltar</button></a>
