@@ -14,6 +14,7 @@ export default class PublicHomeScreen extends Component{
     render(){
         return(
             <div className="containerPublicHomeScreen">
+                <div className="upContainerContainer">
                 <div className="upContainer">
                     <div className="welcomeContainer"> 
                         <h1>Bem Vindo <br></br> ao Sempre UEA</h1>
@@ -24,6 +25,7 @@ export default class PublicHomeScreen extends Component{
                             <div className="buttonContainer"><button className="btn-signUp" onClick={this.goToRegister.bind(this)}>Registrar</button></div>
                         </div>
                     </div> 
+                </div>
                 </div>
                <div className="alunosContainer">
                </div> 
