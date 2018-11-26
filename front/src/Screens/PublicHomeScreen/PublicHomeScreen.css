@@ -12,11 +12,18 @@
 .welcomeContainer{
     width: 70%;
     float:left;
-    background-color:#b5e7a0;;
+    background-color:#b5e7a0;
+    color : #003308;
 }
 .welcomeContainer h1{
     padding-left: 8rem;
-    font-size: 5vw;;
+    font-size: 5vw;
+    color : #003308;
+}
+
+.welcomeContainer h2{
+    padding-left: 8rem;
+    font-size: 2vw;;
 }
 
 .signInUpContainer{
@@ -28,7 +35,7 @@
 .buttonsContainer{
     padding-top: 30%;
     margin-top: 2vh;
-    height: 35vh;
+    height: 30vh;
     width: 25vw;
     margin-left: 2.5vw;
     margin-right: 2.5vw;
@@ -42,8 +49,13 @@
     width: 100%;
     background: #86af49;
     cursor: pointer;
-    hoover: green;
 }
+
+.alunosContainer:hover{
+    background: #38cc38;
+}
+
+
 .buttonContainer button{
     width: 80%;
     padding: 1rem 0rem;
@@ -56,8 +68,18 @@
 
 .btn-signIn{
     background-color: #007F1C;
+    cursor: pointer;
 }
 
 .btn-signUp{
     background-color: #003308;
+    cursor: pointer;
+}
+
+.btn-signIn:hover{
+    background-color: #38cc38;
+}
+
+.btn-signUp:hover{
+    background-color: #38cc38;
 }

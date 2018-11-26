@@ -15,7 +15,7 @@
   margin-right: 10%;
 }
 
-.logoContainer img{width: 20%; margin-bottom: 0.75rem;}
+.logoContainer img{width: 35%; margin-bottom: 1.75rem;}
 .logoContainer {text-align: center;}
 .welcome-login{width: 70%;float:left; text-align: center;}
 .welcome-login h1{font-size:7vw;}
@@ -38,10 +38,14 @@
   margin-right: 10%;
 }
 
+.btnLogin:hover{
+  background: #38cc38;
+}
+
 .formLoginContainer{
   margin-top: 2rem;
   margin-right: 1rem;
-  width: 25%;
+  width: 30%;
   margin-left: 37.5%;
   margin-right: 37.5%;
   float:right;

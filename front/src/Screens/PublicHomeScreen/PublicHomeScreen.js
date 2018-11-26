@@ -59,7 +59,8 @@ export default class PublicHomeScreen extends Component{
             <div className="containerPublicHomeScreen">
                 <div className="upContainer">
                     <div className="welcomeContainer"> 
-                        <h1>Bem Vindo <br></br> ao Sempre UEA</h1>
+                        <h1>Bem Vindo ao<br></br>Sempre UEA</h1>
+                        <h2>Cadastro de discentes e egressos da UEA</h2>
                     </div>
                     <div className="signInUpContainer">
                         <div className="buttonsContainer">

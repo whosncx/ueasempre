@@ -36,7 +36,43 @@ class ProfileScreen extends Component{
   }
 
   componentDidMount() {
-      console.log(sessionStorage.getItem('jwtToken'))
+      var id = ''+this.props.match.params.aluno
+      console.log(id);
+      if(id!=='undefined'){    
+      console.log(this.props.match.params)
+        fetch(Global.API_URL + '/perfilaluno/'+id, {
+          headers : new Headers({
+          })
+        }).then((response) => {       
+          response.json().then((data) => {
+            console.log(data)
+            this.setState({
+              entryYear: data.ano_ingresso,
+              exitYear: data.ano_conclusao,
+              situation: data.situacao,
+              disc_situation : data.discente_situacao,
+              disc_function: data.discente_funcao,
+              disc_institutuion : data.discente_inst,
+              egresso_situation : data.egresso_situacao,
+              egresso_function: data.egresso_funcao,
+              egresso_institutuion : data.egresso_inst,
+              name: data.nome,
+              email: data.email,
+              linkedin: data.linkedin,
+              unity: data.unidade,
+              course: data.curso,
+              cpf: data.cpf,
+              facebook: data.facebook,
+              imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now()
+            })
+          });
+        }).catch((e) => {
+          sessionStorage.setItem('jwtToken', '');
+          alert('Houve um erro ao listar perfil, tente novamente mais tarde');
+          this.props.history.push('/login');
+        });   
+        return;
+      }
       fetch(Global.API_URL + '/perfilaluno', {
         headers : new Headers({
           'x-access-token' : sessionStorage.getItem('jwtToken')
@@ -147,7 +183,7 @@ class ProfileScreen extends Component{
             <p className='grid-profilePhotoText'>{this.state.name}</p>
           </article>
           <article className='grid-profilePersonal personal'>
-            {/* <h2 className='grid-profilePersonalTitle'>Pessoal</h2> */}
+            <h2 className='grid-profilePersonalTitle'>Pessoal</h2>
             <p className='grid-profilePersonalText'>Nome Completo</p>
             <p disabled className='grid-profilePersonalInput' placeholder='Seu nome completo' type='name'>{this.state.name}</p>
             <p className='grid-profilePersonalText'>Email</p>
@@ -155,17 +191,17 @@ class ProfileScreen extends Component{
             <p className='grid-profilePersonalText'>Facebook</p>
             <p disabled className='grid-profilePersonalInput' placeholder='Sua página do Facebook' type='facebook' >{this.state.facebook}</p>
             <p className='grid-profilePersonalText'>Linkedin</p>
-            <input disabled className='grid-profilePersonalInput' placeholder='Sua página do Linkedin' type='linkedin' />
+            <p disabled className='grid-profilePersonalInput' placeholder='Sua página do Linkedin' type='linkedin' >{this.state.linkedin}</p>
             <p className='grid-profilePersonalText'>Lattes</p>
-            <input disabled className='grid-profilePersonalInput' placeholder='Sua página do Lattes' type='Lattes' />
+            <p disabled className='grid-profilePersonalInput' placeholder='Sua página do Lattes' type='Lattes' >{this.state.lattes}</p>
             <p className='grid-profilePersonalText'>Whatsapp</p>
-            <input disabled className='grid-profilePersonalInput' placeholder='Seu whatsapp pessoal' type='whatsapp' />
+            <p disabled className='grid-profilePersonalInput' placeholder='Seu whatsapp pessoal' type='whatsapp' >{this.state.whatsapp}</p>
 
-            <p className='grid-profilePersonalText'>CPF</p>
-            <p disabled className='grid-profilePersonalInput' placeholder='Seu CPF' type='cpf' >{this.state.cpf}</p>
+            {/*<p className='grid-profilePersonalText'>CPF</p>
+            <p disabled className='grid-profilePersonalInput' placeholder='Seu CPF' type='cpf' >{this.state.cpf}</p>*/}
           </article>
           <article className='grid-profileAcademic academic'>
-            {/* <h2 className='grid-profileAcademicTitle'>Academico</h2> */}
+            <h2 className='grid-profileAcademicTitle'>Academico</h2>
             {this.state.situation==='0' ? $infoDiscente : $infoEgresso}
           </article>
           <article className='grid-profileButton button'>

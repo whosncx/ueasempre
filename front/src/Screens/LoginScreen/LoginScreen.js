@@ -44,6 +44,7 @@ class LoginScreen extends Component{
               return response.json();
             })
             .then(data => {
+                console.log(md5(this.state.password));
                 if(data.canLogin){
                         sessionStorage.setItem('jwtToken', data.token);
                         this.props.history.push('/perfil')

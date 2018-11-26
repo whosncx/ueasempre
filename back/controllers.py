@@ -71,7 +71,7 @@ def token_required(f):
 
 
 
-@app.route('/alunos/<string:aluno_id>')
+@app.route('/perfilaluno/<string:aluno_id>')
 def aluno(aluno_id):
     aluno = Aluno.query.filter_by(aluno_id = (aluno_id)).first()
     if(aluno == None):

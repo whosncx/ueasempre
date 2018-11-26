@@ -81,7 +81,6 @@ class SignUpScreen extends Component{
             unity: data.unidade,
             course: data.curso,
             cpf: data.cpf,
-            password: data.senha,
             facebook: data.facebook,
             entryYear: data.ano_ingresso,
             exitYear: data.ano_conclusao,
@@ -462,7 +461,7 @@ class SignUpScreen extends Component{
           
             {this.state.situation==='0' ? $infoEgresso : $infoDiscente}
           </article>
-          <article className='grid-registerButton button'>
+          <article className='grid-registerButton'>
             <a href='/perfil'><button className='grid-registerButtonBoxRight'>Voltar</button></a>
             <a  onClick={this.addAluno.bind(this)}><button className='grid-registerButtonBoxLeft'>Salvar</button></a>
           </article>
