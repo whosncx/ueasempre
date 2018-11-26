@@ -95,12 +95,14 @@ class SignUpScreen extends Component{
             lattes: data.lattes,
             whatsapp: data.whatsapp
           })
+          this.showCursos(this.state.unity);
         });
       }).catch((e) => {
         sessionStorage.setItem('jwtToken', '');
         alert('Houve um erro ao listar perfil, tente novamente mais tarde');
         this.props.history.push('/login');
       });
+      
     }    
   }
 
@@ -177,7 +179,10 @@ class SignUpScreen extends Component{
           // this.props.history.push('/login')
       }); 
       alert('Cadastro Realizado com Sucesso') 
-      this.props.history.push('/login')    
+      if(token)
+        this.props.history.push('/perfil')  
+      else    
+        this.props.history.push('/login')   
     }).catch((e) => {
       console.log(e);
       alert('Houve um erro ao adicionar Aluno, tente novamente mais tarde');
@@ -423,7 +428,7 @@ class SignUpScreen extends Component{
             <input className='grid-registerPersonalInput' placeholder='Link do seu Lattes' type='lattes' onChange={evt => this.handleChange(evt)} value={this.state.lattes} id='lattes'/>
             
             <p className='grid-registerPersonalText'>Whatsapp</p>
-              <input className='grid-registerPersonalInput' placeholder='Whatsapp' type='whatsapp' id='whatsapp' />
+              <input className='grid-registerPersonalInput' placeholder='Whatsapp' type='whatsapp'onChange={evt => this.handleChange(evt)} value={this.state.whatsapp} id='whatsapp' />
             <p className='grid-registerPersonalText'>CPF*</p>
             <input className='grid-registerPersonalInput' placeholder='Seu CPF' type='cpf' onChange={evt => this.handleChange(evt)} value={this.state.cpf} id='cpf'/>
             <p className='grid-registerPersonalText'>Senha*</p>
@@ -454,7 +459,7 @@ class SignUpScreen extends Component{
             {this.state.situation==='0' ? $infoDiscente : $infoEgresso}
           </article>
           <article className='grid-registerButton button'>
-            <a href='#'><button className='grid-registerButtonBoxRight'>Voltar</button></a>
+            <a href='/perfil'><button className='grid-registerButtonBoxRight'>Voltar</button></a>
             <a  onClick={this.addAluno.bind(this)}><button className='grid-registerButtonBoxLeft'>Salvar</button></a>
           </article>
         </section>

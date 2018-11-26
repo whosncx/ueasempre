@@ -143,7 +143,7 @@ class ProfileScreen extends Component{
             <h1 className='grid-profileTopTitle'>Perfil do Usuário</h1>
           </article>
           <article className='grid-profilePhoto photo'>
-            <img onError={this.handleError} src={this.state.imageURL} className='grid-profilePhotoImg' alt='foto' src={user}/>
+            <img onError={this.handleError} src={this.state.imageURL} className='grid-profilePhotoImg' alt='foto'/>
             <p className='grid-profilePhotoText'>{this.state.name}</p>
           </article>
           <article className='grid-profilePersonal personal'>
