@@ -366,11 +366,11 @@ class SignUpScreen extends Component{
     let $infoDiscente = (
       <div> 
         <p className='grid-registerAcademicText'>Aluno/Egresso</p>
-        <Dropdown value={''+this.state.situation} className='grid-registerAcademicDropdown' options={this.situacao} onChange={this.selectSituation.bind(this)} />
+        <Dropdown value={''+this.state.situation} className='grid-registerPersonalInput' options={this.situacao} onChange={this.selectSituation.bind(this)} />
         <p className='grid-registerAcademicText'>Ano de Ingresso</p>
         <input className='grid-registerAcademicInput' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
         <p className='grid-registerAcademicText'>Situação</p>
-        <Dropdown value={''+this.state.discente_situation} className='grid-registerAcademicDropdown' options={this.discente_situacao} onChange={this.selectDiscenteSituation.bind(this)} />
+        <Dropdown value={''+this.state.discente_situation} className='grid-registerPersonalInput' options={this.discente_situacao} onChange={this.selectDiscenteSituation.bind(this)} />
         {this.state.discente_situation!=='0' ? <div>
           <p className='grid-registerAcademicText'>Instituição</p>
           <input className='grid-registerAcademicInput' value={this.state.discente_institutuion} onChange={evt => this.handleChange(evt)} id='discente_institutuion' placeholder='Instituição' type='discente_institutuion' />
@@ -382,13 +382,13 @@ class SignUpScreen extends Component{
     let $infoEgresso = (
       <div> 
         <p className='grid-registerAcademicText'>Aluno/Egresso</p>
-        <Dropdown value={''+this.state.situation} controlClassName='myControlClassName' className='grid-registerAcademicDropdown' options={this.situacao} onChange={this.selectSituation.bind(this)} />
+        <Dropdown value={''+this.state.situation} controlClassName='myControlClassName' className='grid-registerPersonalInput' options={this.situacao} onChange={this.selectSituation.bind(this)} />
         <p className='grid-registerAcademicText'>Ano de Ingresso</p>
         <input className='grid-registerAcademicInput' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
         <p className='grid-registerAcademicText'>Ano de Egresso</p>
         <input className='grid-registerAcademicInput' value={this.state.exitYear} onChange={evt => this.handleChange(evt)} id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
         <p className='grid-registerAcademicText'>Situação</p>
-        <Dropdown value={''+this.state.egresso_situation} controlClassName='myControlClassName' className='grid-registerAcademicDropdown' options={this.egresso_situacao} onChange={this.selectEgressoSituation.bind(this)} />
+        <Dropdown value={''+this.state.egresso_situation} controlClassName='myControlClassName' className='grid-registerPersonalInput' options={this.egresso_situacao} onChange={this.selectEgressoSituation.bind(this)} />
         {this.state.egresso_situation!=='0' ? <div>
           <p className='grid-registerAcademicText'>Instituição</p>
           <input className='grid-registerAcademicInput' value={this.state.egresso_institutuion} onChange={evt => this.handleChange(evt)} id='egresso_institutuion' placeholder='Instituição' type='egresso_institutuion' />
