@@ -155,7 +155,12 @@ class ProfileScreen extends Component{
             <p className='grid-profilePersonalText'>Facebook</p>
             <p disabled className='grid-profilePersonalInput' placeholder='Sua página do Facebook' type='facebook' >{this.state.facebook}</p>
             <p className='grid-profilePersonalText'>Linkedin</p>
-            <p disabled className='grid-profilePersonalInput' placeholder='Sua página do Linkedin' type='linkedin' >{this.state.linkedin}</p>
+            <input disabled className='grid-profilePersonalInput' placeholder='Sua página do Linkedin' type='linkedin' />
+            <p className='grid-profilePersonalText'>Lattes</p>
+            <input disabled className='grid-profilePersonalInput' placeholder='Sua página do Lattes' type='Lattes' />
+            <p className='grid-profilePersonalText'>Whatsapp</p>
+            <input disabled className='grid-profilePersonalInput' placeholder='Seu whatsapp pessoal' type='whatsapp' />
+
             <p className='grid-profilePersonalText'>CPF</p>
             <p disabled className='grid-profilePersonalInput' placeholder='Seu CPF' type='cpf' >{this.state.cpf}</p>
           </article>
