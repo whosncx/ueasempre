@@ -45,20 +45,6 @@ class SignUpScreen extends Component{
   componentDidMount() {
     const token = sessionStorage.getItem('jwtToken');
     
-    fetch(Global.API_URL + '/cursos')
-    .then(function(response){
-      return response.json();
-    })
-    .then(data => {
-      data.forEach(curso => {
-        this.cursos.push({value:''+curso.id, label:curso.nome});
-      });
-    })
-    .catch((e) => {
-      console.log(e);
-      alert('Houve um erro ao realizar pegar cursos, tente novamente mais tarde');
-    });
-
     fetch(Global.API_URL + '/unidades')
     .then(function(response){
       return response.json();
@@ -238,8 +224,28 @@ class SignUpScreen extends Component{
 
   selectUnidade(evt){
     this.setState({
-      unity: evt.value
+      unity: evt.value,
+      course : 'escolha'
     })
+    this.showCursos(evt.value);
+  }
+
+  showCursos(id){    
+    this.cursos = []
+
+    fetch(Global.API_URL + '/cursos/' + id)
+    .then(function(response){
+      return response.json();
+    })
+    .then(data => {
+      data.forEach(curso => {
+        this.cursos.push({value:''+curso.id, label:curso.nome});
+      });
+    })
+    .catch((e) => {
+      console.log(e);
+      alert('Houve um erro ao realizar pegar cursos, tente novamente mais tarde');
+    });
   }
 
   
@@ -416,18 +422,17 @@ class SignUpScreen extends Component{
             <p className='grid-registerPersonalText'>Lattes</p>
             <input className='grid-registerPersonalInput' placeholder='Link do seu Lattes' type='lattes' onChange={evt => this.handleChange(evt)} value={this.state.lattes} id='lattes'/>
             
+            <p className='grid-registerPersonalText'>Whatsapp</p>
+              <input className='grid-registerPersonalInput' placeholder='Whatsapp' type='whatsapp' id='whatsapp' />
             <p className='grid-registerPersonalText'>CPF*</p>
             <input className='grid-registerPersonalInput' placeholder='Seu CPF' type='cpf' onChange={evt => this.handleChange(evt)} value={this.state.cpf} id='cpf'/>
             <p className='grid-registerPersonalText'>Senha*</p>
             <input className='grid-registerPersonalInput' placeholder='Insira sua senha' type='password' onChange={evt => this.handleChange(evt)} value={this.state.password} id='password'/>
-            <p className='grid-registerPersonalText'>Confirmar Senha*</p>
-            <input className='grid-registerPersonalInput' placeholder='Confirme sua senha' type='password' onChange={evt => this.handleChange(evt)} value={this.state.password} id='password'/>
           </article>
           <article className='grid-registerAcademic academic'>
-            <p className='grid-registerPersonalText'>Whatsapp</p>
-              <input className='grid-registerPersonalInput' placeholder='Whatsapp' type='whatsapp' id='whatsapp' />
-
+              <p className='grid-registerPersonalText'>Instituição</p>
               <Dropdown value={''+this.state.unity} controlClassName='myControlClassName' className='grid-registerPersonalInput' options={this.unidades} onChange={this.selectUnidade.bind(this)} placeholder="Unidade" />
+              <p className='grid-registerPersonalText'>Curso</p>
               <Dropdown value={''+this.state.course} controlClassName='myControlClassName' className='grid-registerPersonalInput' options={this.cursos} onChange={this.selectCurso.bind(this)} placeholder="Curso" />
             {/*
             <p className='grid-registerAcademicText'>Ano de Ingresso</p>
