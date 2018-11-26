@@ -51,7 +51,7 @@ class SignUpScreen extends Component{
     })
     .then(data => {
       data.forEach(curso => {
-        this.cursos.push({value:''+curso.id, label:curso.sigla});
+        this.cursos.push({value:''+curso.id, label:curso.nome});
       });
     })
     .catch((e) => {
@@ -65,7 +65,7 @@ class SignUpScreen extends Component{
     })
     .then(data => {
       data.forEach(unidade => {
-        this.unidades.push({value:''+unidade.id, label:unidade.sigla});
+        this.unidades.push({value:''+unidade.id, label:unidade.nome});
       });
     })
     .catch((e) => {
