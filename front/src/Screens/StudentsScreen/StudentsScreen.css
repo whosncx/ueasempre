@@ -16,6 +16,15 @@
   text-shadow: 1px 1px 3px #555353;
 }
 
+.grid-studentsText-publicHome{
+  text-shadow: 0px 0px 10px #ccc;
+  text-align: center;
+  text-transform: capitalize;
+  /* color: black; */
+  transition: all 1s;
+  text-shadow: 1px 1px 3px #555353;
+}
+
 .grid-studentsBtn{
   text-shadow: 0px 0px 10px #ccc;
   text-align: center;
@@ -33,11 +42,26 @@
   cursor: pointer;
 }
 
+.grid-studentsText-publicHome:hover{
+  /* color: green;
+  font-size: 1.05rem;
+  cursor: pointer;*/
+} 
+
+
 .grid-studentsImg{
   /* border: #352828 0.2rem solid; */
   border-radius: 2rem;
   transition: all 1s;
 }
+
+
+.grid-studentsImg-publicHome{
+  /* border: #352828 0.2rem solid; */
+  border-radius: 2rem;
+  transition: all 1s;
+}
+
 
 .grid-studentsImg:hover{
   
@@ -85,4 +109,24 @@
     grid-template-columns: 25% 25% 25% 25%;
     grid-template-rows: 12rem 12rem 12rem;
   }
+}
+
+.grid-studentsImg-publicHome{
+  height: 8rem;
+  width: 8rem;
+}
+
+.grid-studentsImg-publicHome:hover{
+  
+  /* box-shadow: 3px 3px 15px #666;
+  border-color:#0E4E34;
+  background: #0E4E34;
+  color: #fff;
+  cursor: pointer;
+  
+  /*Opacity*/
+  /* zoom: 1;
+  filter: alpha(opacity=100);
+  opacity: 1;  */
+
 }

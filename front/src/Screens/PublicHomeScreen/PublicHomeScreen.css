@@ -1,5 +1,5 @@
 .containerPublicHomeScreen{
-    background-color:green;
+    background-color:#b5e7a0;
     width: 100%;
     height: 100vh;
 }
@@ -12,7 +12,7 @@
 .welcomeContainer{
     width: 70%;
     float:left;
-    background-color:green;
+    background-color:#b5e7a0;;
 }
 .welcomeContainer h1{
     padding-left: 8rem;
@@ -40,6 +40,9 @@
 
 .alunosContainer{
     width: 100%;
+    background: #86af49;
+    cursor: pointer;
+    hoover: green;
 }
 .buttonContainer button{
     width: 80%;

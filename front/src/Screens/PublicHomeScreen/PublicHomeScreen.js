@@ -18,7 +18,7 @@ export default class PublicHomeScreen extends Component{
         var request = {
             method: 'get'
         }
-        fetch(Global.API_URL + '/alunos/8', request).then((response) => {
+        fetch(Global.API_URL + '/alunos/12', request).then((response) => {
             response.json().then((data) => {
                 // console.log(data)
                 console.log(data.alunos)
@@ -65,6 +65,7 @@ export default class PublicHomeScreen extends Component{
                         <div className="buttonsContainer">
                             <div className="buttonContainer"><button className="btn-signIn" onClick={this.goToLogin.bind(this)}>Login</button></div>
                             <div className="buttonContainer"><button className="btn-signUp" onClick={this.goToRegister.bind(this)}>Registrar</button></div>
+                            <div className="buttonContainer"><button className="btn-signIn" onClick={this.goAlunos.bind(this)}>Veja quem está aqui</button></div>
                         </div>
                     </div> 
                 </div>
@@ -72,8 +73,8 @@ export default class PublicHomeScreen extends Component{
                     <section className='grid-studentsContainer'>
                         {this.state.alunos.map(c => 
                             <article className='grid-studentsItem'>
-                                <img onError={this.handleError} className='grid-studentsImg' alt='aluno' src={Global.API_URL + '/imgs/uploads/' + c.id + '.png?v=' + Date.now()}/>
-                                <p className='grid-studentsText'>{c.nome}</p>
+                                <img onError={this.handleError} className='grid-studentsImg-publicHome' alt='aluno' src={Global.API_URL + '/imgs/uploads/' + c.id + '.png?v=' + Date.now()}/>
+                                <p className='grid-studentsText-publicHome'>{c.nome}</p>
                             </article>
                             )}
                         </section>
