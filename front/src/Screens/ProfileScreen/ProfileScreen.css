@@ -3,7 +3,7 @@
   
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 5rem 18rem 50rem 50rem 5rem;
+    grid-template-rows: 5rem 18rem 60rem 48rem 5rem;
     
     grid-template-areas: 
         "topp"
@@ -179,13 +179,28 @@
     .grid-profile{
       display: grid;
       grid-template-columns: 33% 33% 33%;
-      grid-template-rows: 5rem 50rem 5rem ;
+      grid-template-rows: 5rem 40em 33rem 5rem ;
       
       grid-template-areas: 
           "topp topp topp"
-          "photo personal academic"
+          "photo personal personal"
+          "photo academic ."
           ". . button"
   
+    }.topp{
+      grid-area: topp;
+    }
+    .photo{
+      grid-area: photo;
+    }
+    .persona{
+      grid-area: personal;
+    }
+    .academic{
+      grid-area: academic;
+    }
+    .button{
+      grid-area: button;
     }
   
     .grid-profileTop{
@@ -194,24 +209,52 @@
     }
   
     .grid-profilePhoto{
-      margin-bottom: 32rem;
+      margin-bottom: 55rem;
+      margin-left: 10rem;
+      transform: translateX(-10%);
+      border-radius: 40px;
     }
   
     .grid-profilePhotoImg{
       height: 12rem;
     }
-  
-  
+
+    .grid-profilePersonal{
+    border: red solid 3px;
+    margin-right: -25rem;
+    padding-top: 0rem;
+    margin-bottom: 36.5rem;
+  }
+
+    .grid-profileAcademic{
+      border: red solid 3px;
+      margin-right: -25rem;
+      padding-top: 0rem;
+      margin-bottom: 29.5rem;
+    }
+
+    .grid-profilePersonalTitle, .grid-profileAcademicTitle{
+      font-size: 1.1rem;
+    }
+
+    .grid-profilePersonalText, .grid-profileAcademicText{
+      font-size: 0.8rem;
+      margin-bottom: 0;
+    }
+
+    .grid-profilePersonalInput, .grid-profileAcademicInput{
+      font-size: 0.5rem;
+      border-radius: 20px;
+    }
+
+    .grid-profilePersonalInput::placeholder, .grid-profileAcademicInput::placeholder{
+      font-size: 1rem;
+    }
+
     .grid-profileButton{
-      transform: translateX(165%);
+      transform: translatex(-35%);
     }
-  
-    .grid-profileButtonBoxLeft{
-      transform: translateX(-100%);
-    }
-    .grid-profileButtonBoxRight{
-      transform: translateX(10%);
-    }
+
       
   }
   
