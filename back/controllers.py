@@ -248,14 +248,21 @@ def all_cursos():
     db.session.commit()
     return jsonify(output)
 
-@app.route('/cursos/<int:curso_id>')
-def curso(curso_id):
-    curso = Curso.query.filter_by(curso_id = str(curso_id)).first()
-    if(curso == None):
-        return 'Curso não encontrado!'
-        
+@app.route('/cursos/<int:unidade_id>')
+def curso(unidade_id):
+    cursos = Curso.query.filter_by(curso_unidade_id = str(unidade_id)).all()
+    output = []
+    for curso in cursos:
+        c_data = {
+                    'nome': curso.curso_nome,
+                    'sigla': curso.curso_sigla,
+                    'id': curso.curso_id
+                 }
+
+        output.append(c_data)
+    
     db.session.commit()
-    return 'Nome: %s' % curso.curso_nome
+    return jsonify(output)
 
 
 @app.route('/upload', methods=['POST'])
