@@ -1,22 +1,26 @@
 .containerPublicHomeScreen{
-    background-color:green;
     width: 100%;
     height: 100vh;
 }
 
+.upContainerContainer{
+    background-image: url("../../Assets/uea_background.jpg");
+    background-size: 100%;
+}
 .upContainer{
     width: 100%;
-    height: 50vh;
+    height: 70vh;
+    background-color:rgba(0, 102, 0, 0.8);
 }
 
 .welcomeContainer{
     width: 70%;
     float:left;
-    background-color:green;
 }
 .welcomeContainer h1{
     padding-left: 8rem;
-    font-size: 5vw;;
+    font-size: 5vw;
+    color:white;
 }
 
 .signInUpContainer{
