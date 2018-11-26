@@ -12,6 +12,8 @@ import PerfilPage from './Screens/PerfilPage/PerfilPage'
 import ProfileScreen from './Screens/ProfileScreen/ProfileScreen';
 import PublicHomeScreen from './Screens/PublicHomeScreen/PublicHomeScreen';
 
+// import Teste from './Screens/Teste/Teste'
+
 ReactDOM.render(
     <BrowserRouter basename="ueasempre">
       <Switch>
@@ -22,6 +24,7 @@ ReactDOM.render(
         <Route path="/perfil" exact={true} component={ProfileScreen}/>
         <Route path="/publichome" exact={true} component={PublicHomeScreen}/>
         <Route path="/" exact={true} component={PublicHomeScreen}/>
+        {/* <Route path='/teste' exact={true} component={Teste}/> */}
       </Switch>
     </BrowserRouter>,
   document.getElementById('root'));
