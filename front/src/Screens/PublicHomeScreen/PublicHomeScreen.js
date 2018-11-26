@@ -43,6 +43,7 @@ export default class PublicHomeScreen extends Component{
     }
 
     goToRegister(){
+        sessionStorage.removeItem('jwtToken')
         this.props.history.push('/cadastro');
     }
 

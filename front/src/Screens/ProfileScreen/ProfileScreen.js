@@ -8,6 +8,7 @@ import user from '../../Assets/user.png';
 import Header from '../../Components/Header/Header';
 import Global from '../../Components/global'
 import userImg from '../../Assets/user.png';
+import Dropdown from 'react-dropdown'
 
 class ProfileScreen extends Component{
   cursos = []
@@ -35,7 +36,7 @@ class ProfileScreen extends Component{
   }
 
   componentDidMount() {
-      console.log(this.props.match.params)
+      console.log(sessionStorage.getItem('jwtToken'))
       fetch(Global.API_URL + '/perfilaluno', {
         headers : new Headers({
           'x-access-token' : sessionStorage.getItem('jwtToken')
@@ -97,6 +98,40 @@ class ProfileScreen extends Component{
     }
 
   render(){
+    let $infoDiscente = (
+      <div> 
+        <p className='grid-registerAcademicText'>Aluno/Egresso</p>
+        <p className='grid-registerAcademicDropdown'>{this.state.situation==0? 'discente' : 'egresso'}</p>
+        <p className='grid-registerAcademicText'>Ano de Ingresso</p>
+        <p className='grid-registerAcademicInput' >{this.state.entryYear}</p>
+        <p className='grid-registerAcademicText'>Situação</p>
+        <p className='grid-registerAcademicDropdown'>{this.selectDiscSituation()}</p>
+        {this.state.discente_situation!=='0' ? <div>
+          <p className='grid-registerAcademicText'>Instituição</p>
+          <p className='grid-registerAcademicInput'>{this.state.disc_institutuion}</p>
+          <p className='grid-registerAcademicText'>Função</p>
+          <p className='grid-registerAcademicInput'>{this.state.disc_function}</p>
+        </div>:<div/>}
+      </div>
+    );
+    let $infoEgresso = (
+      <div> 
+        <p className='grid-registerAcademicText'>Aluno/Egresso</p>
+        <p >{this.state.situatio==0? 'discente' : 'egresso'}</p>
+        <p className='grid-registerAcademicText'>Ano de Ingresso</p>
+        <p className='grid-registerAcademicInput'>{this.state.entryYear}</p>
+        <p className='grid-registerAcademicText'>Ano de Egresso</p>
+        <p className='grid-registerAcademicInput'>{this.state.exitYear}</p>
+        <p className='grid-registerAcademicText'>Situação</p>
+        <p className='grid-registerAcademicDropdown'>{this.selectEgressoSituation()}</p>
+        {this.state.egresso_situation!=='0' ? <div>
+          <p className='grid-registerAcademicText'>Instituição</p>
+          <p className='grid-registerAcademicInput'>{this.state.egresso_institutuion}</p>
+          <p className='grid-registerAcademicText'>Função</p>
+          <p className='grid-registerAcademicInput'>{this.state.egresso_function}</p>
+        </div> : <div/>}
+      </div>
+    );
     return(
       <div>
         <header>
@@ -109,7 +144,7 @@ class ProfileScreen extends Component{
           </article>
           <article className='grid-profilePhoto photo'>
             <img onError={this.handleError} src={this.state.imageURL} className='grid-profilePhotoImg' alt='foto' src={user}/>
-            <p className='grid-profilePhotoText'>Fulano Ciclano Chales</p>
+            <p className='grid-profilePhotoText'>{this.state.name}</p>
           </article>
           <article className='grid-profilePersonal personal'>
             <h2 className='grid-profilePersonalTitle'>Pessoal</h2>
@@ -126,7 +161,8 @@ class ProfileScreen extends Component{
           </article>
           <article className='grid-profileAcademic academic'>
             <h2 className='grid-profileAcademicTitle'>Academico</h2>
-            <p className='grid-profileAcademicText'>Ano de Ingresso</p>
+            {this.state.situation==='0' ? $infoEgresso :  $infoDiscente}
+            {/* <p className='grid-profileAcademicText'>Ano de Ingresso</p>
             <p disabled className='grid-profileAcademicInput' placeholder='Ano de Ingresso' type='entryYear'>{this.state.entryYear}</p>
             <p className='grid-profileAcademicText'>Ano de Egresso</p>
             <p disabled className='grid-profileAcademicInput' placeholder='Ano de Egresso' type='exitYear' >{this.state.exitYear}</p>
@@ -137,13 +173,13 @@ class ProfileScreen extends Component{
             <p className='grid-profileAcademicText'>Curso</p>              
             <p disabled className='grid-profileAcademicInput' placeholder='Curso' type='course' >{this.state.course}</p>
             <p className='grid-profileAcademicText'>Situação</p>
-            <p disabled className='grid-profileAcademicInput' placeholder='Situação' type='situation' >{this.state.disc_situation}</p>
+            <p disabled className='grid-profileAcademicInput' placeholder='Situação' type='situation' >{this.selectDiscSituation()}</p>
             <p className='grid-profileAcademicText'>Função</p>
-            <p disabled className='grid-profileAcademicInput' placeholder='Função' type='function' >{this.state.disc_function}</p>
+            <p disabled className='grid-profileAcademicInput' placeholder='Função' type='function' >{this.state.disc_function}</p> */}
           </article>
           <article className='grid-profileButton button'>
-            <a href='#'><button className='grid-profileButtonBoxRight'>Voltar</button></a>
-            <a href='#'><button className='grid-registerButtonBoxLeft'>Editar</button></a>
+            <a href='/'><button className='grid-profileButtonBoxRight'>Voltar</button></a>
+            <a href='/cadastro'><button className='grid-registerButtonBoxLeft'>Editar</button></a>
           </article>
         </section>
       </div>    

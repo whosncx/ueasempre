@@ -135,7 +135,7 @@ class SignUpScreen extends Component{
       "situation": (this.state.discente_situation=="null" || this.state.discente_situation=="" ? 0 : this.state.discente_situation),
       "discente_function": this.state.discente_function,
       "discente_institutuion" : this.state.discente_institutuion,
-      "discente_situation": this.state.discente_function,
+      "discente_situation": this.state.discente_situation,
       "egresso_institutuion" : this.state.egresso_institutuion,
       "egresso_situation": (this.state.egresso_situation=="null" || this.state.egresso_situation=="" ? 0 : this.state.egresso_situation),
       "egresso_function": this.state.egresso_function,
@@ -170,7 +170,11 @@ class SignUpScreen extends Component{
 
     fetch(Global.API_URL + '/cadastro', request).then((response) => {
       response.json().then((data) => {
+          if (this.uploadInput == null){
+            return
+          }
           var file = this.uploadInput.files[0]
+          console.log(this.uploadInput)
           const form = new FormData();
           form.append('file', file);
           form.append('filename', data.id + '.png')
@@ -186,7 +190,8 @@ class SignUpScreen extends Component{
           // alert('Cadastro Realizado com Sucesso')
           // this.props.history.push('/login')
       }); 
-      alert('Cadastro Realizado com Sucesso')     
+      alert('Cadastro Realizado com Sucesso') 
+      this.props.history.push('/login')    
     }).catch((e) => {
       console.log(e);
       alert('Houve um erro ao adicionar Aluno, tente novamente mais tarde');
@@ -400,27 +405,27 @@ class SignUpScreen extends Component{
           </article>
           <article className='grid-registerPersonal personal'>
             <p className='grid-registerPersonalText'>Nome Completo*</p>
-            <input className='grid-registerPersonalInput' placeholder='Seu nome completo' type='name'/>
+            <input className='grid-registerPersonalInput' placeholder='Seu nome completo' type='name' onChange={evt => this.handleChange(evt)} value={this.state.name} id='name'/>
             <p className='grid-registerPersonalText'>Email</p>
-            <input className='grid-registerPersonalInput' placeholder='Seu email' type='email' />
+            <input className='grid-registerPersonalInput' placeholder='Seu email' type='email' onChange={evt => this.handleChange(evt)} value={this.state.email} id='email'/>
             <p className='grid-registerPersonalText'>Facebook</p>
-            <input className='grid-registerPersonalInput' placeholder='Sua página do Facebook' type='facebook' />
+            <input className='grid-registerPersonalInput' placeholder='Sua página do Facebook' type='facebook' onChange={evt => this.handleChange(evt)} value={this.state.facebook} id='facebook'/>
             <p className='grid-registerPersonalText'>Linkedin</p>
-            <input className='grid-registerPersonalInput' placeholder='Sua página do Linkedin' type='linkedin' />
+            <input className='grid-registerPersonalInput' placeholder='Sua página do Linkedin' type='linkedin' onChange={evt => this.handleChange(evt)} value={this.state.linkedin} id='linkedin'/>
            
             <p className='grid-registerPersonalText'>Lattes</p>
-            <input className='grid-registerPersonalInput' placeholder='Link do seu Lattes' type='lattes' />
+            <input className='grid-registerPersonalInput' placeholder='Link do seu Lattes' type='lattes' onChange={evt => this.handleChange(evt)} value={this.state.lattes} id='lattes'/>
             
             <p className='grid-registerPersonalText'>CPF*</p>
-            <input className='grid-registerPersonalInput' placeholder='Seu CPF' type='cpf' />
+            <input className='grid-registerPersonalInput' placeholder='Seu CPF' type='cpf' onChange={evt => this.handleChange(evt)} value={this.state.cpf} id='cpf'/>
             <p className='grid-registerPersonalText'>Senha*</p>
-            <input className='grid-registerPersonalInput' placeholder='Insira sua senha' type='password' />
+            <input className='grid-registerPersonalInput' placeholder='Insira sua senha' type='password' onChange={evt => this.handleChange(evt)} value={this.state.password} id='password'/>
             <p className='grid-registerPersonalText'>Confirmar Senha*</p>
-            <input className='grid-registerPersonalInput' placeholder='Confirme sua senha' type='password' />
+            <input className='grid-registerPersonalInput' placeholder='Confirme sua senha' type='password' onChange={evt => this.handleChange(evt)} value={this.state.password} id='password'/>
           </article>
           <article className='grid-registerAcademic academic'>
             <p className='grid-registerPersonalText'>Whatsapp</p>
-              <input className='grid-registerPersonalInput' placeholder='Whatsapp' type='whatsapp' />
+              <input className='grid-registerPersonalInput' placeholder='Whatsapp' type='whatsapp' id='whatsapp' />
 
               <Dropdown value={''+this.state.unity} controlClassName='myControlClassName' className='grid-registerPersonalInput' options={this.unidades} onChange={this.selectUnidade.bind(this)} placeholder="Unidade" />
               <Dropdown value={''+this.state.course} controlClassName='myControlClassName' className='grid-registerPersonalInput' options={this.cursos} onChange={this.selectCurso.bind(this)} placeholder="Curso" />
