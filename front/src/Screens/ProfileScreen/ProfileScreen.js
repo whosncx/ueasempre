@@ -147,7 +147,7 @@ class ProfileScreen extends Component{
             <p className='grid-profilePhotoText'>{this.state.name}</p>
           </article>
           <article className='grid-profilePersonal personal'>
-            <h2 className='grid-profilePersonalTitle'>Pessoal</h2>
+            {/* <h2 className='grid-profilePersonalTitle'>Pessoal</h2> */}
             <p className='grid-profilePersonalText'>Nome Completo</p>
             <p disabled className='grid-profilePersonalInput' placeholder='Seu nome completo' type='name'>{this.state.name}</p>
             <p className='grid-profilePersonalText'>Email</p>
@@ -160,22 +160,8 @@ class ProfileScreen extends Component{
             <p disabled className='grid-profilePersonalInput' placeholder='Seu CPF' type='cpf' >{this.state.cpf}</p>
           </article>
           <article className='grid-profileAcademic academic'>
-            <h2 className='grid-profileAcademicTitle'>Academico</h2>
+            {/* <h2 className='grid-profileAcademicTitle'>Academico</h2> */}
             {this.state.situation==='0' ? $infoEgresso :  $infoDiscente}
-            {/* <p className='grid-profileAcademicText'>Ano de Ingresso</p>
-            <p disabled className='grid-profileAcademicInput' placeholder='Ano de Ingresso' type='entryYear'>{this.state.entryYear}</p>
-            <p className='grid-profileAcademicText'>Ano de Egresso</p>
-            <p disabled className='grid-profileAcademicInput' placeholder='Ano de Egresso' type='exitYear' >{this.state.exitYear}</p>
-            <p className='grid-profileAcademicText'>Instituição</p>
-            <p disabled className='grid-profileAcademicInput' placeholder='Instituição' type='institutuion' >{this.state.discente_inst}</p>
-            <p className='grid-profileAcademicText'>Unidade</p>
-            <p disabled className='grid-profileAcademicInput' placeholder='Unidade' type='unity' >{this.state.unity}</p>
-            <p className='grid-profileAcademicText'>Curso</p>              
-            <p disabled className='grid-profileAcademicInput' placeholder='Curso' type='course' >{this.state.course}</p>
-            <p className='grid-profileAcademicText'>Situação</p>
-            <p disabled className='grid-profileAcademicInput' placeholder='Situação' type='situation' >{this.selectDiscSituation()}</p>
-            <p className='grid-profileAcademicText'>Função</p>
-            <p disabled className='grid-profileAcademicInput' placeholder='Função' type='function' >{this.state.disc_function}</p> */}
           </article>
           <article className='grid-profileButton button'>
             <a href='/'><button className='grid-profileButtonBoxRight'>Voltar</button></a>
