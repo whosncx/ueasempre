@@ -6,6 +6,7 @@ import camera from '../../Assets/photo-camera.svg';
 import Header from '../../Components/Header/Header';
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
+import md5 from 'js-md5'
 
 class SignUpScreen extends Component{
   cursos = []
@@ -116,7 +117,7 @@ class SignUpScreen extends Component{
       "unity": this.state.unity,
       "course": this.state.course,
       "cpf": this.state.cpf,
-      "password": this.state.password,
+      "password": md5(this.state.password),
       "facebook": this.state.facebook,
       "entryYear": this.state.entryYear,
       "exitYear": (this.state.exitYear==""? 0 : this.state.exitYear),

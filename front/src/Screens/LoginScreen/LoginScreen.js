@@ -8,6 +8,7 @@ import uea from '../../Assets/uea.svg';
 import Global from '../../Components/global'
 import Header from '../../Components/Header/Header';
 import { Link } from 'react-router-dom';
+import md5 from 'js-md5'
 
 class LoginScreen extends Component{
     constructor(){
@@ -36,7 +37,7 @@ class LoginScreen extends Component{
         } else {
             fetch(Global.API_URL + '/login', { //local
                 headers : new Headers({
-                    'Authorization': 'Basic '+btoa(this.state.cpf+':'+this.state.password),
+                    'Authorization': 'Basic '+btoa(this.state.cpf+':'+md5(this.state.password)),
                 })
             })
             .then(function(response){
