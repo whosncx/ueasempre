@@ -9,6 +9,7 @@ import 'react-dropdown/style.css'
 import md5 from 'js-md5'
 
 class SignUpScreen extends Component{
+  file={}
   cursos = []
   unidades = []
   havePhoto = true;
@@ -158,13 +159,11 @@ class SignUpScreen extends Component{
 
     fetch(Global.API_URL + '/cadastro', request).then((response) => {
       response.json().then((data) => {
-          if (this.uploadInput == null){
-            return
-          }
-          var file = this.uploadInput.files[0]
+          
+          //this.file = this.uploadInput.files[0]
           console.log(this.uploadInput)
           const form = new FormData();
-          form.append('file', file);
+          form.append('file', this.file);
           form.append('filename', data.id + '.png')
     
           fetch('http://localhost:5000/upload', {
@@ -191,15 +190,15 @@ class SignUpScreen extends Component{
 
   fileChangedHandler = (evt) => {
     console.log(evt.target.files[0]);
-    const file = evt.target.files[0];
+    this.file = evt.target.files[0];
     let reader = new FileReader();
     reader.onload = (e) => {
       this.setState({
         imageURL: e.target.result,
       });
     };
-    if(file){
-      reader.readAsDataURL(file);
+    if(this.file){
+      reader.readAsDataURL(this.file);
     }
   } 
 
@@ -368,8 +367,8 @@ class SignUpScreen extends Component{
       <div>
           <img onError={this.handleError.bind(this)} src={this.state.imageURL} className="labImg" alt={this.state.labNome} height='195' width='195'/>
           <div className="grid-registerPhotoImg">
-            <input ref={(ref) => { this.uploadInput = ref; }} className="grid-registerPhotoText" type="file" id="Imagem" name="Imagem" onChange={evt => this.fileChangedHandler(evt)} ></input>
-          </div>
+            <input ref={(ref) => { this.uploadInput = ref; }} className="changePicInput" type="file" id="Imagem" name="Imagem" onChange={evt => this.fileChangedHandler(evt)} ></input>
+            </div>
       </div> );
     let $infoDiscente = (
       <div> 
@@ -459,7 +458,7 @@ class SignUpScreen extends Component{
             <input className='grid-registerAcademicInput' placeholder='Função' type='function' />
             */}  
           
-            {this.state.situation==='0' ? $infoEgresso : $infoDiscente}
+            {this.state.situation==='0' ? $infoDiscente : $infoEgresso}
           </article>
           <article className='grid-registerButton'>
             <a href='/perfil'><button className='grid-registerButtonBoxRight'>Voltar</button></a>
