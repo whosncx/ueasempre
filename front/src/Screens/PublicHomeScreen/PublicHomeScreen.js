@@ -82,6 +82,7 @@ export default class PublicHomeScreen extends Component{
                         </section>
                </div> 
             </div>
+            </div>
         );
     }
 }

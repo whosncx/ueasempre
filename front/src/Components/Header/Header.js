@@ -60,7 +60,7 @@ class Header extends Component{
       </div>
       </Link>
       </div>          
-      <Link to="/login" onClick={this.headerClicked.bind(this)} className={classnames({'selected' : this.state.selected === 0 }, 'option')}>
+      <Link to="/alunos" onClick={this.headerClicked.bind(this)} className={classnames({'selected' : this.state.selected === 0 }, 'option')}>
         <a>Lista de Alunos</a>
       </Link>
     </div>
