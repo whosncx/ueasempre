@@ -54,13 +54,13 @@ class Header extends Component{
     let div = <div>
     <div className="topnav" id="myTopnav">
       <div className="initLogo">
-        <div className="nameBrand">
-        <Link to="/publichome" onClick={this.headerClicked.bind(this)} className={classnames({'selected' : this.state.selected === 0 }, 'option')}>
-        <img className="fapeam-logo" src={uea1} alt='logo do sempre uea'/>
-        </Link>
-        </div>
+      <Link to='/'>
+      <div className="nameBrand">
+      <img className="fapeam-logo" src={uea1} alt='logo do sempre uea'/>
+      </div>
+      </Link>
       </div>          
-      <Link to="/alunos" onClick={this.headerClicked.bind(this)} className={classnames({'selected' : this.state.selected === 0 }, 'option')}>
+      <Link to="/login" onClick={this.headerClicked.bind(this)} className={classnames({'selected' : this.state.selected === 0 }, 'option')}>
         <a>Lista de Alunos</a>
       </Link>
     </div>

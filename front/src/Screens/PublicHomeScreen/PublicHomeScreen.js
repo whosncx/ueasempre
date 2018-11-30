@@ -57,6 +57,7 @@ export default class PublicHomeScreen extends Component{
     render(){
         return(
             <div className="containerPublicHomeScreen">
+                <div className="upContainerContainer">
                 <div className="upContainer">
                     <div className="welcomeContainer"> 
                         <h1>Bem Vindo ao<br></br>Sempre UEA</h1>

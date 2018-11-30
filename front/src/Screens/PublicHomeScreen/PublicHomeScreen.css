@@ -1,24 +1,26 @@
 .containerPublicHomeScreen{
-    background-color:#b5e7a0;
     width: 100%;
     height: 100vh;
 }
 
+.upContainerContainer{
+    background-image: url("../../Assets/uea_background.jpg");
+    background-size: 100%;
+}
 .upContainer{
     width: 100%;
-    height: 50vh;
+    height: 70vh;
+    background-color:rgba(0, 102, 0, 0.8);
 }
 
 .welcomeContainer{
     width: 70%;
     float:left;
-    background-color:#b5e7a0;
-    color : #003308;
 }
 .welcomeContainer h1{
     padding-left: 8rem;
     font-size: 5vw;
-    color : #003308;
+    color:white;
 }
 
 .welcomeContainer h2{
