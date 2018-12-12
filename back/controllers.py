@@ -8,7 +8,7 @@ from functools import wraps
 from flask_sqlalchemy import SQLAlchemy #comunicacao com o banco
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ueasistemas:11235813@localhost/uea_sistemas'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ueasistemas:ueasistemas@localhost/ueasistemas'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SECRET_KEY'] = 'ueasempre'
 CORS(app)
@@ -296,5 +296,5 @@ def serve_file_in_dir(path):
 
 
 if __name__ == '__main__':
-    app.run(debug=1)
+    app.run(host='172.26.225.182')
     
