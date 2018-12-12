@@ -155,7 +155,9 @@ def perfilaluno(current_user):
 def create_aluno():
     
     data = request.get_json()
-
+    if(db.session.query(Aluno.aluno_id).filter_by(aluno_id=data['cpf']).scalar() is not None):
+        response = make_response(jsonify({'message': 'CPF ja cadastrado!'}), 401)
+        return response
     novo_aluno = Aluno(aluno_nome=data['name'],aluno_id=data['cpf'],aluno_facebook=data['facebook'],
     aluno_linkedin=data['linkedin'],aluno_email=data['email'],aluno_uea_unidade=data['unity'],aluno_uea_curso=data['course'],
     aluno_senha=data['password'], aluno_ano_ingresso=data['entryYear'], aluno_ano_conclusao=data['exitYear'],

@@ -121,10 +121,10 @@ class SignUpScreen extends Component{
       "facebook": this.state.facebook,
       "entryYear": this.state.entryYear,
       "exitYear": (this.state.exitYear==""? 0 : this.state.exitYear),
-      "situation": (this.state.discente_situation=="null" || this.state.discente_situation=="" ? 0 : this.state.discente_situation),
+      "situation": (this.state.situation=="null" || this.state.situation=="" ? 0 : this.state.situation),
       "discente_function": this.state.discente_function,
       "discente_institutuion" : this.state.discente_institutuion,
-      "discente_situation": this.state.discente_situation,
+      "discente_situation": (this.state.discente_situation=="null" || this.state.discente_situation=="" ? 0 : this.state.discente_situation),
       "egresso_institutuion" : this.state.egresso_institutuion,
       "egresso_situation": (this.state.egresso_situation=="null" || this.state.egresso_situation=="" ? 0 : this.state.egresso_situation),
       "egresso_function": this.state.egresso_function,
@@ -151,37 +151,40 @@ class SignUpScreen extends Component{
       }
     }
 
-    if(this.state.name === '' || this.state.entryYear === '' || this.state.cpf === '' || this.state.password === '' || this.state.course === '' || this.state.unity === '') {
+    if(this.state.name === '' || this.state.entryYear === '' || this.state.cpf === '' || this.state.password === ''
+    || this.state.course === '' || this.state.course === 'escolha' || this.state.unity === '' || this.state.unity === 'escolha') {
       alert('Prencha todos os valores');
       return;
     }
 
 
     fetch(Global.API_URL + '/cadastro', request).then((response) => {
-      response.json().then((data) => {
-          
-          //this.file = this.uploadInput.files[0]
-          console.log(this.uploadInput)
-          const form = new FormData();
-          form.append('file', this.file);
-          form.append('filename', data.id + '.png')
-    
-          fetch('http://localhost:5000/upload', {
-            method: 'POST',
-            body: form,
-          }).then((response) => {
-            response.json().then((body) => {
-              this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+      if(response.ok){
+        response.json().then((data) => {
+            
+            const form = new FormData();
+            form.append('file', this.file);
+            form.append('filename', data.id + '.png')
+      
+            fetch('http://localhost:5000/upload', {
+              method: 'POST',
+              body: form,
+            }).then((response) => {
+              response.json().then((body) => {
+                this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+              });
             });
-          });
-          // alert('Cadastro Realizado com Sucesso')
-          // this.props.history.push('/login')
-      }); 
-      alert('Cadastro Realizado com Sucesso') 
-      if(token)
-        this.props.history.push('/perfil')  
-      else    
-        this.props.history.push('/login')   
+            // alert('Cadastro Realizado com Sucesso')
+            // this.props.history.push('/login')
+        }); 
+        alert('Cadastro Realizado com Sucesso') 
+        if(token)
+          this.props.history.push('/perfil')  
+        else    
+          this.props.history.push('/login')  
+      } else {
+        alert("CPF informado invalido, insira outro");
+      }
     }).catch((e) => {
       console.log(e);
       alert('Houve um erro ao adicionar Aluno, tente novamente mais tarde');
@@ -372,11 +375,11 @@ class SignUpScreen extends Component{
       </div> );
     let $infoDiscente = (
       <div> 
-        <p className='grid-registerAcademicText'>Aluno/Egresso</p>
+        <p className='grid-registerAcademicText'>Aluno/Egresso*</p>
         <Dropdown value={''+this.state.situation} className='grid-registerPersonalInput' options={this.situacao} onChange={this.selectSituation.bind(this)} />
-        <p className='grid-registerAcademicText'>Ano de Ingresso</p>
+        <p className='grid-registerAcademicText'>Ano de Ingresso*</p>
         <input className='grid-registerAcademicInput' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
-        <p className='grid-registerAcademicText'>Situação</p>
+        <p className='grid-registerAcademicText'>Situação*</p>
         <Dropdown value={''+this.state.discente_situation} className='grid-registerPersonalInput' options={this.discente_situacao} onChange={this.selectDiscenteSituation.bind(this)} />
         {this.state.discente_situation!=='0' ? <div>
           <p className='grid-registerAcademicText'>Instituição</p>
@@ -388,13 +391,13 @@ class SignUpScreen extends Component{
     );
     let $infoEgresso = (
       <div> 
-        <p className='grid-registerAcademicText'>Aluno/Egresso</p>
+        <p className='grid-registerAcademicText'>Aluno/Egresso*</p>
         <Dropdown value={''+this.state.situation} controlClassName='myControlClassName' className='grid-registerPersonalInput' options={this.situacao} onChange={this.selectSituation.bind(this)} />
-        <p className='grid-registerAcademicText'>Ano de Ingresso</p>
+        <p className='grid-registerAcademicText'>Ano de Ingresso*</p>
         <input className='grid-registerAcademicInput' value={this.state.entryYear} onChange={evt => this.handleChange(evt)} id='entryYear' placeholder='Ano de Ingresso' type='entryYear'  />
-        <p className='grid-registerAcademicText'>Ano de Egresso</p>
+        <p className='grid-registerAcademicText'>Ano de Egresso*</p>
         <input className='grid-registerAcademicInput' value={this.state.exitYear} onChange={evt => this.handleChange(evt)} id='exitYear' placeholder='Ano de Egresso' type='exitYear' />
-        <p className='grid-registerAcademicText'>Situação</p>
+        <p className='grid-registerAcademicText'>Situação*</p>
         <Dropdown value={''+this.state.egresso_situation} controlClassName='myControlClassName' className='grid-registerPersonalInput' options={this.egresso_situacao} onChange={this.selectEgressoSituation.bind(this)} />
         {this.state.egresso_situation!=='0' ? <div>
           <p className='grid-registerAcademicText'>Instituição</p>
@@ -437,9 +440,9 @@ class SignUpScreen extends Component{
             <input className='grid-registerPersonalInput' placeholder='Insira sua senha' type='password' onChange={evt => this.handleChange(evt)} value={this.state.password} id='password'/>
           </article>
           <article className='grid-registerAcademic academic'>
-              <p className='grid-registerPersonalText'>Instituição</p>
+              <p className='grid-registerPersonalText'>Instituição*</p>
               <Dropdown value={''+this.state.unity} controlClassName='myControlClassName' className='grid-registerPersonalInput' options={this.unidades} onChange={this.selectUnidade.bind(this)} placeholder="Unidade" />
-              <p className='grid-registerPersonalText'>Curso</p>
+              <p className='grid-registerPersonalText'>Curso*</p>
               <Dropdown value={''+this.state.course} controlClassName='myControlClassName' className='grid-registerPersonalInput' options={this.cursos} onChange={this.selectCurso.bind(this)} placeholder="Curso" />
             {/*
             <p className='grid-registerAcademicText'>Ano de Ingresso</p>
