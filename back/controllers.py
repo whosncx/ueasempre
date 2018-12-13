@@ -296,5 +296,6 @@ def serve_file_in_dir(path):
 
 
 if __name__ == '__main__':
-    app.run(host='172.26.225.182')
+    app.run(host='127.0.0.1')
+    # app.run(host='172.26.225.182')
     
