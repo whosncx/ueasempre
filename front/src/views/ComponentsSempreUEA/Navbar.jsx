@@ -47,27 +47,6 @@ class SectionNavbars extends React.Component {
                       Home
                     </Button>
                   </ListItem>
-                  <ListItem className={classes.listItem}>
-                    <Button
-                      href="#pablo"
-                      className={classes.navLink}
-                      onClick={e => e.preventDefault()}
-                      color="transparent"
-                    >
-                      Alunos
-                    </Button>
-                  </ListItem>
-                  <ListItem className={classes.listItem}>
-                    <Button
-                      href="#pablo"
-                      className={classes.navLink}
-                      onClick={e => e.preventDefault()}
-                      color="transparent"
-                      
-                    >
-                      Ajuda
-                    </Button>
-                  </ListItem>
                 </List>
               }
             />

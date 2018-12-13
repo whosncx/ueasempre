@@ -17,6 +17,7 @@ import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import NavPills from "components/NavPills/NavPills.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 import Navbar from "../ComponentsSempreUEA/Navbar";
+import CardBody from "components/Card/CardBody.jsx";
 import Login from "../ComponentsSempreUEA/Login";
 import profile from "assets/img/faces/christian.jpg";
 
@@ -41,8 +42,20 @@ import work4 from "assets/img/examples/mariya-georgieva.jpg";
 import work5 from "assets/img/examples/clem-onojegaw.jpg";
 
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
+import { Card } from "@material-ui/core";
 
 class ProfilePage extends React.Component {
+  alunos = [
+    {photo:bb, name:'Natália Cavalcante', profession:'DBA'},
+    {photo:leticia, name:'Leticia Vieira', profession:'DESENVOLVEDORA'},
+    {photo:wesley, name:'Wesley Rocha', profession:'PROGRAMADOR'},
+    {photo:francisco, name:'Francisco', profession:'PROGRAMADOR'},
+    {photo:enrique, name:'Enrique Leão', profession:'DESIGNER'},
+    {photo:edson, name:'Edson Jr', profession:'EMPREENDEDOR'},
+    {photo:queiroz, name:'Gabriel de Queiroz', profession:'DESENVOLVEDOR'},
+    {photo:evandro, name:'Evadro Filho', profession:'DESENVOLVEDOR'},
+  ]
+
   render() {
     const { classes, ...rest } = this.props;
     const imageClasses = classNames(
@@ -68,7 +81,23 @@ class ProfilePage extends React.Component {
                 <br />
               </GridItem>
               <GridItem xs={6} sm={6} md={6}>
-                <Login/>
+                <div>
+                  <GridContainer justify="right">
+                    <GridItem xs={0} sm={0} md={4}></GridItem>
+                    <GridItem xs={12} sm={12} md={8}>
+                      <Card>
+                      <CardBody>
+                        <Button className={classes.navLink}
+                        color="greenButton">Entrar</Button>
+                        <Button className={classes.navLink}
+                        color="greenButton">Cadastrar</Button>
+                        <Button className={classes.navLink}
+                        color="greenButton">Veja quem já se cadastrou!</Button>
+                      </CardBody>
+                      </Card>
+                    </GridItem>
+                  </GridContainer>
+                </div>
               </GridItem>
             </GridContainer>
             
@@ -78,16 +107,6 @@ class ProfilePage extends React.Component {
         <div className={classNames(classes.main, classes.mainRaised)}>
           <div>
             <div className={classes.container}>
-              
-              {/* <div className={classes.description}>
-                <p>
-                  An artist of considerable range, Chet Faker — the name taken
-                  by Melbourne-raised, Brooklyn-based Nick Murphy — writes,
-                  performs and records all of his own music, giving it a warm,
-                  intimate feel with a solid groove structure.{" "}
-                </p>
-              </div> */}
-
               <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
                  
@@ -100,169 +119,19 @@ class ProfilePage extends React.Component {
 
               </div>
               <GridContainer className={classes.egressosContainer}>
-                <GridItem xs={3} sm={3} md={3}>
-                 <div className={classes.profile}>
-                    <div>
-                      <img src={bb} alt="..." className={imageClasses} />
-                    </div>
-                    <div className={classes.name}>
-                      <h3 className={classes.egressos}>Natália Cavalcante</h3>
-                      <h6 className={classes.egressosProfession}>DBA</h6>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-instagram"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-facebook"} />
-                      </Button>
-                    </div>
-                  </div>
-                </GridItem>
-                <GridItem xs={3} sm={3} md={3}>
-                 <div className={classes.profile}>
-                    <div>
-                      <img src={edson} alt="..." className={imageClasses} />
-                    </div>
-                    <div className={classes.name}>
-                      <h3 className={classes.egressos}>Edson Jr</h3>
-                      <h6 className={classes.egressosProfession}>EMPREENDEDOR</h6>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-instagram"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-facebook"} />
-                      </Button>
-                    </div>
-                  </div>
-                </GridItem>
-                <GridItem xs={3} sm={3} md={3}>
-                 <div className={classes.profile}>
-                    <div>
-                      <img src={evandro} alt="..." className={imageClasses} />
-                    </div>
-                    <div className={classes.name}>
-                      <h3 className={classes.egressos}>Evadro Filho</h3>
-                      <h6 className={classes.egressosProfession}>DESENVOLVEDOR</h6>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-instagram"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-facebook"} />
-                      </Button>
-                    </div>
-                  </div>
-                </GridItem>
-                <GridItem xs={3} sm={3} md={3}>
-                 <div className={classes.profile}>
-                    <div>
-                      <img src={francisco} alt="..." className={imageClasses} />
-                    </div>
-                    <div className={classes.name}>
-                      <h3 className={classes.egressos}>Francisco</h3>
-                      <h6 className={classes.egressosProfession}>PROGRAMADOR</h6>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-instagram"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-facebook"} />
-                      </Button>
-                    </div>
-                  </div>
-                </GridItem>
-              </GridContainer>
-
-                <GridContainer className={classes.egressosContainer}>
-                <GridItem xs={3} sm={3} md={3}>
-                 <div className={classes.profile}>
-                    <div>
-                      <img src={wesley} alt="..." className={imageClasses} />
-                    </div>
-                    <div className={classes.name}>
-                      <h3 className={classes.egressos}>Wesley Rocha</h3>
-                      <h6 className={classes.egressosProfession}>PROGRAMADOR</h6>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-instagram"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-facebook"} />
-                      </Button>
-                    </div>
-                  </div>
-                </GridItem>
-                <GridItem xs={3} sm={3} md={3}>
-                 <div className={classes.profile}>
-                    <div>
-                      <img src={leticia} alt="..." className={imageClasses} />
-                    </div>
-                    <div className={classes.name}>
-                      <h3 className={classes.egressos}>Leticia Vieira</h3>
-                      <h6 className={classes.egressosProfession}>DESENVOLVEDORA</h6>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-instagram"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-facebook"} />
-                      </Button>
-                    </div>
-                  </div>
-                </GridItem>
-                <GridItem xs={3} sm={3} md={3}>
-                 <div className={classes.profile}>
-                    <div>
-                      <img src={enrique} alt="..." className={imageClasses} />
-                    </div>
-                    <div className={classes.name}>
-                      <h3 className={classes.egressos}>Enrique Leão</h3>
-                      <h6 className={classes.egressosProfession}>DESIGNER</h6>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-instagram"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-facebook"} />
-                      </Button>
-                    </div>
-                  </div>
-                </GridItem>
-                <GridItem xs={3} sm={3} md={3}>
-                 <div className={classes.profile}>
-                    <div>
-                      <img src={queiroz} alt="..." className={imageClasses} />
-                    </div>
-                    <div className={classes.name}>
-                      <h3 className={classes.egressos}>Gabriel de Queiroz</h3>
-                      <h6 className={classes.egressosProfession}>DESENVOLVEDOR</h6>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-instagram"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-facebook"} />
-                      </Button>
-                    </div>
-                  </div>
-                </GridItem>
+                {this.alunos.map(a => 
+                  <GridItem xs={3} sm={3} md={3}>
+                  <div className={classes.profile}>
+                     <div>
+                       <img src={a.photo} alt="..." className={imageClasses} />
+                     </div>
+                     <div className={classes.name}>
+                       <h3 className={classes.egressos}>{a.name}</h3>
+                       <h6 className={classes.egressosProfession}>{a.profession}</h6>
+                     </div>
+                   </div>
+                 </GridItem>
+                )}
               </GridContainer>
             </div>
           </div>
