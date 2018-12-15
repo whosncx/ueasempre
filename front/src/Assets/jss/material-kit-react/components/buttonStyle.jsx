@@ -7,7 +7,7 @@ import {
   warningColor,
   dangerColor,
   greenButton
-} from "assets/jss/material-kit-react.jsx";
+} from "Assets/jss/material-kit-react.jsx";
 
 const buttonStyle = {
   button: {

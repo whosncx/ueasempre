@@ -9,10 +9,10 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import exampleStyle from "assets/jss/material-kit-react/views/componentsSections/exampleStyle.jsx";
+import exampleStyle from "Assets/jss/material-kit-react/views/componentsSections/exampleStyle.jsx";
 
-import landing from "assets/img/landing.jpg";
-import profile from "assets/img/profile.jpg";
+import landing from "Assets/img/landing.jpg";
+import profile from "Assets/img/profile.jpg";
 
 class SectionExamples extends React.Component {
   render() {

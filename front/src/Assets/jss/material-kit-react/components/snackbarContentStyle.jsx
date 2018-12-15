@@ -6,7 +6,7 @@ import {
   warningBoxShadow,
   dangerBoxShadow,
   container
-} from "assets/jss/material-kit-react.jsx";
+} from "Assets/jss/material-kit-react.jsx";
 
 const snackbarContentStyle = {
   root: {

@@ -60,7 +60,7 @@ material-kit-react
 ├── README.md
 ├── package.json
 ├── Documentation
-│   ├── assets
+│   ├── Assets
 │   │   ├── css
 │   │   ├── img
 │   │   │   └── faces
@@ -74,7 +74,7 @@ material-kit-react
     ├── logo.svg
     ├── routes
     │   └── index.jsx
-    ├── assets
+    ├── Assets
     │   ├── img
     │   │   └── kit
     │   │       ├── faces
