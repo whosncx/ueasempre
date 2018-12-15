@@ -14,11 +14,11 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 
-import teamStyle from "assets/jss/material-kit-react/views/landingPageSections/teamStyle.jsx";
+import teamStyle from "Assets/jss/material-kit-react/views/landingPageSections/teamStyle.jsx";
 
-import team1 from "assets/img/faces/avatar.jpg";
-import team2 from "assets/img/faces/christian.jpg";
-import team3 from "assets/img/faces/kendall.jpg";
+import team1 from "Assets/img/faces/avatar.jpg";
+import team2 from "Assets/img/faces/christian.jpg";
+import team3 from "Assets/img/faces/kendall.jpg";
 
 class TeamSection extends React.Component {
   render() {

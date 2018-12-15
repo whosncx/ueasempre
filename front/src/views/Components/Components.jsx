@@ -28,7 +28,7 @@ import SectionLogin from "./Sections/SectionLogin.jsx";
 import SectionExamples from "./Sections/SectionExamples.jsx";
 import SectionDownload from "./Sections/SectionDownload.jsx";
 
-import componentsStyle from "assets/jss/material-kit-react/views/components.jsx";
+import componentsStyle from "Assets/jss/material-kit-react/views/components.jsx";
 
 class Components extends React.Component {
   render() {
@@ -46,7 +46,7 @@ class Components extends React.Component {
           }}
           {...rest}
         />
-        <Parallax image={require("assets/img/bg4.jpg")}>
+        <Parallax image={require("Assets/img/bg4.jpg")}>
           <div className={classes.container}>
             <GridContainer>
               <GridItem>

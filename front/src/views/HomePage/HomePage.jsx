@@ -19,29 +19,29 @@ import Parallax from "components/Parallax/Parallax.jsx";
 import Navbar from "../ComponentsSempreUEA/Navbar";
 import CardBody from "components/Card/CardBody.jsx";
 import Login from "../ComponentsSempreUEA/Login";
-import profile from "assets/img/faces/christian.jpg";
+import profile from "Assets/img/faces/christian.jpg";
 
-import bb from "assets/img/faces/bb.jpg";
-import leticia from "assets/img/faces/leticia.jpg";
-import wesley from "assets/img/faces/wesley.jpg";
-import francisco from "assets/img/faces/francisco.jpg";
-import enrique from "assets/img/faces/enrique.jpg";
-import edson from "assets/img/faces/edson.jpg";
-import queiroz from "assets/img/faces/queiroz.jpg";
-import evandro from "assets/img/faces/evandro.jpg";
+import bb from "Assets/img/faces/bb.jpg";
+import leticia from "Assets/img/faces/leticia.jpg";
+import wesley from "Assets/img/faces/wesley.jpg";
+import francisco from "Assets/img/faces/francisco.jpg";
+import enrique from "Assets/img/faces/enrique.jpg";
+import edson from "Assets/img/faces/edson.jpg";
+import queiroz from "Assets/img/faces/queiroz.jpg";
+import evandro from "Assets/img/faces/evandro.jpg";
 
-import studio1 from "assets/img/examples/studio-1.jpg";
-import studio2 from "assets/img/examples/studio-2.jpg";
-import studio3 from "assets/img/examples/studio-3.jpg";
-import studio4 from "assets/img/examples/studio-4.jpg";
-import studio5 from "assets/img/examples/studio-5.jpg";
-import work1 from "assets/img/examples/olu-eletu.jpg";
-import work2 from "assets/img/examples/clem-onojeghuo.jpg";
-import work3 from "assets/img/examples/cynthia-del-rio.jpg";
-import work4 from "assets/img/examples/mariya-georgieva.jpg";
-import work5 from "assets/img/examples/clem-onojegaw.jpg";
+import studio1 from "Assets/img/examples/studio-1.jpg";
+import studio2 from "Assets/img/examples/studio-2.jpg";
+import studio3 from "Assets/img/examples/studio-3.jpg";
+import studio4 from "Assets/img/examples/studio-4.jpg";
+import studio5 from "Assets/img/examples/studio-5.jpg";
+import work1 from "Assets/img/examples/olu-eletu.jpg";
+import work2 from "Assets/img/examples/clem-onojeghuo.jpg";
+import work3 from "Assets/img/examples/cynthia-del-rio.jpg";
+import work4 from "Assets/img/examples/mariya-georgieva.jpg";
+import work5 from "Assets/img/examples/clem-onojegaw.jpg";
 
-import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
+import profilePageStyle from "Assets/jss/material-kit-react/views/profilePage.jsx";
 import { Card } from "@material-ui/core";
 
 class ProfilePage extends React.Component {
@@ -67,7 +67,7 @@ class ProfilePage extends React.Component {
     return (
       <div>
         <Navbar/>
-        <Parallax filter image={require("assets/img/home-bg.jpg")}>
+        <Parallax filter image={require("Assets/img/home-bg.jpg")}>
         <div className={classes.container}>
 
             <GridContainer>

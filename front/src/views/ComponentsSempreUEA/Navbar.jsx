@@ -21,11 +21,11 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 
-import navbarsStyle from "assets/jss/material-kit-react/views/componentsSections/navbarsStyle.jsx";
+import navbarsStyle from "Assets/jss/material-kit-react/views/componentsSections/navbarsStyle.jsx";
 
-import image from "assets/img/bg.jpg";
-import logo from "assets/img/logo-uea-green.png"
-import profileImage from "assets/img/faces/avatar.jpg";
+//import image from "Assets/img/bg.jpg";
+import logo from "Assets/img/logo-uea-green.png"
+import profileImage from "Assets/img/faces/avatar.jpg";
 
 class SectionNavbars extends React.Component {
   render() {
