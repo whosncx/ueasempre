@@ -22,7 +22,8 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
-
+import Global from './../Components/global'
+import md5 from 'js-md5'
 import image from "assets/img/bg7.jpg";
 
 class LoginPage extends React.Component {
@@ -30,8 +31,52 @@ class LoginPage extends React.Component {
     super(props);
     // we use this to make the card to appear after the page has been rendered
     this.state = {
-      cardAnimaton: "cardHidden"
+      cardAnimaton: "cardHidden",
+      cpf: '',
+      password : ''
     };
+  }
+
+  handleChange(evt) {
+    if(evt.target.id === 'cpf'){
+        this.setState({
+            cpf : evt.target.value
+        });
+    }else{
+        this.setState({
+            password : evt.target.value
+        });
+    }
+  }
+
+  handleSubmit(evt) {
+    alert(this.state.cpf+' '+this.state.password)
+    if(!this.state.cpf || !this.state.password){
+        alert('Login required!')
+    } else {
+        fetch(Global.API_URL + '/login', { //local
+            headers : new Headers({
+                'Authorization': 'Basic '+btoa(this.state.cpf+':'+md5(this.state.password)),
+            })
+        })
+        .then(function(response){
+          return response.json();
+        })
+        .then(data => {
+            console.log(md5(this.state.password));
+            if(data.canLogin){
+                    sessionStorage.setItem('jwtToken', data.token);
+                    this.props.history.push('/register-page')
+                } else{
+                    alert('Verifique as informações e tente novamente');
+                }
+            })  
+        .catch((e) => {
+                console.log(e);
+                alert('Houve um erro ao realizar o login, tente novamente mais tarde');
+        });
+    }     
+    evt.preventDefault();
   }
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
@@ -67,13 +112,14 @@ class LoginPage extends React.Component {
                     <CardBody>
                       
                       <CustomInput
-                        labelText="Email..."
-                        id="email"
+                        labelText="CPF..."
+                        id="cpf"
                         formControlProps={{
                           fullWidth: true
                         }}
                         inputProps={{
-                          type: "email",
+                          onChange: ((event) => this.handleChange(event)),
+                          type: "cpf",
                           endAdornment: (
                             <InputAdornment position="end">
                               <Email className={classes.inputIconsColor} />
@@ -88,6 +134,7 @@ class LoginPage extends React.Component {
                           fullWidth: true
                         }}
                         inputProps={{
+                          onChange: ((event) => this.handleChange(event)),
                           type: "password",
                           endAdornment: (
                             <InputAdornment position="end">
@@ -102,7 +149,7 @@ class LoginPage extends React.Component {
                     <CardFooter className={classes.cardFooter}>
                       <GridContainer>
                         <GridItem xs={12} sm={12} md={12} className={classes.buttonsContainer}>
-                          <Button onClick={this.goToProfile.bind(this)} color="primary" size="md">
+                          <Button onClick={this.handleSubmit.bind(this)} color="primary" size="md">
                             ENTRAR
                           </Button>
                         </GridItem>
