@@ -1,5 +1,5 @@
 let Global = {
-    API_URL:'http://172.26.225.182:5000'
+    API_URL:'http://172.0.0.1:5000'
 }
 
 export default Global;
