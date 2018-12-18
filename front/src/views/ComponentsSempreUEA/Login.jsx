@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -19,9 +21,9 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 
-import loginPageStyle from "Assets/jss/material-kit-react/views/loginPage.jsx";
+import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
-import image from "Assets/img/bg7.jpg";
+import image from "assets/img/bg7.jpg";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -40,19 +42,30 @@ class LoginPage extends React.Component {
       700
     );
   }
+
+  goToRegister(){
+    this.props.history.push('/register-page')
+  }
+
+  goToProfile(){
+    this.props.history.push('/profile-page')
+  }
+
   render() {
     const { classes, ...rest } = this.props;
     return (
           <div>
-            <GridContainer justify="right">
+            <GridContainer justify="center">
               <GridItem xs={0} sm={0} md={4}></GridItem>
               <GridItem xs={12} sm={12} md={8}>
                 <Card className={classes[this.state.cardAnimaton]}>
                   <form className={classes.form}>
                     <CardHeader color="primary" className={classes.cardHeader}>
                       <h4>Login</h4>
+                      
                     </CardHeader>
-                    <CardBody>                      
+                    <CardBody>
+                      
                       <CustomInput
                         labelText="Email..."
                         id="email"
@@ -87,9 +100,19 @@ class LoginPage extends React.Component {
                       />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <Button simple color="primary" size="lg">
-                        ENTRAR
-                      </Button>
+                      <GridContainer>
+                        <GridItem xs={12} sm={12} md={12} className={classes.buttonsContainer}>
+                          <Button onClick={this.goToProfile.bind(this)} color="primary" size="md">
+                            ENTRAR
+                          </Button>
+                        </GridItem>
+                        <p className={classes.divider}>Ou</p>
+                        <GridItem xs={12} sm={12} md={12} className={classes.buttonsContainer}>
+                          <Button onClick={this.goToRegister.bind(this)} simple color="secondary" size="md">
+                            FAZER CADASTRO
+                          </Button>
+                        </GridItem>
+                      </GridContainer>
                     </CardFooter>
                   </form>
                 </Card>
@@ -100,4 +123,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default withStyles(loginPageStyle)(LoginPage);
+export default withRouter(withStyles(loginPageStyle)(LoginPage));

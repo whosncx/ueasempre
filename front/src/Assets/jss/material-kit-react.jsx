@@ -76,6 +76,7 @@ const successColor = "#4caf50";
 const infoColor = "#00acc1";
 const roseColor = "#e91e63";
 const grayColor = "#999999";
+const secondaryColor = "#3C4146";
 const greenButton = "#199900";
 const primaryBoxShadow = {
   boxShadow:
@@ -189,6 +190,7 @@ export {
   card,
   defaultFont,
   primaryColor,
+  secondaryColor,
   warningColor,
   dangerColor,
   successColor,

@@ -10,7 +10,7 @@ import Button from "@material-ui/core/Button";
 
 // core components
 
-import buttonStyle from "Assets/jss/material-kit-react/components/buttonStyle.jsx";
+import buttonStyle from "assets/jss/material-kit-react/components/buttonStyle.jsx";
 
 function RegularButton({ ...props }) {
   const {
@@ -48,10 +48,12 @@ function RegularButton({ ...props }) {
   );
 }
 
+
 RegularButton.propTypes = {
   classes: PropTypes.object.isRequired,
   color: PropTypes.oneOf([
     "primary",
+    "secondary",
     "info",
     "success",
     "warning",

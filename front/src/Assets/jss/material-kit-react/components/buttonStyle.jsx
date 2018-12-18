@@ -2,12 +2,13 @@ import {
   grayColor,
   roseColor,
   primaryColor,
+  secondaryColor,
   infoColor,
   successColor,
   warningColor,
   dangerColor,
   greenButton
-} from "Assets/jss/material-kit-react.jsx";
+} from "assets/jss/material-kit-react.jsx";
 
 const buttonStyle = {
   button: {
@@ -75,12 +76,26 @@ const buttonStyle = {
   fullWidth: {
     width: "100%"
   },
+  dropdown:{
+    margin: "0 0 17px 0",
+    paddingTop: "27px"
+  },
   primary: {
     backgroundColor: primaryColor,
     boxShadow:
       "0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12)",
     "&:hover,&:focus": {
       backgroundColor: primaryColor,
+      boxShadow:
+        "0 14px 26px -12px rgba(156, 39, 176, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(156, 39, 176, 0.2)"
+    }
+  },
+  secondary: {
+    backgroundColor: secondaryColor,
+    boxShadow:
+      "0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12)",
+    "&:hover,&:focus": {
+      backgroundColor: secondaryColor,
       boxShadow:
         "0 14px 26px -12px rgba(156, 39, 176, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(156, 39, 176, 0.2)"
     }
@@ -210,6 +225,11 @@ const buttonStyle = {
         color: primaryColor
       }
     },
+    "&$secondary": {
+      "&,&:focus,&:hover,&:visited": {
+        color: secondaryColor
+      }
+    },
     "&$info": {
       "&,&:focus,&:hover,&:visited": {
         color: infoColor
@@ -295,10 +315,10 @@ const buttonStyle = {
   justIcon: {
     paddingLeft: "12px",
     paddingRight: "12px",
-    fontSize: "20px",
-    height: "41px",
-    minWidth: "41px",
-    width: "41px",
+    fontSize: "12px",
+    height: "16px",
+    minWidth: "16px",
+    width: "16px",
     "& .fab,& .fas,& .far,& .fal,& svg,& .material-icons": {
       marginRight: "0px"
     },

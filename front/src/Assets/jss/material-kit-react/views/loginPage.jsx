@@ -1,5 +1,15 @@
-import { container } from "Assets/jss/material-kit-react.jsx";
-
+import { container } from "assets/jss/material-kit-react.jsx";
+import {
+  grayColor,
+  roseColor,
+  primaryColor,
+  secondaryColor,
+  infoColor,
+  successColor,
+  warningColor,
+  dangerColor,
+  greenButton
+} from "assets/jss/material-kit-react.jsx";
 const signupPageStyle = {
   container: {
     ...container,
@@ -11,6 +21,24 @@ const signupPageStyle = {
   cardHidden: {
     opacity: "0",
     transform: "translate3d(0, -60px, 0)"
+  },
+  buttonsContainer:{
+    textAlign: "center"
+  },
+  date:{
+    margin: "0 0 17px 0",
+    paddingTop: "27px"
+  },
+  toggleSituation:{
+    width: "100% !important"
+  },
+  active:{
+    width: "100% !important",
+    paddingTop: "20px",
+    paddingBottom: "20px"
+  },
+  inactive:{
+    width: "100% !important"
   },
   pageHeader: {
     minHeight: "100vh",
@@ -68,14 +96,23 @@ const signupPageStyle = {
   },
   divider: {
     marginTop: "30px",
-    marginBottom: "0px",
+    width: "100%",
     textAlign: "center"
+  },
+  dividerAuth:{
+    marginTop:"30px",
+    backgroundColor: "#cecece",
+    width: "100%",
+    height: "1px"
   },
   cardFooter: {
     paddingTop: "0rem",
     border: "0",
     borderRadius: "6px",
-    justifyContent: "center !important"
+    justifyContent: "center !important",
+  },
+  registerAuthenticatio:{
+    paddingBottom: "20px"
   },
   socialLine: {
     marginTop: "1rem",

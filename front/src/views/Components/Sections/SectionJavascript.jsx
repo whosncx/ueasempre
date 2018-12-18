@@ -20,7 +20,7 @@ import Close from "@material-ui/icons/Close";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import javascriptStyles from "Assets/jss/material-kit-react/views/componentsSections/javascriptStyles.jsx";
+import javascriptStyles from "assets/jss/material-kit-react/views/componentsSections/javascriptStyles.jsx";
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;

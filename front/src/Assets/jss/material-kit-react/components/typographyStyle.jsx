@@ -5,7 +5,7 @@ import {
   successColor,
   warningColor,
   dangerColor
-} from "Assets/jss/material-kit-react.jsx";
+} from "assets/jss/material-kit-react.jsx";
 
 const typographyStyle = {
   defaultFontStyle: {

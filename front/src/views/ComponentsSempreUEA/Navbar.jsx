@@ -1,6 +1,7 @@
 import React from "react";
 
 // @material-ui/core components
+import { withRouter } from 'react-router';
 import withStyles from "@material-ui/core/styles/withStyles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -21,13 +22,23 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 
-import navbarsStyle from "Assets/jss/material-kit-react/views/componentsSections/navbarsStyle.jsx";
+import navbarsStyle from "assets/jss/material-kit-react/views/componentsSections/navbarsStyle.jsx";
 
-//import image from "Assets/img/bg.jpg";
-import logo from "Assets/img/logo-uea-green.png"
-import profileImage from "Assets/img/faces/avatar.jpg";
+import image from "assets/img/bg.jpg";
+import logo from "assets/img/logo-uea-green.png"
+import profileImage from "assets/img/faces/avatar.jpg";
 
 class SectionNavbars extends React.Component {
+  goToRegister(){
+    this.props.history.push('/register-page')
+  }
+
+  goToLogin(){
+    this.props.history.push('/login')
+  }
+  goToHome(){
+    this.props.history.push('/')
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -39,12 +50,30 @@ class SectionNavbars extends React.Component {
                 <List className={classes.list}>
                   <ListItem className={classes.listItem}>
                     <Button
-                      href="#pablo"
+                      onClick={this.goToHome.bind(this)}
                       className={classes.registerNavLink}
-                      onClick={e => e.preventDefault()}
                       color="greenButton"
                     >
                       Home
+                    </Button>
+                  </ListItem>
+                  <ListItem className={classes.listItem}>
+                    <Button
+                      onClick={this.goToLogin.bind(this)}
+                      className={classes.navLink}
+                      color="transparent"
+                    >
+                      Login
+                    </Button>
+                  </ListItem>
+                  <ListItem className={classes.listItem}>
+                    <Button
+                      onClick={this.goToRegister.bind(this)}
+                      className={classes.navLink}
+                      color="transparent"
+                      
+                    >
+                      Cadastrar
                     </Button>
                   </ListItem>
                 </List>
@@ -55,4 +84,4 @@ class SectionNavbars extends React.Component {
   }
 }
 
-export default withStyles(navbarsStyle)(SectionNavbars);
+export default withRouter(withStyles(navbarsStyle)(SectionNavbars));

@@ -1,13 +1,9 @@
-import { container, title } from "Assets/jss/material-kit-react.jsx";
+import { container, title } from "assets/jss/material-kit-react.jsx";
 
-import imagesStyle from "Assets/jss/material-kit-react/imagesStyles.jsx";
+import imagesStyle from "assets/jss/material-kit-react/imagesStyles.jsx";
 
 const profilePageStyle = {
-  container: {
-    zIndex: "12",
-    color: "#FFFFFF",
-    ...container
-  },
+  container,
   profile: {
     textAlign: "center",
     "& img": {
@@ -46,18 +42,6 @@ const profilePageStyle = {
     minHeight: "32px",
     textDecoration: "none"
   },
-  
-  brandImage:{
-    height: "32px"
-  },
-  egressos:{
-    display: "inline-block",
-    position: "relative",
-    marginTop: "30px",
-    minHeight: "32px",
-    color: "#3c4858",
-    textDecoration: "none"
-  },
   socials: {
     marginTop: "0",
     width: "100%",
@@ -72,30 +56,6 @@ const profilePageStyle = {
   navWrapper: {
     margin: "20px auto 50px auto",
     textAlign: "center"
-  },
-  titleEgressos: {
-    ...title,
-    display: "inline-block",
-    position: "relative",
-    marginTop: "0px",
-    minHeight: "32px",
-    color: "#3c4858",
-    textDecoration: "none"
-  },
-  egressosProfession:{
-    color: "#3c4858",
-  },
-  title: {
-    ...title,
-    display: "inline-block",
-    position: "relative",
-    marginTop: "30px",
-    minHeight: "32px",
-    color: "#FFFFFF",
-    textDecoration: "none"
-  },
-  egressosContainer:{
-    marginTop: "100px"
   }
 };
 

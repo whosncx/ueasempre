@@ -12,7 +12,7 @@ import List from "@material-ui/icons/List";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import NavPills from "components/NavPills/NavPills.jsx";
-import pillsStyle from "Assets/jss/material-kit-react/views/componentsSections/pillsStyle.jsx";
+import pillsStyle from "assets/jss/material-kit-react/views/componentsSections/pillsStyle.jsx";
 
 class SectionPills extends React.Component {
   render() {
@@ -35,8 +35,7 @@ class SectionPills extends React.Component {
                   color="primary"
                   tabs={[
                     {
-                      tabButton: "Dashboard",
-                      tabIcon: Dashboard,
+                      
                       tabContent: (
                         <span>
                           <p>
@@ -61,11 +60,12 @@ class SectionPills extends React.Component {
                             installed base benefits.
                           </p>
                         </span>
-                      )
+                      ),
+                      tabButton: "Dashboard",
+                      tabIcon: Dashboard,
                     },
                     {
-                      tabButton: "Schedule",
-                      tabIcon: Schedule,
+                      
                       tabContent: (
                         <span>
                           <p>
@@ -84,11 +84,12 @@ class SectionPills extends React.Component {
                             benefits.
                           </p>
                         </span>
-                      )
+                      ),
+                      tabButton: "Schedule",
+                      tabIcon: Schedule,
                     },
                     {
-                      tabButton: "Tasks",
-                      tabIcon: List,
+                      
                       tabContent: (
                         <span>
                           <p>
@@ -113,7 +114,9 @@ class SectionPills extends React.Component {
                             installed base benefits.
                           </p>
                         </span>
-                      )
+                      ),
+                      tabButton: "Tasks",
+                      tabIcon: List,
                     }
                   ]}
                 />

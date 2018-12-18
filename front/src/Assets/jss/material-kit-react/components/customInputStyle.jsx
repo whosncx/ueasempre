@@ -3,7 +3,7 @@ import {
   dangerColor,
   successColor,
   defaultFont
-} from "Assets/jss/material-kit-react.jsx";
+} from "assets/jss/material-kit-react.jsx";
 
 const customInputStyle = {
   disabled: {
@@ -48,6 +48,7 @@ const customInputStyle = {
     "& + $underline": {
       marginTop: "0px"
     }
+    
   },
   labelRootError: {
     color: dangerColor + " !important"

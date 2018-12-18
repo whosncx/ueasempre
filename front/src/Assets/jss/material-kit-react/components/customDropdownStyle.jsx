@@ -12,7 +12,8 @@ import {
   dangerBoxShadow,
   roseColor,
   roseBoxShadow
-} from "Assets/jss/material-kit-react.jsx";
+} from "assets/jss/material-kit-react.jsx";
+
 
 const customDropdownStyle = theme => ({
   popperClose: {
@@ -25,8 +26,8 @@ const customDropdownStyle = theme => ({
     top: "100%",
     zIndex: "1000",
     minWidth: "160px",
-    padding: "5px 0",
-    margin: "2px 0 0",
+    marginTop: "30px",
+    
     fontSize: "14px",
     textAlign: "left",
     listStyle: "none",

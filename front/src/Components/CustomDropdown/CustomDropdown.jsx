@@ -18,7 +18,7 @@ import Popper from "@material-ui/core/Popper";
 // core components
 import Button from "components/CustomButtons/Button.jsx";
 
-import customDropdownStyle from "Assets/jss/material-kit-react/components/customDropdownStyle.jsx";
+import customDropdownStyle from "assets/jss/material-kit-react/components/customDropdownStyle.jsx";
 
 class CustomDropdown extends React.Component {
   constructor(props) {
@@ -89,6 +89,7 @@ class CustomDropdown extends React.Component {
       <div>
         <div>
           <Button
+            className={classes.dropdown}
             aria-label="Notifications"
             aria-owns={open ? "menu-list" : null}
             aria-haspopup="true"

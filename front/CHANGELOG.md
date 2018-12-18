@@ -5,11 +5,11 @@
 - Github othe repos
   - [https://github.com/creativetimofficial/ct-material-dashboard-pro-react/issues/79](https://github.com/creativetimofficial/ct-material-dashboard-pro-react/issues/79)
 ### Major styling changes
-- `src/Assets/jss/material-kit-react/components/headerStyle.jsx`
-- `src/Assets/jss/material-kit-react/components/snackbarContentStyle.jsx`
-- `src/Assets/jss/material-kit-react/views/loginPage.jsx`
-- `src/Assets/jss/material-kit-react/customCheckboxRadioSwitch.jsx`
-- `src/Assets/scss/plugins/_plugin-nouislider.scss`
+- `src/assets/jss/material-kit-react/components/headerStyle.jsx`
+- `src/assets/jss/material-kit-react/components/snackbarContentStyle.jsx`
+- `src/assets/jss/material-kit-react/views/loginPage.jsx`
+- `src/assets/jss/material-kit-react/customCheckboxRadioSwitch.jsx`
+- `src/assets/scss/plugins/_plugin-nouislider.scss`
 ### Deleted dependencies
 - `react-nouislider`
 ### Added dependencies
@@ -38,12 +38,12 @@
   - [https://github.com/creativetimofficial/material-kit-react/issues/28](https://github.com/creativetimofficial/material-kit-react/issues/28)
 ### Major styling changes
 - Added styles for `svg`'s, **font-awesome** classes and `.material-icons` class inside
-  - `src/Assets/jss/material-kit-react/components/buttonStyle.jsx`
-  - `src/Assets/jss/material-kit-react/components/customInputStyle.jsx`
-  - `src/Assets/jss/material-kit-react/components/customDropdownStyle.jsx`
-  - `src/Assets/jss/material-kit-react/components/headerLinksStyle.jsx`
-  - `src/Assets/jss/material-kit-react/components/headerStyle.jsx`
-  - `src/Assets/jss/material-kit-react/views/loginPage.jsx`
+  - `src/assets/jss/material-kit-react/components/buttonStyle.jsx`
+  - `src/assets/jss/material-kit-react/components/customInputStyle.jsx`
+  - `src/assets/jss/material-kit-react/components/customDropdownStyle.jsx`
+  - `src/assets/jss/material-kit-react/components/headerLinksStyle.jsx`
+  - `src/assets/jss/material-kit-react/components/headerStyle.jsx`
+  - `src/assets/jss/material-kit-react/views/loginPage.jsx`
 ### Dropped components
 - No more use of `react-popper`, no it's beeing used `@material-ui/core/Popper` instead (see `CustomDropdown`)
 ### Deleted dependencies
@@ -63,10 +63,10 @@
 
 ## [1.1.0] 2018-06-13
 ### Major styling changes
-- `src/Assets/jss/material-kit-react/components/buttonStyle.jsx`, due to the fact that we've droped `src/components/CustomButtons/IconButton.jsx`
-- `src/Assets/jss/material-kit-react/components/customInputStyle.jsx`
-- `src/Assets/jss/material-kit-react/components/customTabsStyle.jsx`
-- `src/Assets/jss/material-kit-react/components/headerLinksStyle.jsx`
+- `src/assets/jss/material-kit-react/components/buttonStyle.jsx`, due to the fact that we've droped `src/components/CustomButtons/IconButton.jsx`
+- `src/assets/jss/material-kit-react/components/customInputStyle.jsx`
+- `src/assets/jss/material-kit-react/components/customTabsStyle.jsx`
+- `src/assets/jss/material-kit-react/components/headerLinksStyle.jsx`
 ### Dropped components
 - `src/components/CustomButtons/IconButton.jsx` instead use `src/components/CustomButtons/Button.jsx` (with the prop `justIcon` on them)
 ### Deleted dependencies
