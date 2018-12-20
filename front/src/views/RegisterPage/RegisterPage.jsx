@@ -47,8 +47,9 @@ import { exact } from "prop-types";
 
 
 class RegisterPage extends React.Component {
+  unidades = [];
+  cursos = [];
   constructor(props) {
-    const unidades = [];
     super(props);
     // we use this to make the card to appear after the page has been rendered
     this.state = {
@@ -99,10 +100,10 @@ class RegisterPage extends React.Component {
     .then(data => {
       
       data.forEach(unidade => {
-        this.unidades.push({value:''+unidade.id, label:unidade.nome});
+        this.unidades.push(unidade);
       });
       
-      this.setState({unityOptions:unidades});
+      this.setState({unityOptions:this.unidades});
     })
     .catch((e) => {
       console.log(e);
@@ -144,7 +145,7 @@ class RegisterPage extends React.Component {
             lattes: data.lattes,
             whatsapp: data.whatsapp
           })
-          this.showCursos(this.state.unity);
+          // this.getCourses(this.state.unity);
         });
       }).catch((e) => {
         sessionStorage.setItem('jwtToken', '');
@@ -156,14 +157,24 @@ class RegisterPage extends React.Component {
   }
 
   getCourses(id){
-    
-    const options = [
-      {id:"eng_computer", name:"Engenharia da Computação"},
-      {id:"eng_civil", name:"Engenharia Civil"},
-      {id:"metereologia", name:"Metereologia"},
-      {id:"si", name:"Sistema de Informação"}
-    ];
-    return options;
+    this.cursos = []
+
+    fetch(Global.API_URL + '/cursos/' + id)
+    .then(function(response){
+      return response.json();
+    })
+    .then(data => {
+      data.forEach(curso => {
+        this.cursos.push(curso);
+      });
+      // this.setState({
+      //   state : this.state
+      // });
+      this.setState({courseOptions:this.cursos});
+    })
+    .catch((e) => {
+      alert('Houve um erro ao pegar cursos, tente novamente mais tarde');
+    });
   }
 
   handleChangeCPF(evt) {
@@ -216,7 +227,8 @@ class RegisterPage extends React.Component {
 
   handleChangeUnity = unity => event => {
     this.setState({ [unity]: event.target.value });
-    this.setState({courseOptions: this.getCourses("id")});
+    // this.setState({courseOptions: this.getCourses(event.target.value)});
+    this.getCourses(event.target.value)
   };
 
   // handleChangeSituation(evt) {
