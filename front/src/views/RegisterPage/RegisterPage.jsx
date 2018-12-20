@@ -38,6 +38,8 @@ import Navbar from "../ComponentsSempreUEA/Navbar.jsx";
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
+import md5 from 'js-md5'
+import Global from './../Components/global'
 import image from "assets/img/register-bg.jpg";
 import facebook from "assets/img/facebook-icon-input.png";
 import { exact } from "prop-types";
@@ -67,6 +69,9 @@ class RegisterPage extends React.Component {
       discInstitution:"",
       discSituation:"",
       discFunction:"",
+      egresInstitution:"",
+      egresSituation:"",
+      egresFunction:"",
       email:"",
       linkedin:"",
       unity:"",
@@ -84,13 +89,66 @@ class RegisterPage extends React.Component {
       }.bind(this),
       700
     );
-    const options = [
-      {id:"est", name:"EST"},
-      {id:"eso", name:"ESO"},
-      {id:"esat", name:"ESAT"},
-      {id:"esa", name:"ESA"}
-    ];
-    this.setState({unityOptions:options});
+    const token = sessionStorage.getItem('jwtToken');
+    
+    fetch(Global.API_URL + '/unidades')
+    .then(function(response){
+      return response.json();
+    })
+    .then(data => {
+      data.forEach(unidade => {
+        this.unityOptions.push({value:''+unidade.id, label:unidade.nome});
+      });
+    })
+    .catch((e) => {
+      console.log(e);
+      alert('Houve um erro ao pegar unidades, tente novamente mais tarde');
+    });
+
+    if(!token){
+      // this.props.history.push('/login');
+      return 
+    } else {
+      fetch(Global.API_URL + '/perfilaluno', {
+        headers : new Headers({
+          'x-access-token': token
+        })
+      }).then((response) => {
+        if(response.status === 401){
+          sessionStorage.setItem('jwtToken','');
+          this.props.history.push('/login');
+        }
+        response.json().then((data) => {
+          this.setState({
+            name: data.nome,
+            email: data.email,
+            linkedin: data.linkedin,
+            unity: data.unidade,
+            course: data.curso,
+            cpf: data.cpf,
+            facebook: data.facebook,
+            entryYear: data.ano_ingresso,
+            exitYear: data.ano_conclusao,
+            situation: ''+data.situacao,
+            discInstitution: data.discInstitution,
+            discFunction: data.discFunction,
+            discSituation: ''+data.discSituation, 
+            egresInstitution: data.egresInstitution,
+            egresSituation: data.egresSituation,
+            egresFunction: ''+data.egresFunction,           
+            imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now(),
+            lattes: data.lattes,
+            whatsapp: data.whatsapp
+          })
+          this.showCursos(this.state.unity);
+        });
+      }).catch((e) => {
+        sessionStorage.setItem('jwtToken', '');
+        alert('Houve um erro ao listar perfil, tente novamente mais tarde');
+        this.props.history.push('/login');
+      });
+      
+    }
   }
 
   getCourses(id){
@@ -264,7 +322,7 @@ class RegisterPage extends React.Component {
 
   getOptions(options){
     const list =  options.map((option) =>
-      <option value={option.id}>{option.name}</option>
+      <option value={option.id}>{option.nome}</option>
     )
     return list;
   }
