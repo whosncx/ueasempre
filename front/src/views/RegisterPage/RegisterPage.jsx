@@ -48,6 +48,7 @@ import { exact } from "prop-types";
 
 class RegisterPage extends React.Component {
   constructor(props) {
+    const unidades = [];
     super(props);
     // we use this to make the card to appear after the page has been rendered
     this.state = {
@@ -96,9 +97,12 @@ class RegisterPage extends React.Component {
       return response.json();
     })
     .then(data => {
+      
       data.forEach(unidade => {
-        this.unityOptions.push({value:''+unidade.id, label:unidade.nome});
+        this.unidades.push({value:''+unidade.id, label:unidade.nome});
       });
+      
+      this.setState({unityOptions:unidades});
     })
     .catch((e) => {
       console.log(e);
