@@ -71,7 +71,9 @@ class RegisterPage extends React.Component {
       linkedin:"",
       unity:"",
       course:"",
-      
+      unityOptions: [],
+      courseOptions: [],
+      situationDiscOption: [],
     };
   }
   componentDidMount() {
@@ -82,6 +84,24 @@ class RegisterPage extends React.Component {
       }.bind(this),
       700
     );
+    const options = [
+      {id:"est", name:"EST"},
+      {id:"eso", name:"ESO"},
+      {id:"esat", name:"ESAT"},
+      {id:"esa", name:"ESA"}
+    ];
+    this.setState({unityOptions:options});
+  }
+
+  getCourses(id){
+    
+    const options = [
+      {id:"eng_computer", name:"Engenharia da Computação"},
+      {id:"eng_civil", name:"Engenharia Civil"},
+      {id:"metereologia", name:"Metereologia"},
+      {id:"si", name:"Sistema de Informação"}
+    ];
+    return options;
   }
 
   handleChangeCPF(evt) {
@@ -134,6 +154,7 @@ class RegisterPage extends React.Component {
 
   handleChangeUnity = unity => event => {
     this.setState({ [unity]: event.target.value });
+    this.setState({courseOptions: this.getCourses("id")});
   };
 
   // handleChangeSituation(evt) {
@@ -201,8 +222,6 @@ class RegisterPage extends React.Component {
     }
   }
   
-
-  
   nextStep(evt){
       evt.preventDefault();
       if(this.state.step != 2){
@@ -241,6 +260,13 @@ class RegisterPage extends React.Component {
         situation: "desempregado"
       });
     }
+  }
+
+  getOptions(options){
+    const list =  options.map((option) =>
+      <option value={option.id}>{option.name}</option>
+    )
+    return list;
   }
 
   render() {
@@ -404,6 +430,22 @@ let personalData = <CardBody>
                               </GridItem>
                           </GridContainer>
                         
+                          <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="unity-for">Unidade</InputLabel>
+                            <Select
+                              native
+                              value={this.state.unity}
+                              onChange={this.handleChangeUnity('unity')}
+                              inputProps={{
+                                name: 'unity',
+                                id: 'unity-for',
+                              }}
+                            >
+                              <option value="" />
+                              {this.state.unityOptions.length > 0? this.getOptions(this.state.unityOptions) : ""}
+                            
+                            </Select>
+                          </FormControl>
                           
                           <FormControl className={classes.formControl}>
                             <InputLabel htmlFor="course-for">Curso</InputLabel>
@@ -417,34 +459,11 @@ let personalData = <CardBody>
                               }}
                             >
                               <option value="" />
-                              <option value={"eng_comp"}>Eng da Computação</option>
-                              <option value={"eng_civil"}>Eng Civil</option>
-                              <option value={"eng_mec"}>Eng Mecânica</option>
-                              <option value={"met"}>Meteorologia</option>
+                              {this.state.courseOptions.length > 0? this.getOptions(this.state.courseOptions) : ""}
                             
                             </Select>
                           </FormControl>
-
-                          <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="unity-for">Unidade</InputLabel>
-                            <Select
-                              native
-                              value={this.state.unidade}
-                              onChange={this.handleChangeUnity('unidade')}
-                              inputProps={{
-                                name: 'unidade',
-                                id: 'unidade-for',
-                              }}
-                            >
-                              <option value="" />
-                              <option value={"est"}>EST</option>
-                              <option value={"esa"}>ESA</option>
-                              <option value={"eso"}>ESO</option>
-                              <option value={"ens"}>ENS</option>
-                            
-                            </Select>
-                          </FormControl>
-                          
+    
             </CardBody>
 
 
@@ -468,23 +487,7 @@ let professionalData = <CardBody>
                                 </Button>
                               </GridItem>
                             </GridContainer>
-                          {/* <CustomInput
-                            labelText="Instituição"
-                            id="disc_institution"
-                            formControlProps={{
-                              fullWidth: true
-                            }}
-                            inputProps={{
-                              onChange: ((event) => this.handleChangeDiscInstitution(event)),
-                              type: "text",
-                              disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
-                              endAdornment: (
-                                <InputAdornment position="end">
-                                  <People className={classes.inputIconsColor} />
-                                </InputAdornment>
-                              )
-                            }}
-                          /> */}
+                          
                           <FormControl className={classes.formControl}>
                             <InputLabel htmlFor="situation-for">Situação</InputLabel>
                             <Select
@@ -492,6 +495,7 @@ let professionalData = <CardBody>
                               value={this.state.situation}
                               onChange={this.handleChangeSituation('situation')}
                               inputProps={{
+                                disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
                                 name: 'situation',
                                 id: 'situation-for',
                               }}
