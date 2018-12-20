@@ -3,6 +3,8 @@ import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
+import Select from "@material-ui/core/Select";
+
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
 import PersonOutline from "@material-ui/icons/PersonOutline";
@@ -69,6 +71,7 @@ class RegisterPage extends React.Component {
       linkedin:"",
       unity:"",
       course:"",
+      
     };
   }
   componentDidMount() {
@@ -116,6 +119,23 @@ class RegisterPage extends React.Component {
         });
     }
   }
+
+  handleChangeSituation = situation => event => {
+    this.setState({ [situation]: event.target.value });
+  };
+
+  handleChangeDiscSituation = discSituation => event => {
+    this.setState({ [discSituation]: event.target.value });
+  };
+
+  handleChangeCourse = course => event => {
+    this.setState({ [course]: event.target.value });
+  };
+
+  handleChangeUnity = unity => event => {
+    this.setState({ [unity]: event.target.value });
+  };
+
   // handleChangeSituation(evt) {
   //   if(evt.target.id === 'situation'){
   //       this.setState({
@@ -137,13 +157,13 @@ class RegisterPage extends React.Component {
         });
     }
   }
-  handleChangeDiscSituation(evt) {
-    if(evt.target.id === 'disc_situation'){
-        this.setState({
-            discSituation : evt.target.value
-        });
-    }
-  }
+  // handleChangeDiscSituation(evt) {
+  //   if(evt.target.id === 'disc_situation'){
+  //       this.setState({
+  //           discSituation : evt.target.value
+  //       });
+  //   }
+  // }
   handleChangeName(evt) {
     if(evt.target.id === 'name'){
         this.setState({
@@ -165,20 +185,7 @@ class RegisterPage extends React.Component {
         });
     }
   }
-  handleChangeUnity(evt) {
-    if(evt.target.id === 'unity'){
-        this.setState({
-            unity : evt.target.value
-        });
-    }
-  }
-  handleChangeCourse(evt) {
-    if(evt.target.id === 'course'){
-        this.setState({
-            course : evt.target.value
-        });
-    }
-  }
+
   handleChangeFacebook(evt) {
     if(evt.target.id === 'facebook'){
         this.setState({
@@ -398,39 +405,45 @@ let personalData = <CardBody>
                           </GridContainer>
                         
                           
-                          <CustomInput
-                            labelText="Curso"
-                            id="course"
-                            formControlProps={{
-                              fullWidth: true
-                            }}
-                            inputProps={{
-                              onChange: ((event) => this.handleChangeCourse(event)),
-                              type: "text",
-                              endAdornment: (
-                                <InputAdornment position="end">
-                                  <School className={classes.inputIconsColor} />
-                                </InputAdornment>
-                              )
-                            }}
-                          />
+                          <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="course-for">Curso</InputLabel>
+                            <Select
+                              native
+                              value={this.state.course}
+                              onChange={this.handleChangeCourse('course')}
+                              inputProps={{
+                                name: 'course',
+                                id: 'course-for',
+                              }}
+                            >
+                              <option value="" />
+                              <option value={"eng_comp"}>Eng da Computação</option>
+                              <option value={"eng_civil"}>Eng Civil</option>
+                              <option value={"eng_mec"}>Eng Mecânica</option>
+                              <option value={"met"}>Meteorologia</option>
+                            
+                            </Select>
+                          </FormControl>
 
-                          <CustomInput
-                            labelText="Unidade onde estudou.."
-                            id="unity"
-                            formControlProps={{
-                              fullWidth: true
-                            }}
-                            inputProps={{
-                              onChange: ((event) => this.handleChangeUnity(event)),
-                              type: "text",
-                              endAdornment: (
-                                <InputAdornment position="end">
-                                  <AccountBalance className={classes.inputIconsColor} />
-                                </InputAdornment>
-                              )
-                            }}
-                          />
+                          <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="unity-for">Unidade</InputLabel>
+                            <Select
+                              native
+                              value={this.state.unidade}
+                              onChange={this.handleChangeUnity('unidade')}
+                              inputProps={{
+                                name: 'unidade',
+                                id: 'unidade-for',
+                              }}
+                            >
+                              <option value="" />
+                              <option value={"est"}>EST</option>
+                              <option value={"esa"}>ESA</option>
+                              <option value={"eso"}>ESO</option>
+                              <option value={"ens"}>ENS</option>
+                            
+                            </Select>
+                          </FormControl>
                           
             </CardBody>
 
@@ -455,7 +468,7 @@ let professionalData = <CardBody>
                                 </Button>
                               </GridItem>
                             </GridContainer>
-                          <CustomInput
+                          {/* <CustomInput
                             labelText="Instituição"
                             id="disc_institution"
                             formControlProps={{
@@ -471,7 +484,24 @@ let professionalData = <CardBody>
                                 </InputAdornment>
                               )
                             }}
-                          />
+                          /> */}
+                          <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="situation-for">Situação</InputLabel>
+                            <Select
+                              native
+                              value={this.state.situation}
+                              onChange={this.handleChangeSituation('situation')}
+                              inputProps={{
+                                name: 'situation',
+                                id: 'situation-for',
+                              }}
+                            >
+                              <option value="" />
+                              <option value={1}>Discente</option>
+                              <option value={2}>Egresso</option>
+                            
+                            </Select>
+                          </FormControl>
                           <GridContainer>
                             <GridItem xm={6} sm={6} md={6}>
                               <CustomInput
@@ -493,23 +523,26 @@ let professionalData = <CardBody>
                               />
                             </GridItem>
                             <GridItem xm={6} sm={6} md={6}>
-                            <CustomInput
-                                labelText="Situação de trabalho"
-                                id="disc_situation"
-                                formControlProps={{
-                                  fullWidth: true
-                                }}
-                                inputProps={{
-                                  onChange: ((event) => this.handleChangeDiscFunction(event)),
-                                  type: "text",
-                                  disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
-                                  endAdornment: (
-                                    <InputAdornment position="end">
-                                      <People className={classes.inputIconsColor} />
-                                    </InputAdornment>
-                                  )
-                                }}
-                              />
+                              <FormControl className={classes.formControl}>
+                                <InputLabel htmlFor="situation-disc-for">Situação Trabalhista</InputLabel>
+                                <Select
+                                  native
+                                  value={this.state.discSituation}
+                                  onChange={this.handleChangeDiscSituation('discSituation')}
+                                  inputProps={{
+                                    disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
+                                    name: 'discSituation',
+                                    id: 'situation-disc-for',
+                                  }}
+                                >
+                                  <option value="" />
+                                  <option value={"bolsista"}>Bolsista</option>
+                                  <option value={"estagiario"}>Estagiário</option>
+                                  <option value={"clt"}>Empregado CLT</option>
+                                  <option value={"outros"}>Outros</option>
+
+                                </Select>
+                              </FormControl>
                             </GridItem>
                           </GridContainer>
                           

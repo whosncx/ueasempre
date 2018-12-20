@@ -114,6 +114,15 @@ const signupPageStyle = {
   registerAuthenticatio:{
     paddingBottom: "20px"
   },
+  formControl:{
+    fullWidth: true,
+    display: 'flex',
+    wrap: 'nowrap',
+    color: primaryColor,
+    underlineStyle: primaryColor,
+    marginTop: "10px"
+    
+  },
   socialLine: {
     marginTop: "1rem",
     textAlign: "center",
