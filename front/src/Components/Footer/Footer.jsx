@@ -9,7 +9,7 @@ import { List, ListItem, withStyles } from "@material-ui/core";
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
 
-import footerStyle from "Assets/jss/material-kit-react/components/footerStyle.jsx";
+import footerStyle from "assets/jss/material-kit-react/components/footerStyle.jsx";
 
 function Footer({ ...props }) {
   const { classes, whiteFont } = props;
@@ -28,25 +28,53 @@ function Footer({ ...props }) {
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
               <a
-                href="https://www.facebook.com/uealuduslab/"
+                href="https://www.creative-tim.com/"
+                className={classes.block}
+                target="_blank"
+              >
+                Creative Tim
+              </a>
+            </ListItem>
+            <ListItem className={classes.inlineBlock}>
+              <a
+                href="https://www.creative-tim.com/presentation"
                 className={classes.block}
                 target="_blank"
               >
                 About us
               </a>
             </ListItem>
+            <ListItem className={classes.inlineBlock}>
+              <a
+                href="http://blog.creative-tim.com/"
+                className={classes.block}
+                target="_blank"
+              >
+                Blog
+              </a>
+            </ListItem>
+            <ListItem className={classes.inlineBlock}>
+              <a
+                href="https://www.creative-tim.com/license"
+                className={classes.block}
+                target="_blank"
+              >
+                Licenses
+              </a>
+            </ListItem>
           </List>
         </div>
         <div className={classes.right}>
-          &copy; {1900 + new Date().getYear()} , made by{" "}
+          &copy; {1900 + new Date().getYear()} , made with{" "}
+          <Favorite className={classes.icon} /> by{" "}
           <a
-            href="https://www.facebook.com/uealuduslab/?ref=br_rs"
+            href="https://www.creative-tim.com"
             className={aClasses}
             target="_blank"
           >
-            Laboratório de Tecnologia, Inovação e Economia Criativa - LUDUS
+            Creative Tim
           </a>{" "}
-          .
+          for a better web.
         </div>
       </div>
     </footer>
