@@ -170,7 +170,7 @@ class RegisterPage extends React.Component {
         situacao_trabalhista = 2;
       }else if(this.state.discSituation == "CLT"){
         situacao_trabalhista = 3;
-      }else if(this.state.discSituation == "Outros"){
+      }else(this.state.discSituation == "Outros"){
         situacao_trabalhista = 4;
       }
     }else{
@@ -183,7 +183,6 @@ class RegisterPage extends React.Component {
       }else if(this.state.discSituation == "Outros"){
         situacao_trabalhista = 4;
       }
-
     }
 
     
@@ -196,8 +195,8 @@ class RegisterPage extends React.Component {
       "cpf": this.state.cpf,
       "password": md5(this.state.password),
       "facebook": this.state.facebook,
-      "entryYear": this.state.entryYear,
-      "exitYear": (this.state.exitYear==""? 0 : this.state.exitYear),
+      "entryYear": parseInt(this.state.entryYear),
+      "exitYear": parseInt(this.state.exitYear),
       "situation": (this.state.situation=="null" || this.state.situation=="" ? 0 : (this.state.situation == "Egresso"? 1 : 0) ),
       "discInstitution": this.state.discInstitution,
       "discSituation": situacao_trabalhista,
@@ -344,13 +343,13 @@ class RegisterPage extends React.Component {
 
   handleChangeCourse = course => event => {
     console.log()
-    this.setState({ [course]: event.target.value });
+    this.setState({ [course]: event.value });
   };
 
   handleChangeUnity = unity => event => {
-    this.setState({ [unity]: event.target.value });
+    this.setState({ [unity]: event.value });
     // this.setState({courseOptions: this.getCourses(event.target.value)});
-    this.getCourses(event.target.value)
+    this.getCourses(event.value)
   };
 
   // handleChangeSituation(evt) {
