@@ -188,25 +188,44 @@ class RegisterPage extends React.Component {
 
     
     var body = JSON.stringify({
-      "name": this.state.name,
-      "email": this.state.email,
-      "linkedin": this.state.linkedin,
-      "unity": this.state.unityId,
-      "course": this.state.course,
-      "cpf": this.state.cpf,
-      "password": md5(this.state.password),
-      "facebook": this.state.facebook,
-      "entryYear": parseInt(this.state.entryYear),
-      "exitYear": parseInt(this.state.exitYear),
-      "situation": (this.state.situation=="null" || this.state.situation=="" ? 0 : (this.state.situation == "Egresso"? 1 : 0) ),
-      "discInstitution": this.state.discInstitution,
-      "discSituation": situacao_trabalhista,
-      "discFunction": this.state.discFunction,
-      "egresInstitution": this.state.egresInstitution,
-      "egresSituation": situacao_trabalhista,
-      "egresFunction": this.state.egresFunction,
-      "lattes": this.state.lattes,
-      "whatsapp": this.state.whatsapp
+      // "name": this.state.name,
+      // "email": this.state.email,
+      // "linkedin": this.state.linkedin,
+      // "unity": this.state.unityId,
+      // "course": this.state.course,
+      // "cpf": this.state.cpf,
+      // "password": md5(this.state.password),
+      // "facebook": this.state.facebook,
+      // "entryYear": parseInt(this.state.entryYear),
+      // "exitYear": parseInt(this.state.exitYear),
+      // "situation": (this.state.situation=="null" || this.state.situation=="" ? 0 : (this.state.situation == "Egresso"? 1 : 0) ),
+      // "discInstitution": this.state.discInstitution,
+      // "discSituation": situacao_trabalhista,
+      // "discFunction": this.state.discFunction,
+      // "egresInstitution": this.state.egresInstitution,
+      // "egresSituation": situacao_trabalhista,
+      // "egresFunction": this.state.egresFunction,
+      // "lattes": this.state.lattes,
+      // "whatsapp": this.state.whatsapp
+      "name": "Diogo Roberto Duarte da Costa",
+      "email": "duartediogo98@gmail.com",
+      "linkedin": "linkparalinkedin.com",
+      "unity": 1,
+      "course": 2,
+      "cpf": "0346666666",
+      "password": md5("justapass123"),
+      "facebook": "umlinkparaofacebook.com",
+      "entryYear": 2017,
+      "exitYear": 2021,
+      "situation": 1,
+      "discInstitution": "Ludus",
+      "discSituation": 1,
+      "discFunction": "programador",
+      "egresInstitution": "ludus",
+      "egresSituation": 1,
+      "egresFunction": "Programador",
+      "lattes": "curriculotattes.com",
+      "whatsapp": "99999-9999"
     })
     console.log(body)
     if(token) {
@@ -348,7 +367,7 @@ class RegisterPage extends React.Component {
   };
 
   handleChangeUnity = unity => event => {
-    this.setState({ [unity]: event.targe.value });
+    this.setState({ [unity]: event.target.value });
     const unity = 0;
     const data = this.state.unityOptions;
     data.forEach(unidade => {
