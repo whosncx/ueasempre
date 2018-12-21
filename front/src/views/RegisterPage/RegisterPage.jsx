@@ -159,6 +159,34 @@ class RegisterPage extends React.Component {
   addAluno(){
     const token = sessionStorage.getItem('jwtToken');
     var request = {};
+    var situacao_trabalhista = 0;
+    
+    if(this.state.situation == "Discente"){
+      if(this.state.discSituation == "Não Trabalha"){
+        situacao_trabalhista = 0;
+      }else if(this.state.discSituation == "Bolsista"){
+        situacao_trabalhista = 1;
+      }else if(this.state.discSituation == "Estagiário"){
+        situacao_trabalhista = 2;
+      }else if(this.state.discSituation == "CLT"){
+        situacao_trabalhista = 3;
+      }else if(this.state.discSituation == "Outros"){
+        situacao_trabalhista = 4;
+      }
+    }else{
+      if(this.state.discSituation == "Não Trabalha"){
+        situacao_trabalhista = 1;
+      }else if(this.state.discSituation == "Bolsista"){
+        situacao_trabalhista = 2;
+      }else if(this.state.discSituation == "CLT"){
+        situacao_trabalhista = 3;
+      }else if(this.state.discSituation == "Outros"){
+        situacao_trabalhista = 4;
+      }
+
+    }
+
+    
     var body = JSON.stringify({
       "name": this.state.name,
       "email": this.state.email,
@@ -170,12 +198,12 @@ class RegisterPage extends React.Component {
       "facebook": this.state.facebook,
       "entryYear": this.state.entryYear,
       "exitYear": (this.state.exitYear==""? 0 : this.state.exitYear),
-      "situation": (this.state.situation=="null" || this.state.situation=="" ? 0 : this.state.situation),
+      "situation": (this.state.situation=="null" || this.state.situation=="" ? 0 : (this.state.situation == "Egresso"? 1 : 0) ),
       "discInstitution": this.state.discInstitution,
-      "discSituation": this.state.discSituation,
+      "discSituation": situacao_trabalhista,
       "discFunction": this.state.discFunction,
       "egresInstitution": this.state.egresInstitution,
-      "egresSituation": this.state.egresSituation,
+      "egresSituation": situacao_trabalhista,
       "egresFunction": this.state.egresFunction,
       "lattes": this.state.lattes,
       "whatsapp": this.state.whatsapp
@@ -303,7 +331,15 @@ class RegisterPage extends React.Component {
   };
 
   handleChangeDiscSituation = discSituation => event => {
-    this.setState({ [discSituation]: event.target.value });
+    if(this.state.situation == "Discente"){
+      this.setState({ [discSituation]: event.target.value });
+      this.setState({ egresSituation: "" });
+    }else{
+      this.setState({ [discSituation]: "" });
+      this.setState({ egresSituation: event.target.value });
+    }
+    
+    
   };
 
   handleChangeCourse = course => event => {
@@ -332,10 +368,12 @@ class RegisterPage extends React.Component {
     }
   }
   handleChangeDiscFunction(evt) {
-    if(evt.target.id === 'function'){
-        this.setState({
-            discFunction : evt.target.value
-        });
+    if(this.state.situation == "Discente"){
+      this.setState({discFunction : evt.target.value});
+      this.setState({egresFunction: ""});
+    }else{
+      this.setState({egresFunction:evt.target.value});
+      this.setState({discFunction : ""});
     }
   }
   // handleChangeDiscSituation(evt) {
@@ -565,29 +603,43 @@ let personalData = <CardBody>
 
                             <GridContainer>
                               <GridItem xs={6} sm={6} md={6}>
-                                <FormControl fullWidth>
-                                  <Datetime
-                                    id="entry_year"
-                                    locale="br"
-                                    inputProps={{
-                                      onChange: ((event) => this.handleChangeEntryYear(event)),
-                                      placeholder: "Data de entrada" 
-                                    }}
-                                  />
-                                </FormControl>
+                                <CustomInput
+                                  labelText="Ano de entrada"
+                                  id="entry_year"
+                                  formControlProps={{
+                                    fullWidth: true
+                                  }}
+                                  inputProps={{
+                                    onChange: ((event) => this.handleChangeEntryYear(event)),
+                                    type: "text",
+                                    endAdornment: (
+                                      <InputAdornment position="end">
+                                        <Face className={classes.inputIconsColor} />
+                                      </InputAdornment>
+                                    )
+                                  }}
+                                />
+                                
                               </GridItem>
                               <GridItem xs={6} sm={6} md={6}>
                             
-                                <FormControl fullWidth>
-                                  <Datetime
-                                    id="exit_year"
-                                    locale="br"
-                                    inputProps={{
-                                      onChange: ((event) => this.handleChangeExitYear(event)),
-                                      placeholder: "Data de saida"
-                                    }}
-                                  />
-                                </FormControl>
+                              <CustomInput
+                                  labelText="Ano de saida"
+                                  id="exit_year"
+                                  formControlProps={{
+                                    fullWidth: true
+                                  }}
+                                  inputProps={{
+                                    onChange: ((event) => this.handleChangeExitYear(event)),
+                                    type: "text",
+                                    endAdornment: (
+                                      <InputAdornment position="end">
+                                        <Face className={classes.inputIconsColor} />
+                                      </InputAdornment>
+                                    )
+                                  }}
+                                />
+                                
                               </GridItem>
                           </GridContainer>
                         
