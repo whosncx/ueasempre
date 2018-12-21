@@ -77,6 +77,7 @@ class RegisterPage extends React.Component {
       email:"",
       linkedin:"",
       unity:"",
+      unityId:0,
       course:"",
       unityOptions: [],
       courseOptions: [],
@@ -170,7 +171,7 @@ class RegisterPage extends React.Component {
         situacao_trabalhista = 2;
       }else if(this.state.discSituation == "CLT"){
         situacao_trabalhista = 3;
-      }else(this.state.discSituation == "Outros"){
+      }else{
         situacao_trabalhista = 4;
       }
     }else{
@@ -190,7 +191,7 @@ class RegisterPage extends React.Component {
       "name": this.state.name,
       "email": this.state.email,
       "linkedin": this.state.linkedin,
-      "unity": this.state.unity,
+      "unity": this.state.unityId,
       "course": this.state.course,
       "cpf": this.state.cpf,
       "password": md5(this.state.password),
@@ -343,13 +344,21 @@ class RegisterPage extends React.Component {
 
   handleChangeCourse = course => event => {
     console.log()
-    this.setState({ [course]: event.value });
+    this.setState({ [course]: event.target.value });
   };
 
   handleChangeUnity = unity => event => {
-    this.setState({ [unity]: event.value });
+    this.setState({ [unity]: event.targe.value });
+    const unity = 0;
+    const data = this.state.unityOptions;
+    data.forEach(unidade => {
+      if(unidade.name == event.target.value){
+        this.setState({unityId: parseInt(unidade.id)});
+      }
+    });
+    
     // this.setState({courseOptions: this.getCourses(event.target.value)});
-    this.getCourses(event.value)
+    this.getCourses(event.target.value)
   };
 
   // handleChangeSituation(evt) {
@@ -430,7 +439,7 @@ class RegisterPage extends React.Component {
         this.setState({step: (this.state.step + 1)%3 });
       }else{
         alert(this.state.cpf);
-        {this.addAluno.bind(this)}
+        this.addAluno()
       }
       }
 
