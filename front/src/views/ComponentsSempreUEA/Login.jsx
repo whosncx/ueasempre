@@ -66,7 +66,8 @@ class LoginPage extends React.Component {
             console.log(md5(this.state.password));
             if(data.canLogin){
                     sessionStorage.setItem('jwtToken', data.token);
-                    this.props.history.push('/register-page')
+                    console.log(this.state.cpf)
+                    this.props.history.push('/profile-page')
                 } else{
                     alert('Verifique as informações e tente novamente');
                 }

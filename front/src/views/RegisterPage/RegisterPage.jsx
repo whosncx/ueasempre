@@ -156,6 +156,90 @@ class RegisterPage extends React.Component {
     }
   }
 
+  addAluno(){
+    const token = sessionStorage.getItem('jwtToken');
+    var request = {};
+    var body = JSON.stringify({
+      "name": this.state.name,
+      "email": this.state.email,
+      "linkedin": this.state.linkedin,
+      "unity": this.state.unity,
+      "course": this.state.course,
+      "cpf": this.state.cpf,
+      "password": md5(this.state.password),
+      "facebook": this.state.facebook,
+      "entryYear": this.state.entryYear,
+      "exitYear": (this.state.exitYear==""? 0 : this.state.exitYear),
+      "situation": (this.state.situation=="null" || this.state.situation=="" ? 0 : this.state.situation),
+      "discInstitution": this.state.discInstitution,
+      "discSituation": this.state.discSituation,
+      "discFunction": this.state.discFunction,
+      "egresInstitution": this.state.egresInstitution,
+      "egresSituation": this.state.egresSituation,
+      "egresFunction": this.state.egresFunction,
+      "lattes": this.state.lattes,
+      "whatsapp": this.state.whatsapp
+    })
+    console.log(body)
+    if(token) {
+      request = { 
+        method: 'PUT',
+        headers : new Headers({
+          'Content-Type':'application/json',
+          'x-access-token':token,
+        }),
+        body: body
+      }
+    } else {
+      request = {
+        method: 'post', 
+        headers : new Headers({
+          'Content-Type':'application/json',
+        }),
+        body: body
+      }
+    }
+
+    // if(this.state.name === '' || this.state.entryYear === '' || this.state.cpf === '' || this.state.password === ''
+    // || this.state.course === '' || this.state.course === 'escolha' || this.state.unity === '' || this.state.unity === 'escolha') {
+    //   alert('Prencha todos os valores');
+    //   return;
+    // }
+
+
+    fetch(Global.API_URL + '/cadastro', request).then((response) => {
+      if(response.ok){
+        response.json().then((data) => {
+            
+            const form = new FormData();
+            form.append('file', this.file);
+            form.append('filename', data.id + '.png')
+      
+            fetch('http://localhost:5000/upload', {
+              method: 'POST',
+              body: form,
+            }).then((response) => {
+              response.json().then((body) => {
+                this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+              });
+            });
+            // alert('Cadastro Realizado com Sucesso')
+            // this.props.history.push('/login')
+        }); 
+        alert('Cadastro Realizado com Sucesso') 
+        if(token)
+          this.props.history.push('/perfil')  
+        else    
+          this.props.history.push('/login')  
+      } else {
+        alert("CPF informado invalido, insira outro");
+      }
+    }).catch((e) => {
+      console.log(e);
+      alert('Houve um erro ao adicionar Aluno, tente novamente mais tarde');
+    });
+  }
+
   getCourses(id){
     this.cursos = []
 
@@ -170,10 +254,11 @@ class RegisterPage extends React.Component {
       // this.setState({
       //   state : this.state
       // });
+      console.log(this.cursos)
       this.setState({courseOptions:this.cursos});
     })
     .catch((e) => {
-      alert('Houve um erro ao pegar cursos, tente novamente mais tarde');
+      alert('Houve um erro ao listar cursos desta unidade, tente novamente mais tarde');
     });
   }
 
@@ -222,6 +307,7 @@ class RegisterPage extends React.Component {
   };
 
   handleChangeCourse = course => event => {
+    console.log()
     this.setState({ [course]: event.target.value });
   };
 
@@ -307,6 +393,7 @@ class RegisterPage extends React.Component {
         this.setState({step: (this.state.step + 1)%3 });
       }else{
         alert(this.state.cpf);
+        {this.addAluno.bind(this)}
       }
       }
 
