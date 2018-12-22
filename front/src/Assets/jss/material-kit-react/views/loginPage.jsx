@@ -112,6 +112,7 @@ const signupPageStyle = {
     width: "100%",
     height: "1px"
   },
+  
   cardFooter: {
     paddingTop: "0rem",
     border: "0",
