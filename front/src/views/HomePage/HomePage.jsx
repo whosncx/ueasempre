@@ -137,10 +137,10 @@ class HomePage extends React.Component {
                      <h4 className={classes.egressos}>{c.nome}</h4>
                      <h6 className={classes.egressosProfession}>{c.curso}</h6>
                      <Button justIcon link className={classes.margin5}>
-                       <i className={"fab fa-twitter"} />
+                       <i className={"fab fa-linkedin"} />
                      </Button>
                      <Button justIcon link className={classes.margin5}>
-                       <i className={"fab fa-instagram"} />
+                       <i className={"fab fa-whatsapp"} />
                      </Button>
                      <Button justIcon link className={classes.margin5}>
                        <i className={"fab fa-facebook"} />
@@ -161,10 +161,10 @@ class HomePage extends React.Component {
                      <h4 className={classes.egressos}>{c.nome}</h4>
                      <h6 className={classes.egressosProfession}>{c.curso}</h6>
                      <Button justIcon link className={classes.margin5}>
-                       <i className={"fab fa-twitter"} />
+                       <i className={"fab fa-linkedin"} />
                      </Button>
                      <Button justIcon link className={classes.margin5}>
-                       <i className={"fab fa-instagram"} />
+                       <i className={"fab fa-whatsapp"} />
                      </Button>
                      <Button justIcon link className={classes.margin5}>
                        <i className={"fab fa-facebook"} />
