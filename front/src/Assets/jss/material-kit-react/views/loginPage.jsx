@@ -1,4 +1,5 @@
 import { container } from "assets/jss/material-kit-react.jsx";
+import imagesStyle from "assets/jss/material-kit-react/imagesStyles.jsx";
 import {
   grayColor,
   roseColor,
@@ -18,6 +19,7 @@ const signupPageStyle = {
     paddingTop: "20vh",
     color: "#FFFFFF"
   },
+  ...imagesStyle,
   cardHidden: {
     opacity: "0",
     transform: "translate3d(0, -60px, 0)"
@@ -115,6 +117,9 @@ const signupPageStyle = {
     border: "0",
     borderRadius: "6px",
     justifyContent: "center !important",
+  },
+  buttonContainerCenter:{
+    textAlign: "center",
   },
   registerAuthenticatio:{
     paddingBottom: "20px"

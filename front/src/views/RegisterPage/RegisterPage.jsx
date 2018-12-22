@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -19,9 +20,6 @@ import Schedule from "@material-ui/icons/Schedule";
 import List from "@material-ui/icons/List";
 
 // core components
-import Header from "components/Header/Header.jsx";
-import HeaderLinks from "components/Header/HeaderLinks.jsx";
-import Footer from "components/Footer/Footer.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -30,12 +28,10 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
-import Datetime from "react-datetime";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
-import NavPills from "components/NavPills/NavPills.jsx";
+
 
 import Navbar from "../ComponentsSempreUEA/Navbar.jsx";
 
@@ -47,6 +43,7 @@ import image from "assets/img/register-bg.jpg";
 import facebook from "assets/img/facebook-icon-input.png";
 import { exact } from "prop-types";
 
+import profile from "assets/img/faces/profile_default.png";
 
 
 class RegisterPage extends React.Component {
@@ -474,6 +471,18 @@ class RegisterPage extends React.Component {
         });
     }
   }
+  fileChangedHandler = (evt) => {
+    const file = evt.target.files[0];
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      this.setState({
+        imageURL: e.target.result,
+      });
+    };
+    if(file){
+      reader.readAsDataURL(file);
+    }
+} 
 
   
   nextStep(evt){
@@ -549,7 +558,11 @@ class RegisterPage extends React.Component {
       primary: { main: "#199900" }
     },
   });
-
+  const imageClasses = classNames(
+    classes.imgRaised,
+    classes.imgRoundedCircle,
+    classes.imgFluid
+  );
 let authData = <CardBody>
                         <CustomInput
                             labelText="CPF"
@@ -644,7 +657,31 @@ let authData = <CardBody>
 
 
 let personalData = <CardBody>
-<CustomInput
+                    <GridContainer justify="center">
+                      <GridItem xs={6} sm={6} md={6}>
+                        <div>
+                          <img src={this.state.imageURL != ""? this.state.imageURL : profile} alt="..." className={imageClasses} />
+                        </div>
+                      </GridItem>
+                    </GridContainer>
+                  
+                    <div className = {classes.buttonContainerCenter}>
+                          <input
+                            accept="image/*"
+                            className={classes.input}
+                            style={{ display: 'none' }}
+                            id="raised-button-file"
+                            multiple
+                            type="file"
+                            onChange={evt => this.fileChangedHandler(evt)}
+                          />
+                          <label htmlFor="raised-button-file">
+                            <Button variant="raised" component="span" className={classes.button}>
+                              SUBIR IMAGEM
+                            </Button>
+                          </label>
+                    </div>
+                <CustomInput
                   labelText="Facebook url..."
                             id="facebook"
                             formControlProps={{
@@ -660,23 +697,7 @@ let personalData = <CardBody>
                                 </InputAdornment>
                               )
                             }}
-                          />
-                          <CustomInput
-                            labelText="Foto url..."
-                            id="image_url"
-                            formControlProps={{
-                              fullWidth: true
-                            }}
-                            inputProps={{
-                              onChange: ((event) => this.handleChangeImageURL(event)),
-                              type: "text",
-                              endAdornment: (
-                                <InputAdornment position="end">
-                                  <Face className={classes.inputIconsColor} />
-                                </InputAdornment>
-                              )
-                            }}
-                          />
+                          /> 
 
                             <GridContainer>
                               <GridItem xs={6} sm={6} md={6}>
