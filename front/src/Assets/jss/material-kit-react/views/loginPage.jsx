@@ -22,6 +22,9 @@ const signupPageStyle = {
     opacity: "0",
     transform: "translate3d(0, -60px, 0)"
   },
+  cardDisabled: {
+    background: "#E0E0E0 !important"
+  },
   buttonsContainer:{
     textAlign: "center"
   },
@@ -30,14 +33,16 @@ const signupPageStyle = {
     paddingTop: "27px"
   },
   toggleSituation:{
+    paddingTop:"27px !important",
+    // marginTop:"27px !important",
     width: "100% !important"
   },
-  active:{
+  inactive:{
     width: "100% !important",
     paddingTop: "20px",
     paddingBottom: "20px"
   },
-  inactive:{
+  active:{
     width: "100% !important"
   },
   pageHeader: {

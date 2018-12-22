@@ -4,6 +4,8 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 import Select from "@material-ui/core/Select";
+import Switch from "@material-ui/core/Switch";
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
@@ -31,6 +33,7 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Datetime from "react-datetime";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
 import NavPills from "components/NavPills/NavPills.jsx";
 
@@ -55,8 +58,6 @@ class RegisterPage extends React.Component {
     this.state = {
       cardAnimaton: "cardHidden",
       step: 0,
-      colorToggleDesempregado:"primary",
-      colorToggleTrabalhando:"secondary",
       toggleSituationState:"desempregado",
       textButton:"Próximo",
       cpf:"",
@@ -67,7 +68,7 @@ class RegisterPage extends React.Component {
       imageURL:"",
       entryYear:"",
       exitYear:"",
-      situation:"",
+      situation:0,
       discInstitution:"",
       discSituation:"",
       discFunction:"",
@@ -348,11 +349,12 @@ class RegisterPage extends React.Component {
   }
 
   handleChangeSituation = situation => event => {
+    console.log("situação",event.target.value);
     this.setState({ [situation]: event.target.value });
   };
 
   handleChangeDiscSituation = discSituation => event => {
-    if(this.state.situation == "Discente"){
+    if(this.state.situation == 0){
       this.setState({ [discSituation]: event.target.value });
       this.setState({ egresSituation: "" });
     }else{
@@ -370,16 +372,20 @@ class RegisterPage extends React.Component {
 
   handleChangeUnity = unity => event => {
     this.setState({ [unity]: event.target.value });
-    const unity = 0;
-    const data = this.state.unityOptions;
-    data.forEach(unidade => {
-      if(unidade.name == event.target.value){
-        this.setState({unityId: parseInt(unidade.id)});
-      }
-    });
+    // const unity = 0;
+    // const data = this.state.unityOptions;
+    // data.forEach(unidade => {
+    //   if(unidade.name == event.target.value){
+    //     this.setState({unityId: parseInt(unidade.id)});
+    //   }
+    // });
     
     // this.setState({courseOptions: this.getCourses(event.target.value)});
     this.getCourses(event.target.value)
+  };
+
+  handleChangeTrabalho = name => event => {
+    this.setState({ toggleSituationState: (this.state.toggleSituationState == "desempregado"? "trabalhando":"desempregado") });
   };
 
   // handleChangeSituation(evt) {
@@ -397,7 +403,7 @@ class RegisterPage extends React.Component {
     }
   }
   handleChangeDiscFunction(evt) {
-    if(this.state.situation == "Discente"){
+    if(this.state.situation == "discente"){
       this.setState({discFunction : evt.target.value});
       this.setState({egresFunction: ""});
     }else{
@@ -434,6 +440,14 @@ class RegisterPage extends React.Component {
     }
   }
 
+  handleChangeLattes(evt) {
+    if(evt.target.id === 'lattes'){
+        this.setState({
+            lattes : evt.target.value
+        });
+    }
+  }
+
   handleChangeFacebook(evt) {
     if(evt.target.id === 'facebook'){
         this.setState({
@@ -448,6 +462,14 @@ class RegisterPage extends React.Component {
         });
     }
   }
+  handleChangeWhatsapp(evt) {
+    if(evt.target.id === 'whatsapp'){
+        this.setState({
+            whatsapp: evt.target.value
+        });
+    }
+  }
+
   
   nextStep(evt){
       evt.preventDefault();
@@ -472,18 +494,16 @@ class RegisterPage extends React.Component {
 
   toggleSituation(evt){
     evt.preventDefault();
-    if(this.state.toggleSituationState == "desempregado"){
+    if(this.state.toggleSituationState == "desempregado" && evt.target.id != "btnDesempregado"){
+      
       this.setState({
-        colorToggleDesempregado:"secondary",
-        colorToggleTrabalhando:"primary",
         toggleSituationState:"trabalhando",
         situation: "trabalhando"
       });
     }
-    else{
+    else if(evt.target.id != "btnTrabalhando"){
+      
       this.setState({
-        colorToggleDesempregado:"primary",
-        colorToggleTrabalhando:"secondary",
         toggleSituationState:"desempregado",
         situation: "desempregado"
       });
@@ -497,10 +517,32 @@ class RegisterPage extends React.Component {
     return list;
   }
 
+  
+
   render() {
   const { classes, ...rest } = this.props;
   const cardTitles = ["Dados de Autenticação", "Dados Pessoais", "Dados Profissionais"];
   
+  const optionsDisc = [
+    {id:"nao_trabalha", nome:"Não Trabalha"},
+    {id:"bolsista",nome: "Bolsista"},
+    {id:"estagiario", nome:"Estagiário"},
+    {id:"clt", nome:"CLT"},
+    {id:"outros", nome:"Outros"},
+  ];
+
+  const optionsEgres = [
+    {id:"nao_trabalha", nome:"Não Trabalha"},
+    {id:"bolsista", nome:"Bolsista"},
+    {id:"clt", nome:"CLT"},
+    {id:"outros", nome:"Outros"},
+  ];
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: { main: "#199900" }
+    },
+  });
 
 let authData = <CardBody>
                         <CustomInput
@@ -671,95 +713,55 @@ let personalData = <CardBody>
                                 
                               </GridItem>
                           </GridContainer>
-                        
-                          <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="unity-for">Unidade</InputLabel>
-                            <Select
-                              native
-                              value={this.state.unity}
-                              onChange={this.handleChangeUnity('unity')}
-                              inputProps={{
-                                name: 'unity',
-                                id: 'unity-for',
-                              }}
-                            >
-                              <option value="" />
-                              {this.state.unityOptions.length > 0? this.getOptions(this.state.unityOptions) : ""}
-                            
-                            </Select>
-                          </FormControl>
                           
-                          <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="course-for">Curso</InputLabel>
-                            <Select
-                              native
-                              value={this.state.course}
-                              onChange={this.handleChangeCourse('course')}
-                              inputProps={{
-                                name: 'course',
-                                id: 'course-for',
-                              }}
-                            >
-                              <option value="" />
-                              {this.state.courseOptions.length > 0? this.getOptions(this.state.courseOptions) : ""}
-                            
-                            </Select>
-                          </FormControl>
-    
-            </CardBody>
-
-
-
-let professionalData = <CardBody>
-                            <GridContainer>
-                              <GridItem xm={6} sm={6} md={6}>
-                                <Button
-                                  onClick={this.toggleSituation.bind(this)}
-                                  color={this.state.colorToggleDesempregado}
-                                  className={this.state.toggleSituationState=="desempregado"?classes.active:classes.inactive}>
-                                    Desempregado
-                                </Button>
-                              </GridItem>
-                              <GridItem xm={6} sm={6} md={6}>
-                                <Button
-                                  onClick={this.toggleSituation.bind(this)}
-                                  color={this.state.colorToggleTrabalhando}
-                                  className={this.state.toggleSituationState=="trabalhando"?classes.active:classes.inactive}>
-                                    Trabalhando
-                                </Button>
-                              </GridItem>
-                            </GridContainer>
-                          
-                          <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="situation-for">Situação</InputLabel>
-                            <Select
-                              native
-                              value={this.state.situation}
-                              onChange={this.handleChangeSituation('situation')}
-                              inputProps={{
-                                disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
-                                name: 'situation',
-                                id: 'situation-for',
-                              }}
-                            >
-                              <option value="" />
-                              <option value={1}>Discente</option>
-                              <option value={2}>Egresso</option>
-                            
-                            </Select>
-                          </FormControl>
                           <GridContainer>
-                            <GridItem xm={6} sm={6} md={6}>
-                              <CustomInput
-                                labelText="Cargo"
-                                id="disc_function"
+                              <GridItem xs={6} sm={6} md={6}>
+                                <FormControl className={classes.formControl}>
+                                  <InputLabel htmlFor="unity-for">Unidade</InputLabel>
+                                  <Select
+                                    native
+                                    value={this.state.unity}
+                                    onChange={this.handleChangeUnity('unity')}
+                                    inputProps={{
+                                      name: 'unity',
+                                      id: 'unity-for',
+                                    }}
+                                  >
+                                    <option value="" />
+                                    {this.state.unityOptions.length > 0? this.getOptions(this.state.unityOptions) : ""}
+                                    
+
+                                  </Select>
+                                </FormControl>
+                              </GridItem>
+                              <GridItem xs={6} sm={6} md={6}>
+                                <FormControl className={classes.formControl}>
+                                  <InputLabel htmlFor="course-for">Curso</InputLabel>
+                                  <Select
+                                    native
+                                    value={this.state.course}
+                                    onChange={this.handleChangeCourse('course')}
+                                    inputProps={{
+                                      name: 'course',
+                                      id: 'course-for',
+                                    }}
+                                  >
+                                    <option value="" />
+                                    {this.state.courseOptions.length > 0? this.getOptions(this.state.courseOptions) : ""}
+                                  
+                                  </Select>
+                                </FormControl>
+                              </GridItem>
+                          </GridContainer>
+                          <CustomInput
+                                labelText="Whatsapp"
+                                id="whatsapp"
                                 formControlProps={{
                                   fullWidth: true
                                 }}
                                 inputProps={{
-                                  onChange: ((event) => this.handleChangeDiscFunction(event)),
+                                  onChange: ((event) => this.handleChangeWhatsapp(event)),
                                   type: "text",
-                                  disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
                                   endAdornment: (
                                     <InputAdornment position="end">
                                       <People className={classes.inputIconsColor} />
@@ -767,9 +769,64 @@ let professionalData = <CardBody>
                                   )
                                 }}
                               />
-                            </GridItem>
+            </CardBody>
+
+
+
+let professionalData = <CardBody>
+                            <GridContainer>
+                              <GridItem xm={6} sm={6} md={6}>
+                                <FormControl className={classes.formControl}>
+                                  <InputLabel htmlFor="situation-for">Situação</InputLabel>
+                                  <Select
+                                    native
+                                    value={this.state.situation}
+                                    onChange={this.handleChangeSituation('situation')}
+                                    inputProps={{
+                                      name: 'situation',
+                                      id: 'situation-for',
+                                    }}
+                                  >
+                                    <option value="" />
+                                    <option value={0}>Discente</option>
+                                    <option value={1}>Egresso</option>
+                                  
+                                  </Select>
+                                </FormControl>
+                              </GridItem>
+                              <GridItem xm={6} sm={6} md={6}>
+                              <div className={classes.toggleSituation}>
+                              <FormControlLabel
+                                control={
+                                  <MuiThemeProvider theme={theme}>
+                                    <Switch
+                                      checked={this.state.toggleSituationState == "desempregado"? false:true}
+                                      onChange={this.handleChangeTrabalho('trabalho')}
+                                      value="trabalho"
+                                      color="primary"
+                                      classes={{
+                                        switchBase: classes.switchBase,
+                                        checked: classes.switchChecked,
+                                        icon: classes.switchIcon,
+                                        iconChecked: classes.switchIconChecked,
+                                        bar: classes.switchBar
+                                      }}
+                                    />
+                                  </MuiThemeProvider>
+                                  
+                                }
+                                classes={{
+                                  label: classes.label
+                                }}
+                                label= "Trabalhando"
+                              />
+                              </div>
+                              </GridItem>
+                            </GridContainer>
+                          
+                          <GridContainer>
                             <GridItem xm={6} sm={6} md={6}>
-                              <FormControl className={classes.formControl}>
+                            <FormControl className={classes.formControl}>
                                 <InputLabel htmlFor="situation-disc-for">Situação Trabalhista</InputLabel>
                                 <Select
                                   native
@@ -781,14 +838,30 @@ let professionalData = <CardBody>
                                     id: 'situation-disc-for',
                                   }}
                                 >
-                                  <option value="" />
-                                  <option value={"bolsista"}>Bolsista</option>
-                                  <option value={"estagiario"}>Estagiário</option>
-                                  <option value={"clt"}>Empregado CLT</option>
-                                  <option value={"outros"}>Outros</option>
+                                  <option value=""/>
+                                  {this.state.situation == 0? this.getOptions(optionsDisc):this.getOptions(optionsEgres)}
 
                                 </Select>
-                              </FormControl>
+                            </FormControl>
+                            </GridItem>
+                            <GridItem xm={6} sm={6} md={6}>
+                              <CustomInput
+                                  labelText="Cargo"
+                                  id="disc_function"
+                                  formControlProps={{
+                                    fullWidth: true
+                                  }}
+                                  inputProps={{
+                                    onChange: ((event) => this.handleChangeDiscFunction(event)),
+                                    type: "text",
+                                    disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
+                                    endAdornment: (
+                                      <InputAdornment position="end">
+                                        <People className={classes.inputIconsColor} />
+                                      </InputAdornment>
+                                    )
+                                  }}
+                                />
                             </GridItem>
                           </GridContainer>
                           
@@ -809,7 +882,25 @@ let professionalData = <CardBody>
                               )
                             }}
                           />
+                          <CustomInput
+                            labelText="Lattes url.."
+                            id="lattes"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                            inputProps={{
+                              onChange: ((event) => this.handleChangeLattes(event)),
+                              type: "text",
+                              disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <People className={classes.inputIconsColor} />
+                                </InputAdornment>
+                              )
+                            }}
+                          />
                         </CardBody>
+                        
 
     return (
       <div>
