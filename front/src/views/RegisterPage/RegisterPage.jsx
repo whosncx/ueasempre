@@ -129,25 +129,25 @@ class RegisterPage extends React.Component {
         }
         response.json().then((data) => {
           this.setState({
-            name: data.nome,
-            email: data.email,
-            linkedin: data.linkedin,
-            unity: data.unidade,
-            course: data.curso,
-            cpf: data.cpf,
-            facebook: data.facebook,
-            entryYear: data.ano_ingresso,
-            exitYear: data.ano_conclusao,
-            situation: ''+data.situacao,
-            discInstitution: data.discInstitution,
-            discFunction: data.discFunction,
-            discSituation: ''+data.discSituation, 
-            egresInstitution: data.egresInstitution,
-            egresSituation: data.egresSituation,
-            egresFunction: ''+data.egresFunction,           
-            imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now(),
-            lattes: data.lattes,
-            whatsapp: data.whatsapp
+            // name: data.nome,
+            // email: data.email,
+            // linkedin: data.linkedin,
+            // unity: data.unidade,
+            // course: data.curso,
+            // cpf: data.cpf,
+            // facebook: data.facebook,
+            // entryYear: data.ano_ingresso,
+            // exitYear: data.ano_conclusao,
+            // situation: ''+data.situacao,
+            // discInstitution: data.discInstitution,
+            // discFunction: data.discFunction,
+            // discSituation: ''+data.discSituation, 
+            // egresInstitution: data.egresInstitution,
+            // egresSituation: data.egresSituation,
+            // egresFunction: ''+data.egresFunction,           
+            // imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now(),
+            // lattes: data.lattes,
+            // whatsapp: data.whatsapp
           })
           // this.getCourses(this.state.unity);
         });
@@ -161,10 +161,11 @@ class RegisterPage extends React.Component {
   }
 
   addAluno(){
-    const token = sessionStorage.getItem('jwtToken');
+    const token = false;
     var request = {};
     var situacao_trabalhista = 0;
-    
+
+
     if(this.state.situation == "Discente"){
       if(this.state.discSituation == "Não Trabalha"){
         situacao_trabalhista = 0;
@@ -232,6 +233,7 @@ class RegisterPage extends React.Component {
     })
     console.log(body)
     if(token) {
+      alert("PUT");
       request = { 
         method: 'PUT',
         headers : new Headers({
@@ -241,6 +243,7 @@ class RegisterPage extends React.Component {
         body: body
       }
     } else {
+      alert("POST");
       request = {
         method: 'post', 
         headers : new Headers({
@@ -277,13 +280,15 @@ class RegisterPage extends React.Component {
             // this.props.history.push('/login')
         }); 
         alert('Cadastro Realizado com Sucesso') 
+        this.props.history.push('/login')
         if(token)
           this.props.history.push('/perfil')  
         else    
           this.props.history.push('/login')  
-      } else {
-        alert("CPF informado invalido, insira outro");
-      }
+      } 
+      // else {
+      //   alert("CPF informado invalido, insira outro");
+      // }
     }).catch((e) => {
       console.log(e);
       alert('Houve um erro ao adicionar Aluno, tente novamente mais tarde');
@@ -481,7 +486,8 @@ class RegisterPage extends React.Component {
         }
         this.setState({step: (this.state.step + 1)%3 });
       }else{
-        alert(this.state.cpf);
+        console.log(this.state.password);
+        alert(this.state.password);
         this.addAluno()
       }
       }
@@ -564,7 +570,7 @@ let authData = <CardBody>
 
                           <CustomInput
                             labelText="Senha"
-                            id="pass"
+                            id="password"
                             formControlProps={{
                               fullWidth: true
                             }}
