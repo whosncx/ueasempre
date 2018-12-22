@@ -213,8 +213,8 @@ class RegisterPage extends React.Component {
       // "name": "Diogo Roberto Duarte da Costa",
       // "email": "duartediogo98@gmail.com",
       // "linkedin": "linkparalinkedin.com",
-      "unity": 1,
-      "course": 2
+      "unity": parseInt(this.state.unity),
+      "course": parseInt(this.state.course)
       // "cpf": "0346666666",
       // "password": md5("justapass123"),
       // "facebook": "umlinkparaofacebook.com",
@@ -830,7 +830,7 @@ let professionalData = <CardBody>
                                 <InputLabel htmlFor="situation-disc-for">Situação Trabalhista</InputLabel>
                                 <Select
                                   native
-                                  value={this.state.discSituation}
+                                  value={this.state.situation == 0? this.state.discSituation:this.state.egresSituation}
                                   onChange={this.handleChangeDiscSituation('discSituation')}
                                   inputProps={{
                                     disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
