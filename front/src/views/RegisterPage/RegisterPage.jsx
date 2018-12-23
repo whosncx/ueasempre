@@ -13,6 +13,8 @@ import Email from "@material-ui/icons/Email";
 import PersonOutline from "@material-ui/icons/PersonOutline";
 import People from "@material-ui/icons/People";
 import Face from "@material-ui/icons/Face";
+import DateRange from "@material-ui/icons/DateRange";
+import Description from "@material-ui/icons/Description";
 import School from "@material-ui/icons/School";
 import AccountBalance from "@material-ui/icons/AccountBalance";
 import Dashboard from "@material-ui/icons/Dashboard";
@@ -41,6 +43,10 @@ import md5 from 'js-md5'
 import Global from './../Components/global'
 import image from "assets/img/register-bg.jpg";
 import facebook from "assets/img/facebook-icon-input.png";
+import employee from "assets/img/employee.png";
+import linkedin from "assets/img/linkedin.png";
+import whatsapp from "assets/img/whatsapp.png";
+
 import { exact } from "prop-types";
 
 import profile from "assets/img/faces/profile_default.png";
@@ -712,7 +718,7 @@ let personalData = <CardBody>
                                     type: "text",
                                     endAdornment: (
                                       <InputAdornment position="end">
-                                        <Face className={classes.inputIconsColor} />
+                                        <DateRange className={classes.inputIconsColor} />
                                       </InputAdornment>
                                     )
                                   }}
@@ -732,7 +738,7 @@ let personalData = <CardBody>
                                     type: "text",
                                     endAdornment: (
                                       <InputAdornment position="end">
-                                        <Face className={classes.inputIconsColor} />
+                                        <DateRange className={classes.inputIconsColor} />
                                       </InputAdornment>
                                     )
                                   }}
@@ -791,7 +797,7 @@ let personalData = <CardBody>
                                   type: "text",
                                   endAdornment: (
                                     <InputAdornment position="end">
-                                      <People className={classes.inputIconsColor} />
+                                      <img src={whatsapp} className={classes.inputIconsColor} />
                                     </InputAdornment>
                                   )
                                 }}
@@ -884,7 +890,7 @@ let professionalData = <CardBody>
                                     disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
                                     endAdornment: (
                                       <InputAdornment position="end">
-                                        <People className={classes.inputIconsColor} />
+                                        <img src={employee} className={classes.inputIconsColor} />
                                       </InputAdornment>
                                     )
                                   }}
@@ -904,7 +910,7 @@ let professionalData = <CardBody>
                               disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
                               endAdornment: (
                                 <InputAdornment position="end">
-                                  <People className={classes.inputIconsColor} />
+                                  <img src={linkedin} className={classes.inputIconsColor} />
                                 </InputAdornment>
                               )
                             }}
@@ -921,7 +927,7 @@ let professionalData = <CardBody>
                               disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
                               endAdornment: (
                                 <InputAdornment position="end">
-                                  <People className={classes.inputIconsColor} />
+                                  <Description className={classes.inputIconsColor} />
                                 </InputAdornment>
                               )
                             }}
