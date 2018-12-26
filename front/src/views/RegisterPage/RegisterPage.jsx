@@ -55,6 +55,7 @@ import profile from "assets/img/faces/profile_default.png";
 class RegisterPage extends React.Component {
   unidades = [];
   cursos = [];
+  file;
   constructor(props) {
     super(props);
     // we use this to make the card to appear after the page has been rendered
@@ -236,7 +237,6 @@ class RegisterPage extends React.Component {
     })
     console.log(body)
     if(token) {
-      alert("PUT");
       request = { 
         method: 'PUT',
         headers : new Headers({
@@ -246,7 +246,6 @@ class RegisterPage extends React.Component {
         body: body
       }
     } else {
-      alert("POST");
       request = {
         method: 'post', 
         headers : new Headers({
@@ -268,6 +267,7 @@ class RegisterPage extends React.Component {
         response.json().then((data) => {
             
             const form = new FormData();
+            console.log(this.file);
             form.append('file', this.file);
             form.append('filename', data.id + '.png')
       
@@ -478,15 +478,15 @@ class RegisterPage extends React.Component {
     }
   }
   fileChangedHandler = (evt) => {
-    const file = evt.target.files[0];
+    this.file = evt.target.files[0];
     let reader = new FileReader();
     reader.onload = (e) => {
       this.setState({
         imageURL: e.target.result,
       });
     };
-    if(file){
-      reader.readAsDataURL(file);
+    if(this.file){
+      reader.readAsDataURL(this.file);
     }
 } 
 
@@ -502,7 +502,6 @@ class RegisterPage extends React.Component {
         this.setState({step: (this.state.step + 1)%3 });
       }else{
         console.log(this.state.password);
-        alert(this.state.password);
         this.addAluno()
       }
       }

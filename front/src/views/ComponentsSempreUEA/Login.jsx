@@ -50,7 +50,6 @@ class LoginPage extends React.Component {
   }
 
   handleSubmit(evt) {
-    alert(this.state.cpf+' '+this.state.password)
     if(!this.state.cpf || !this.state.password){
         alert('Login required!')
     } else {
