@@ -25,7 +25,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import navbarsStyle from "assets/jss/material-kit-react/views/componentsSections/navbarsStyle.jsx";
 
 import image from "assets/img/bg.jpg";
-import logo from "assets/img/logo-uea-green.png"
+import logo from "assets/img/logos/logo (3).svg"
 import profileImage from "assets/img/faces/avatar.jpg";
 
 class SectionNavbars extends React.Component {

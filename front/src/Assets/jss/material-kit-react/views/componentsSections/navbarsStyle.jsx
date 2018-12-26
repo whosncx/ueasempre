@@ -23,7 +23,7 @@ const navbarsStyle = theme => ({
     }
   },
   brandImage:{
-    height: "50px"
+    height: "40px"
   },
   navigation: {
     backgroundPosition: "center center",
@@ -41,7 +41,7 @@ const navbarsStyle = theme => ({
   searchIcon: {
     width: "20px",
     height: "20px",
-    color: "inherit"
+    fill: "inherit"
   },
   ...headerLinksStyle(theme),
   img: {
