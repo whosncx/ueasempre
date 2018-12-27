@@ -64,7 +64,7 @@ const headerStyle = {
     }
   },
   brandImage:{
-    height: "32px"
+    // height: "32px"
   },
   appResponsive: {
     margin: "20px 10px"
