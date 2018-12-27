@@ -59,7 +59,6 @@ class ProfilePage extends React.Component {
   componentDidMount() {
       var id = ''+this.props.match.params.aluno
       if(id!=='undefined'){    
-      console.log(this.props.match.params)
         fetch(Global.API_URL + '/perfilaluno/'+id, {
           headers : new Headers({
           })
@@ -87,7 +86,10 @@ class ProfilePage extends React.Component {
               lattes: data.lattes,
               whatsapp: data.whatsapp
             })
-          });
+          }).catch((e) => {
+            alert('Houve um erro ao listar perfil, tente novamente mais tarde');
+            this.props.history.push('/list');
+          });  ;
         }).catch((e) => {
           sessionStorage.setItem('jwtToken', '');
           alert('Houve um erro ao listar perfil, tente novamente mais tarde');

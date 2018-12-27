@@ -32,9 +32,11 @@ class SectionNavbars extends React.Component {
   goToRegister(){
     this.props.history.push('/register-page')
   }
-
   goToLogin(){
     this.props.history.push('/login')
+  }
+  goToList(){
+    this.props.history.push('/list')
   }
   goToHome(){
     this.props.history.push('/')
@@ -52,8 +54,7 @@ class SectionNavbars extends React.Component {
                     <Button
                       onClick={this.goToHome.bind(this)}
                       className={classes.registerNavLink}
-                      color="greenButton"
-                    >
+                      color="greenButton">
                       Home
                     </Button>
                   </ListItem>
@@ -61,8 +62,7 @@ class SectionNavbars extends React.Component {
                     <Button
                       onClick={this.goToLogin.bind(this)}
                       className={classes.navLink}
-                      color="transparent"
-                    >
+                      color="transparent">
                       Login
                     </Button>
                   </ListItem>
@@ -70,10 +70,16 @@ class SectionNavbars extends React.Component {
                     <Button
                       onClick={this.goToRegister.bind(this)}
                       className={classes.navLink}
-                      color="transparent"
-                      
-                    >
+                      color="transparent">
                       Cadastrar
+                    </Button>
+                  </ListItem>
+                  <ListItem className={classes.listItem}>
+                    <Button
+                      onClick={this.goToList.bind(this)}
+                      className={classes.navLink}
+                      color="transparent">
+                      Alunos
                     </Button>
                   </ListItem>
                 </List>

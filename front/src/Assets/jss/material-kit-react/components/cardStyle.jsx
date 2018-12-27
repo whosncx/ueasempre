@@ -1,3 +1,15 @@
+import {
+  grayColor,
+  roseColor,
+  primaryColor,
+  secondaryColor,
+  infoColor,
+  successColor,
+  warningColor,
+  dangerColor,
+  greenButton
+} from "assets/jss/material-kit-react.jsx";
+
 const cardStyle = {
   card: {
     border: "0",
@@ -15,7 +27,13 @@ const cardStyle = {
     minWidth: "0",
     wordWrap: "break-word",
     fontSize: ".875rem",
-    transition: "all 300ms linear"
+    transition: "all 300ms linear",
+    "&:hover,&:focus": {
+      color: "#FFFFFF",
+      backgroundColor: secondaryColor,
+      boxShadow:
+        "0 14px 26px -12px rgba(153, 153, 153, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(153, 153, 153, 0.2)"
+    },
   },
   cardPlain: {
     background: "transparent",

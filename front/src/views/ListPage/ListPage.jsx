@@ -52,6 +52,10 @@ class HomePage extends React.Component {
     }
   }
 
+  openProfile(id){    
+    this.props.history.push('/profile-page/'+id);
+  }
+
 
   render() {
     const { classes, ...rest } = this.props;
@@ -75,13 +79,13 @@ class HomePage extends React.Component {
             <div className={classes.container}>
               <div className={classes.description}>
                   <h2 className={classes.titleEgressos}>
-                    ALUNOS
+                    ALUNOS E EGRESSOS
                   </h2>
               </div>
               <GridContainer className={classes.egressosContainer}>
               {this.state.alunos.map(c => 
                 <GridItem xs={6} sm={6} md={3}>
-                <Card  className={classes.profile}>
+                <Card onClick={() => this.openProfile(c.id)} className={classes.profile}>
                    <div>
                      <img onError={this.handleError} src={Global.API_URL + '/imgs/uploads/' + c.id + '.png?v=' + Date.now()} alt="..." className={navImageClasses} />
                    </div>

@@ -10,6 +10,7 @@ var indexRoutes = [
   // { path: "/profile-page", name: "ProfilePage", component: ProfilePage },
   { path: "/register-page", name: "RegisterPage", component: RegisterPage },
   { path: "/login", name: "LoginPage", component: LoginPage },
+  { path: "/profile-page/:aluno", name: "Profile", component: ProfilePage },
   { path: "/profile-page", name: "Profile", component: ProfilePage },
   { path: "/components", name: "Components", component: Components },
   { path: "/home", name: "HomePage", component: HomePage },

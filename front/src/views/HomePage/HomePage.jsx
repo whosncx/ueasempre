@@ -130,7 +130,7 @@ class HomePage extends React.Component {
 
               <div className={classes.description}>
                   <h2 className={classes.titleEgressos}>
-                    ALUNOS
+                  ALUNOS E EGRESSOS
                   </h2>
 
               </div>
