@@ -20,6 +20,8 @@ import Parallax from "components/Parallax/Parallax.jsx";
 import Navbar from "../ComponentsSempreUEA/Navbar";
 import Login from "../ComponentsSempreUEA/Login";
 import profile from "assets/img/faces/christian.jpg";
+import Card from "components/Card/Card.jsx";
+import CardBody from "components/Card/CardBody.jsx";
 
 import bb from "assets/img/faces/bb.jpg";
 import leticia from "assets/img/faces/leticia.jpg";
@@ -135,7 +137,7 @@ class HomePage extends React.Component {
 
               </div>
               <GridContainer className={classes.egressosContainer}>
-              {this.state.alunos.map(c => 
+              {/* {this.state.alunos.map(c => 
                 <GridItem xs={6} sm={6} md={3}>
                 <div className={classes.profile}>
                    <div>
@@ -152,6 +154,27 @@ class HomePage extends React.Component {
                      </Button>
                    </div>
                  </div>
+               </GridItem>
+              )} */}
+              {this.state.alunos.map(c => 
+                <GridItem xs={6} sm={6} md={3}>
+                <Card className={classes.profile}>
+                   <CardBody>
+                   <div>
+                     <img onError={this.handleError} src={Global.API_URL + '/imgs/uploads/' + c.id + '.png?v=' + Date.now()} alt="..." className={navImageClasses} />
+                   </div>
+                   <div className={classes.name}>
+                     <h4 className={classes.egressos}>{c.nome}</h4>
+                     <h6 className={classes.egressosProfession}>{c.curso}</h6>
+                     <Button onClick={() => this.openLink(c.linkedin)} justIcon link className={classes.margin5}>
+                       <i className={"fab fa-linkedin"} />
+                     </Button>
+                     <Button onClick={() => this.openLink(c.facebook)} justIcon link className={classes.margin5}>
+                       <i className={"fab fa-facebook"} />
+                     </Button>
+                   </div>
+                   </CardBody>
+                 </Card>
                </GridItem>
               )}
               </GridContainer>

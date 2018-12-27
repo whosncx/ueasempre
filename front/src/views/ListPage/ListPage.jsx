@@ -93,6 +93,7 @@ class HomePage extends React.Component {
                      <h4 className={classes.egressos}>{c.nome}</h4>
                      <h6 className={classes.egressosProfession}>{c.curso}</h6>
                    </div>
+                   <br/>
                  </Card>
                </GridItem>
               )}
