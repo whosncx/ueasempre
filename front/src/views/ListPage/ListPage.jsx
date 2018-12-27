@@ -1,7 +1,7 @@
 import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
-import './HomePage.css';
+import './ListPage.css';
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
@@ -93,28 +93,14 @@ class HomePage extends React.Component {
     );
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     return (
-      <div>
+      <div class='bg'>
         <Navbar/>
-        <Parallax filter image={require("assets/img/home-bg.jpg")}>
-        <div className={classes.container}>
-
-            <GridContainer>
-              <GridItem xs={12} sm={12} md={6}>
-                <h2 className={classes.title}>Bem Vindo ao Sempre UEA</h2>
-                <h4>
-                O Sempre UEA é uma plataforma onde os alunos e egressos da UEA podem compartilhar
-                suas experiências após a faculdade. Aqui você poderá conhecer alunos e ex-alunos e
-                suas trajetórias, e também pode compartilhar sua história com os outros colegas
-                </h4>
-                <br />
-              </GridItem>
-              <GridItem xs={12} sm={12} md={6} className = "hiddenOnSmallScreen">
-                <Login/>
-              </GridItem>
-            </GridContainer>
-          
-          </div>
-        </Parallax>
+        <br/>
+        <br/>
+        <br/>
+        <br/>       
+        <br/>    
+        <br/>     
         <div className={classNames(classes.main, classes.mainRaised)}>
           <div>
             <div className={classes.container}>
@@ -164,7 +150,7 @@ class HomePage extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+        </div>
     );
   }
 }
