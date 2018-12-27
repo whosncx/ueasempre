@@ -4,7 +4,9 @@ const imagesStyles = {
     display: "block"
   },
   imgRounded: {
-    borderRadius: "6px !important"
+    borderRadius: "6px !important",
+    width: "20vw",
+    height: "20vh"
   },
   imgRoundedCircle: {
     borderRadius: "50% !important"
@@ -15,7 +17,9 @@ const imagesStyles = {
   },
   imgGallery: {
     width: "100%",
-    marginBottom: "2.142rem"
+    marginBottom: "2.142rem",
+    width: "20vw",
+    height: "20vh"
   },
   imgCardTop: {
     width: "100%",
