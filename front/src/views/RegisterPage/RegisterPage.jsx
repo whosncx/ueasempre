@@ -88,7 +88,9 @@ class RegisterPage extends React.Component {
       courseOptions: [],
       situationDiscOption: [],
       lattes: "",
-      whatsapp: ""
+      whatsapp: "",
+      cargo:"",
+      institution:""
     };
   }
   componentDidMount() {
@@ -132,6 +134,7 @@ class RegisterPage extends React.Component {
           this.props.history.push('/login');
         }
         response.json().then((data) => {
+          console.log(data);
           this.setState({
             name: data.nome,
             email: data.email,
@@ -141,14 +144,16 @@ class RegisterPage extends React.Component {
             cpf: data.cpf,
             facebook: data.facebook,
             entryYear: data.ano_ingresso,
-            exitYear: data.ano_conclusao,
+            exitYear: data.ano_conclusao,            
+            cargo: data.situacao==0 ? data.discFunction:data.egresFunction,
+            institution: data.situacao==0 ? data.discInstitution:data.egresInstitution,
             situation: ''+data.situacao,
             discInstitution: data.discInstitution,
-            discFunction: data.discFunction,
+            //discFunction: data.discFunction,
             discSituation: ''+data.discSituation, 
             egresInstitution: data.egresInstitution,
             egresSituation: data.egresSituation,
-            egresFunction: ''+data.egresFunction,           
+            //egresFunction: ''+data.egresFunction,           
             imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now(),
             lattes: data.lattes,
             whatsapp: data.whatsapp
@@ -165,10 +170,9 @@ class RegisterPage extends React.Component {
   }
 
   addAluno(){
-    const token = false;
+    const token = sessionStorage.getItem('jwtToken');
     var request = {};
     var situacao_trabalhista = 0;
-
 
     if(this.state.situation == "Discente"){
       if(this.state.discSituation == "Não Trabalha"){
@@ -194,46 +198,28 @@ class RegisterPage extends React.Component {
       }
     }
 
-    
+    console.log(this.state.cargo);
+    console.log(this.state.institution);
     var body = JSON.stringify({
       "name": this.state.name,
       "email": this.state.email,
       "linkedin": this.state.linkedin,
-      // "unity": this.state.unityId,
-      // "course": this.state.course,
       "cpf": this.state.cpf,
       "password": md5(this.state.password),
       "facebook": this.state.facebook,
       "entryYear": parseInt(this.state.entryYear),
       "exitYear": parseInt(this.state.exitYear),
       "situation": (this.state.situation=="null" || this.state.situation=="" ? 0 : (this.state.situation == "Egresso"? 1 : 0) ),
-      "discente_institutuion": this.state.discInstitution,
+      "discente_institutuion": this.state.situation ? this.state.institution : '',
       "discente_situation": situacao_trabalhista,
-      "discente_function": this.state.discFunction,
-      "egresso_institutuion": this.state.egresInstitution,
+      "discente_function": this.state.situation ? this.state.cargo : '',
+      "egresso_institutuion": this.state.situation ? '' : this.state.institution,
       "egresso_situation": situacao_trabalhista,
-      "egresso_function": this.state.egresFunction,
+      "egresso_function": this.state.situation ? '' : this.state.cargo,
       "lattes": this.state.lattes,
       "whatsapp": this.state.whatsapp,
-      // "name": "Diogo Roberto Duarte da Costa",
-      // "email": "duartediogo98@gmail.com",
-      // "linkedin": "linkparalinkedin.com",
       "unity": parseInt(this.state.unity),
       "course": parseInt(this.state.course)
-      // "cpf": "0346666666",
-      // "password": md5("justapass123"),
-      // "facebook": "umlinkparaofacebook.com",
-      // "entryYear": 2017,
-      // "exitYear": 2021,
-      // "situation": 1,
-      // "discInstitution": "Ludus",
-      // "discSituation": 1,
-      // "discFunction": "programador",
-      // "egresInstitution": "ludus",
-      // "egresSituation": 1,
-      // "egresFunction": "Programador",
-      // "lattes": "curriculotattes.com",
-      // "whatsapp": "99999-9999"
     })
     console.log(body)
     if(token) {
@@ -404,20 +390,14 @@ class RegisterPage extends React.Component {
   //   }
   // }
   handleChangeDiscInstitution(evt) {
-    if(evt.target.id === 'disc_institution'){
+    if(evt.target.id === 'instituition'){
         this.setState({
-            discInstitution : evt.target.value
+            institution : evt.target.value
         });
     }
   }
   handleChangeDiscFunction(evt) {
-    if(this.state.situation == "discente"){
-      this.setState({discFunction : evt.target.value});
-      this.setState({egresFunction: ""});
-    }else{
-      this.setState({egresFunction:evt.target.value});
-      this.setState({discFunction : ""});
-    }
+    this.setState({cargo:evt.target.value});
   }
   // handleChangeDiscSituation(evt) {
   //   if(evt.target.id === 'disc_situation'){
@@ -572,6 +552,7 @@ let authData = <CardBody>
                         <CustomInput
                             labelText="CPF"
                             id="cpf"
+                            value={this.state.cpf}
                             formControlProps={{
                               fullWidth: true
                             }}
@@ -627,6 +608,7 @@ let authData = <CardBody>
                           <CustomInput
                             labelText="Nome Completo..."
                             id="name"
+                            value={this.state.name}
                             formControlProps={{
                               fullWidth: true
                             }}
@@ -643,6 +625,7 @@ let authData = <CardBody>
                           <CustomInput
                             labelText="Email..."
                             id="email"
+                            value={this.state.email}
                             formControlProps={{
                               fullWidth: true
                             }}
@@ -689,6 +672,7 @@ let personalData = <CardBody>
                 <CustomInput
                   labelText="Facebook url..."
                             id="facebook"
+                            value={this.state.facebook}
                             formControlProps={{
                               fullWidth: true
                             }}
@@ -709,6 +693,7 @@ let personalData = <CardBody>
                                 <CustomInput
                                   labelText="Ano de entrada"
                                   id="entry_year"
+                                  value={this.state.entryYear}
                                   formControlProps={{
                                     fullWidth: true
                                   }}
@@ -728,6 +713,7 @@ let personalData = <CardBody>
                             
                               <CustomInput
                                   labelText="Ano de saida"
+                                  value={this.state.exitYear}
                                   id="exit_year"
                                   formControlProps={{
                                     fullWidth: true
@@ -788,6 +774,7 @@ let personalData = <CardBody>
                           <CustomInput
                                 labelText="Whatsapp"
                                 id="whatsapp"
+                                value={this.state.whatsapp}
                                 formControlProps={{
                                   fullWidth: true
                                 }}
@@ -880,6 +867,7 @@ let professionalData = <CardBody>
                               <CustomInput
                                   labelText="Cargo"
                                   id="disc_function"
+                                  value={this.state.cargo}
                                   formControlProps={{
                                     fullWidth: true
                                   }}
@@ -896,10 +884,29 @@ let professionalData = <CardBody>
                                 />
                             </GridItem>
                           </GridContainer>
+                          <CustomInput
+                            labelText="Instituição"
+                            id="instituition"
+                            value={this.state.institution}
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                            inputProps={{
+                              onChange: ((event) => this.handleChangeDiscInstitution(event)),
+                              type: "text",
+                              disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <img src={linkedin} className={classes.inputIconsColor} />
+                                </InputAdornment>
+                              )
+                            }}
+                          />
                           
                           <CustomInput
                             labelText="Linkedin"
                             id="linkedin"
+                            value={this.state.linkedin}
                             formControlProps={{
                               fullWidth: true
                             }}
@@ -917,6 +924,7 @@ let professionalData = <CardBody>
                           <CustomInput
                             labelText="Lattes url.."
                             id="lattes"
+                            value={this.state.lattes}
                             formControlProps={{
                               fullWidth: true
                             }}

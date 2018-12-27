@@ -108,8 +108,8 @@ class ProfilePage extends React.Component {
             name: data.nome,
             email: data.email,
             linkedin: data.linkedin,
-            unity: data.unidade,
-            course: data.curso,
+            unity: data.unidade_nome,
+            course: data.curso_nome,
             cpf: data.cpf,
             facebook: data.facebook,
             entryYear: data.ano_ingresso,
@@ -158,7 +158,7 @@ class ProfilePage extends React.Component {
                 <GridItem xs={12} sm={12} md={6}>
                   <div className={classes.profile}>
                     <div>
-                      <img src={profile} alt="..." className={imageClasses} />
+                      <img src={this.state.imageURL} alt="..." className={imageClasses} />
                     </div>
                     <div className={classes.name}>
                     <h3 className={classes.title}>{this.state.name}</h3>
