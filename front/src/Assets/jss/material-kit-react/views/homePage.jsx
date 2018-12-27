@@ -1,5 +1,5 @@
 import { container, title } from "assets/jss/material-kit-react.jsx";
-
+import { primaryColor } from "assets/jss/material-kit-react.jsx";
 import imagesStyle from "assets/jss/material-kit-react/imagesStyles.jsx";
 
 const profilePageStyle = {
@@ -9,13 +9,20 @@ const profilePageStyle = {
     ...container
   },
   profile: {
+    color: "#3c4858",
     textAlign: "center",
     "& img": {
       maxWidth: "160px",
       width: "100%",
       marginTop: "100px",
-      transform: "translate3d(0, -50%, 0)"
-    }
+      transform: "translate3d(0, -50%, 0)",
+    },
+    "&:hover,&:focus": {
+      color: "white !important",
+      backgroundColor: primaryColor,
+      boxShadow:
+        "0 14px 26px -12px rgba(153, 153, 153, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(153, 153, 153, 0.2)"
+    },
   },
   description: {
     margin: "1.071rem auto 0",
@@ -55,7 +62,6 @@ const profilePageStyle = {
     position: "relative",
     marginTop: "25px",
     minHeight: "16px",
-    color: "#3c4858",
     textDecoration: "none"
   },
   socials: {
@@ -80,11 +86,9 @@ const profilePageStyle = {
     marginTop: "0px",
     marginBottom: "15px",
     minHeight: "32px",
-    color: "#3c4858",
     textDecoration: "none"
   },
   egressosProfession:{
-    color: "#3c4858",
   },
   title: {
     ...title,
@@ -101,7 +105,6 @@ const profilePageStyle = {
     position: "relative",
     marginTop: "30px",
     minHeight: "32px",
-    color: "#3c4858",
     textDecoration: "none"
   },
   egressosContainer:{
