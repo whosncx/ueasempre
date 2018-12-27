@@ -133,27 +133,27 @@ class RegisterPage extends React.Component {
         }
         response.json().then((data) => {
           this.setState({
-            // name: data.nome,
-            // email: data.email,
-            // linkedin: data.linkedin,
-            // unity: data.unidade,
-            // course: data.curso,
-            // cpf: data.cpf,
-            // facebook: data.facebook,
-            // entryYear: data.ano_ingresso,
-            // exitYear: data.ano_conclusao,
-            // situation: ''+data.situacao,
-            // discInstitution: data.discInstitution,
-            // discFunction: data.discFunction,
-            // discSituation: ''+data.discSituation, 
-            // egresInstitution: data.egresInstitution,
-            // egresSituation: data.egresSituation,
-            // egresFunction: ''+data.egresFunction,           
-            // imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now(),
-            // lattes: data.lattes,
-            // whatsapp: data.whatsapp
+            name: data.nome,
+            email: data.email,
+            linkedin: data.linkedin,
+            unity: data.unidade,
+            course: data.curso,
+            cpf: data.cpf,
+            facebook: data.facebook,
+            entryYear: data.ano_ingresso,
+            exitYear: data.ano_conclusao,
+            situation: ''+data.situacao,
+            discInstitution: data.discInstitution,
+            discFunction: data.discFunction,
+            discSituation: ''+data.discSituation, 
+            egresInstitution: data.egresInstitution,
+            egresSituation: data.egresSituation,
+            egresFunction: ''+data.egresFunction,           
+            imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now(),
+            lattes: data.lattes,
+            whatsapp: data.whatsapp
           })
-          // this.getCourses(this.state.unity);
+          this.getCourses(this.state.unity);
         });
       }).catch((e) => {
         sessionStorage.setItem('jwtToken', '');

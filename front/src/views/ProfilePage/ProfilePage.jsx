@@ -143,6 +143,10 @@ class ProfilePage extends React.Component {
       classes.imgFluid
     );
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
+    var edit = null;
+    if(sessionStorage.getItem('jwtToken') !== null && sessionStorage.getItem('jwtToken') !== ''){
+      edit = <a href='/register-page'><Button className='grid-registerButtonBoxLeft'>Editar</Button></a>
+    }
     return (
       <div>
         <Navbar/>
@@ -184,8 +188,8 @@ class ProfilePage extends React.Component {
                     <p type='Lattes' >Lattes: {this.state.lattes}</p>
                     <p  type='whatsapp' >Whatsapp: {this.state.whatsapp}</p>
 
-                    <a href='/'><button>Voltar</button></a>
-                    <a href='/cadastro'><button className='grid-registerButtonBoxLeft'>Editar</button></a>
+                    <a href='/list'><Button>Voltar</Button></a>
+                    {edit}
                   
               </div>
                 {/* <p>
