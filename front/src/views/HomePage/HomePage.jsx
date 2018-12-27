@@ -75,6 +75,14 @@ class HomePage extends React.Component {
       e.target.src = camera;
   }
 
+  openLink(link){
+    if(link==='' || link===null){
+      alert('Nenhuma pagina adicionada')
+    } else{ 
+      window.open(link);
+    }
+  }
+
 
   render() {
     const { classes, ...rest } = this.props;
@@ -136,13 +144,10 @@ class HomePage extends React.Component {
                    <div className={classes.name}>
                      <h4 className={classes.egressos}>{c.nome}</h4>
                      <h6 className={classes.egressosProfession}>{c.curso}</h6>
-                     <Button justIcon link className={classes.margin5}>
+                     <Button onClick={() => this.openLink(c.linkedin)} justIcon link className={classes.margin5}>
                        <i className={"fab fa-linkedin"} />
                      </Button>
-                     <Button justIcon link className={classes.margin5}>
-                       <i className={"fab fa-whatsapp"} />
-                     </Button>
-                     <Button justIcon link className={classes.margin5}>
+                     <Button onClick={() => this.openLink(c.facebook)} justIcon link className={classes.margin5}>
                        <i className={"fab fa-facebook"} />
                      </Button>
                    </div>
@@ -160,13 +165,10 @@ class HomePage extends React.Component {
                    <div className={classes.name}>
                      <h4 className={classes.egressos}>{c.nome}</h4>
                      <h6 className={classes.egressosProfession}>{c.curso}</h6>
-                     <Button justIcon link className={classes.margin5}>
+                     <Button onClick={() => this.openLink(c.linkedin)} justIcon link className={classes.margin5}>
                        <i className={"fab fa-linkedin"} />
                      </Button>
-                     <Button justIcon link className={classes.margin5}>
-                       <i className={"fab fa-whatsapp"} />
-                     </Button>
-                     <Button justIcon link className={classes.margin5}>
+                     <Button onClick={() => this.openLink(c.facebook)} justIcon link className={classes.margin5}>
                        <i className={"fab fa-facebook"} />
                      </Button>
                    </div>

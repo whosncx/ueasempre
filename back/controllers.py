@@ -109,7 +109,8 @@ def all_alunos(qtd):
 
     output = []
     for aluno in alunos:
-        a_data = {'nome': aluno.aluno_nome, 'id': aluno.aluno_id, 'curso': Curso.query.filter_by(curso_id=aluno.aluno_uea_curso).first().curso_nome}
+        a_data = {'nome': aluno.aluno_nome, 'id': aluno.aluno_id, 'curso': Curso.query.filter_by(curso_id=aluno.aluno_uea_curso).first().curso_nome,
+                    'whatsapp': aluno.aluno_whatsapp, 'linkedin': aluno.aluno_linkedin, 'facebook': aluno.aluno_facebook}
 
         output.append(a_data)
         
