@@ -62,9 +62,9 @@ class LoginPage extends React.Component {
                 <Login/>
               </GridItem>
             </GridContainer>
-          </div>
-          
+          </div> 
         </div>
+        <Footer/>
       </div>
     );
   }

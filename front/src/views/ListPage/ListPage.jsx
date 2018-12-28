@@ -10,6 +10,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Navbar from "../ComponentsSempreUEA/Navbar";
 import Card from "components/Card/Card.jsx";
+import Footer from "components/Footer/Footer.jsx";
 
 import Global from 'views/Components/global'
 import camera from 'assets/img/faces/profile_default.png';
@@ -103,8 +104,9 @@ class HomePage extends React.Component {
               <br/>              
             </div>       
           </div>
-        </div>
-        <br/>     
+        </div> 
+        <br/>
+        <Footer/>   
         </div>
     );
   }

@@ -73,7 +73,7 @@ class LandingPage extends React.Component {
             <WorkSection />
           </div>
         </div>
-        <Footer />
+        <Footer/>
       </div>
     );
   }

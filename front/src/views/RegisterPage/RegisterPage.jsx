@@ -33,6 +33,7 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Footer from "components/Footer/Footer.jsx";
 
 
 import Navbar from "../ComponentsSempreUEA/Navbar.jsx";
@@ -987,6 +988,7 @@ let professionalData = <CardBody>
               </GridContainer>
           </div>
         </div>
+        <Footer/>
       </div>
     );
   }
