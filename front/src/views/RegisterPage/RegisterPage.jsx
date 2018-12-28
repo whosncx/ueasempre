@@ -951,7 +951,7 @@ let professionalData = <CardBody>
 
     return (
       <div>
-        <Navbar/>
+        <Navbar page={"register"}/>
         <div
           className={classes.pageHeader}
           style={{

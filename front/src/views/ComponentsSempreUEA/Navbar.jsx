@@ -29,6 +29,12 @@ import logo from "assets/img/logos/logo (3).svg"
 import profileImage from "assets/img/faces/avatar.jpg";
 
 class SectionNavbars extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      page : this.props.page
+    }
+  }
   goToRegister(){
     this.props.history.push('/register-page')
   }
@@ -41,9 +47,12 @@ class SectionNavbars extends React.Component {
   goToHome(){
     this.props.history.push('/')
   }
+
   render() {
+  {console.log("page: ", this.state.page)}
     const { classes } = this.props;
     return (
+
       <div>
         <Header
               brandImage={<img onClick={this.goToHome.bind(this)} className={classes.brandImage} src={logo}></img>}
@@ -54,31 +63,31 @@ class SectionNavbars extends React.Component {
                     <Button
                       onClick={this.goToHome.bind(this)}
                       className={classes.registerNavLink}
-                      color="greenButton">
+                      color={this.state.page == "home"? "primary":"transparent"}>
                       Home
                     </Button>
                   </ListItem>
                   <ListItem className={classes.listItem}>
                     <Button
                       onClick={this.goToLogin.bind(this)}
-                      className={classes.navLink}
-                      color="transparent">
+                      className={classes.registerNavLink}
+                      color={this.state.page == "login"? "primary":"transparent"}>
                       Login
                     </Button>
                   </ListItem>
                   <ListItem className={classes.listItem}>
                     <Button
                       onClick={this.goToRegister.bind(this)}
-                      className={classes.navLink}
-                      color="transparent">
+                      className={classes.registerNavLink}
+                      color={this.state.page == "register"? "primary":"transparent"}>
                       Cadastrar
                     </Button>
                   </ListItem>
                   <ListItem className={classes.listItem}>
                     <Button
                       onClick={this.goToList.bind(this)}
-                      className={classes.navLink}
-                      color="transparent">
+                      className={classes.registerNavLink}
+                      color={this.state.page == "students"? "primary":"transparent"}>
                       Alunos
                     </Button>
                   </ListItem>

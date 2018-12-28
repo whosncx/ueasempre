@@ -96,7 +96,7 @@ class HomePage extends React.Component {
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     return (
       <div>
-        <Navbar/>
+        <Navbar page={"home"}/>
         <Parallax filter image={require("assets/img/home-bg.jpg")}>
         <div className={classes.container}>
 

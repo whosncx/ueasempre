@@ -47,7 +47,7 @@ class LoginPage extends React.Component {
     const { classes, ...rest } = this.props;
     return (
       <div>
-        <Navbar/>
+        <Navbar page={"login"}/>
         <div
           className={classes.pageHeader}
           style={{

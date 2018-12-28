@@ -151,7 +151,7 @@ class ProfilePage extends React.Component {
     
     return (
       <div>
-        <Navbar/>
+        <Navbar page={"home"}/>
         <Parallax small filter image={require("assets/img/register-bg.jpg")} />
         <div className={classNames(classes.main, classes.mainRaised)}>
           <div>

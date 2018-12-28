@@ -68,7 +68,7 @@ class HomePage extends React.Component {
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     return (
       <div class='bg'>
-        <Navbar/>
+        <Navbar page={"students"}/>
         <br/>
         <br/>
         <br/>
