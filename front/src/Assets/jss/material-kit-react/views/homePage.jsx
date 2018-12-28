@@ -8,7 +8,7 @@ const profilePageStyle = {
     color: "#FFFFFF",
     ...container
   },
-  profile: {
+  profileList: {
     color: "#3c4858",
     textAlign: "center",
     "& img": {
@@ -22,6 +22,16 @@ const profilePageStyle = {
       backgroundColor: primaryColor,
       boxShadow:
         "0 14px 26px -12px rgba(153, 153, 153, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(153, 153, 153, 0.2)"
+    },
+  },
+  profile: {
+    color: "#3c4858",
+    textAlign: "center",
+    "& img": {
+      maxWidth: "160px",
+      width: "100%",
+      marginTop: "100px",
+      transform: "translate3d(0, -50%, 0)",
     },
   },
   description: {

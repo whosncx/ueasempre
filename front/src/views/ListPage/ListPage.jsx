@@ -86,7 +86,7 @@ class HomePage extends React.Component {
               <GridContainer className={classes.egressosContainer}>
               {this.state.alunos.map(c => 
                 <GridItem xs={6} sm={6} md={3}>
-                <Card onClick={() => this.openProfile(c.id)} className={classes.profile}>
+                <Card onClick={() => this.openProfile(c.id)} className={classes.profileList}>
                    <div>
                      <img onError={this.handleError} src={Global.API_URL + '/imgs/uploads/' + c.id + '.png?v=' + Date.now()} alt="..." className={navImageClasses} />
                    </div>

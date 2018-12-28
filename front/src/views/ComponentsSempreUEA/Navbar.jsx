@@ -46,7 +46,7 @@ class SectionNavbars extends React.Component {
     return (
       <div>
         <Header
-              brandImage={<img className={classes.brandImage} src={logo}></img>}
+              brandImage={<img onClick={this.goToHome.bind(this)} className={classes.brandImage} src={logo}></img>}
               fixed
               rightLinks={
                 <List className={classes.list}>

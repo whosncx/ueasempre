@@ -32,6 +32,7 @@ import work5 from "assets/img/examples/clem-onojegaw.jpg";
 
 import Global from './../Components/global'
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
+import camera from 'assets/img/faces/profile_default.png';
 
 class ProfilePage extends React.Component {
 
@@ -134,6 +135,9 @@ class ProfilePage extends React.Component {
       
       
   }
+  handleError(e){
+      e.target.src = camera;
+  }
   
   render() {
     const { classes, ...rest } = this.props;
@@ -145,7 +149,7 @@ class ProfilePage extends React.Component {
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     var edit = null;
     if(sessionStorage.getItem('jwtToken') !== null && sessionStorage.getItem('jwtToken') !== ''){
-      edit = <a href='/register-page'><Button className='grid-registerButtonBoxLeft'>Editar</Button></a>
+      edit =<Button onClick={()=>this.props.history.push('/register-page')} className='grid-registerButtonBoxLeft'>Editar</Button>
     }
     return (
       <div>
@@ -158,37 +162,26 @@ class ProfilePage extends React.Component {
                 <GridItem xs={12} sm={12} md={6}>
                   <div className={classes.profile}>
                     <div>
-                      <img src={this.state.imageURL} alt="..." className={imageClasses} />
+                      <img onError={this.handleError} src={this.state.imageURL} alt="..." className={imageClasses} />
                     </div>
                     <div className={classes.name}>
                     <h3 className={classes.title}>{this.state.name}</h3>
-                      <h6>DBA</h6>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-instagram"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-facebook"} />
-                      </Button>
                     </div>
                   </div>
                 </GridItem>
               </GridContainer>
               <div className={classes.description}>   
-                    <p id="cpf"> cpf: {this.state.cpf}</p>
                     <h id='unity' placeholder='Unidade' type='unity'><h>Unidade: </h>{this.state.unity}</h> 
                     <p type='entryYear'>Ano de Ingresso: {this.state.entryYear}</p>       
                     <h id='course' placeholder='Curso' type='course'><h>Curso: </h>{this.state.course}</h>
-                    <p type='exitYear'>Ano de Egresso: {this.state.exitYear? this.state.exitYear: ""}</p>       
-                    <p type='email' >Email: {this.state.email}</p>
-                    <p type='facebook' >Facebook: {this.state.facebook}</p>
-                    <p type='linkedin' >Linkedin: {this.state.linkedin}</p>
-                    <p type='Lattes' >Lattes: {this.state.lattes}</p>
+                    <p type='exitYear'>Ano de Egresso: {this.state.exitYear? this.state.exitYear: ""}</p>      
+                    <p type='email' >Email: <a target="_blank" href={'mailto:'+this.state.email}>{this.state.email}</a></p>
+                    <p type='facebook' >Facebook: <a target="_blank" href={this.state.facebook}>{this.state.facebook}</a> </p>
+                    <p type='linkedin' >Linkedin: <a target="_blank" href={this.state.linkedin}>{this.state.linkedin}</a></p>
+                    <p type='Lattes' >Lattes: <a target="_blank" href={this.state.lattes}>{this.state.lattes}</a></p>
                     <p  type='whatsapp' >Whatsapp: {this.state.whatsapp}</p>
 
-                    <a href='/list'><Button>Voltar</Button></a>
+                    <Button onClick={()=>this.props.history.push('/list')}>Voltar</Button>
                     {edit}
                   
               </div>
