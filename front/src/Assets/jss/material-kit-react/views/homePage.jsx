@@ -62,7 +62,7 @@ const profilePageStyle = {
     marginTop: "30px",
     minHeight: "18px",
     textDecoration: "none",
-    color: "#ccc"
+    color: "#ddd"
   },
   
   brandImage:{
