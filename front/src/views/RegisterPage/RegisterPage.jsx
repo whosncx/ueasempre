@@ -197,9 +197,13 @@ class RegisterPage extends React.Component {
         situacao_trabalhista = 4;
       }
     }
-
+    if(this.state.cargo===null||this.state.cargo===undefined){
+      this.setState({cargo:''});
+    }
+    if(this.state.institution===null||this.state.institution===undefined){
+      this.setState({institution:''});
+    }
     console.log(this.state.cargo);
-    console.log(this.state.institution);
     var body = JSON.stringify({
       "name": this.state.name,
       "email": this.state.email,
@@ -210,12 +214,12 @@ class RegisterPage extends React.Component {
       "entryYear": parseInt(this.state.entryYear),
       "exitYear": parseInt(this.state.exitYear),
       "situation": (this.state.situation=="null" || this.state.situation=="" ? 0 : (this.state.situation == "Egresso"? 1 : 0) ),
-      "discente_institutuion": this.state.situation ? this.state.institution : '',
+      "discente_institutuion": this.state.situation ? (this.state.institution===undefined? '':this.state.institution) : '',
       "discente_situation": situacao_trabalhista,
-      "discente_function": this.state.situation ? this.state.cargo : '',
-      "egresso_institutuion": this.state.situation ? '' : this.state.institution,
+      "discente_function": this.state.situation ? (this.state.cargo===undefined? '':this.state.cargo) : '',
+      "egresso_institutuion": this.state.situation ? '' : (this.state.institution===undefined? '':this.state.institution),
       "egresso_situation": situacao_trabalhista,
-      "egresso_function": this.state.situation ? '' : this.state.cargo,
+      "egresso_function": this.state.situation ? '' : (this.state.cargo===undefined? '':this.state.cargo),
       "lattes": this.state.lattes,
       "whatsapp": this.state.whatsapp,
       "unity": parseInt(this.state.unity),
@@ -241,11 +245,11 @@ class RegisterPage extends React.Component {
       }
     }
 
-    // if(this.state.name === '' || this.state.entryYear === '' || this.state.cpf === '' || this.state.password === ''
-    // || this.state.course === '' || this.state.course === 'escolha' || this.state.unity === '' || this.state.unity === 'escolha') {
-    //   alert('Prencha todos os valores');
-    //   return;
-    // }
+    if(this.state.name === '' || this.state.entryYear === '' || this.state.cpf === '' || this.state.password === ''
+    || this.state.course === '' || this.state.course === 'escolha' || this.state.unity === '' || this.state.unity === 'escolha') {
+      alert('Prencha todos os valores');
+      return;
+    }
 
 
     fetch(Global.API_URL + '/cadastro', request).then((response) => {
@@ -254,17 +258,19 @@ class RegisterPage extends React.Component {
             
             const form = new FormData();
             console.log(this.file);
-            form.append('file', this.file);
-            form.append('filename', data.id + '.png')
-      
-            fetch('http://localhost:5000/upload', {
-              method: 'POST',
-              body: form,
-            }).then((response) => {
-              response.json().then((body) => {
-                this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+            if(this.file!==null&&this.file!==undefined){              
+              form.append('file', this.file);
+              form.append('filename', data.id + '.png')
+        
+              fetch('http://localhost:5000/upload', {
+                method: 'POST',
+                body: form,
+              }).then((response) => {
+                response.json().then((body) => {
+                  this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+                });
               });
-            });
+            }
             // alert('Cadastro Realizado com Sucesso')
             // this.props.history.push('/login')
         }); 
