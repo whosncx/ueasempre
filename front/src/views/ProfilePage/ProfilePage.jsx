@@ -19,20 +19,10 @@ import Parallax from "components/Parallax/Parallax.jsx";
 import Navbar from "../ComponentsSempreUEA/Navbar.jsx";
 import profile from "assets/img/faces/bb.jpg";
 
-import studio1 from "assets/img/examples/studio-1.jpg";
-import studio2 from "assets/img/examples/studio-2.jpg";
-import studio3 from "assets/img/examples/studio-3.jpg";
-import studio4 from "assets/img/examples/studio-4.jpg";
-import studio5 from "assets/img/examples/studio-5.jpg";
-import work1 from "assets/img/examples/olu-eletu.jpg";
-import work2 from "assets/img/examples/clem-onojeghuo.jpg";
-import work3 from "assets/img/examples/cynthia-del-rio.jpg";
-import work4 from "assets/img/examples/mariya-georgieva.jpg";
-import work5 from "assets/img/examples/clem-onojegaw.jpg";
+import "./ProfilePage.css";
 
 import Global from './../Components/global'
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
-import camera from 'assets/img/faces/profile_default.png';
 
 class ProfilePage extends React.Component {
 
@@ -65,7 +55,6 @@ class ProfilePage extends React.Component {
           })
         }).then((response) => {       
           response.json().then((data) => {
-            console.log(data)
             this.setState({
               name: data.nome,
               email: data.email,
@@ -104,7 +93,6 @@ class ProfilePage extends React.Component {
         })
       }).then((response) => {       
         response.json().then((data) => {
-          console.log(data)
           this.setState({
             name: data.nome,
             email: data.email,
@@ -135,8 +123,17 @@ class ProfilePage extends React.Component {
       
       
   }
+
   handleError(e){
-      e.target.src = camera;
+    e.target.src = profile;
+  }
+
+  openLink(link){
+    if(link==='' || link===null){
+      alert('Nenhuma pagina adicionada')
+    } else{ 
+      window.open(link);
+    }
   }
   
   render() {
@@ -149,8 +146,9 @@ class ProfilePage extends React.Component {
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     var edit = null;
     if(sessionStorage.getItem('jwtToken') !== null && sessionStorage.getItem('jwtToken') !== ''){
-      edit =<Button onClick={()=>this.props.history.push('/register-page')} className='grid-registerButtonBoxLeft'>Editar</Button>
+      edit = <a href='/register-page'><Button color="primary" className='grid-registerButtonBoxLeft'>Editar</Button></a>
     }
+    
     return (
       <div>
         <Navbar/>
@@ -162,28 +160,63 @@ class ProfilePage extends React.Component {
                 <GridItem xs={12} sm={12} md={6}>
                   <div className={classes.profile}>
                     <div>
-                      <img onError={this.handleError} src={this.state.imageURL} alt="..." className={imageClasses} />
+                      
+                      <img onError={this.handleError} src={Global.API_URL + '/imgs/uploads/' + this.state.cpf + '.png?v=' + Date.now()} alt="..." className={imageClasses} />
                     </div>
                     <div className={classes.name}>
                     <h3 className={classes.title}>{this.state.name}</h3>
+                    <br/>
+                      
+                      <Button onClick={() => this.openLink(this.state.linkedin)} justIcon link className={classes.margin5}>
+                        <i className={"fab fa-linkedin"} />
+                      </Button>
+                      <Button onClick={() => this.openLink(this.state.facebook)} justIcon link className={classes.margin5}>
+                        <i className={"fab fa-facebook"} />
+                      </Button>
                     </div>
                   </div>
                 </GridItem>
               </GridContainer>
               <div className={classes.description}>   
-                    <h id='unity' placeholder='Unidade' type='unity'><h>Unidade: </h>{this.state.unity}</h> 
-                    <p type='entryYear'>Ano de Ingresso: {this.state.entryYear}</p>       
-                    <h id='course' placeholder='Curso' type='course'><h>Curso: </h>{this.state.course}</h>
-                    <p type='exitYear'>Ano de Egresso: {this.state.exitYear? this.state.exitYear: ""}</p>      
-                    <p type='email' >Email: <a target="_blank" href={'mailto:'+this.state.email}>{this.state.email}</a></p>
-                    <p type='facebook' >Facebook: <a target="_blank" href={this.state.facebook}>{this.state.facebook}</a> </p>
-                    <p type='linkedin' >Linkedin: <a target="_blank" href={this.state.linkedin}>{this.state.linkedin}</a></p>
-                    <p type='Lattes' >Lattes: <a target="_blank" href={this.state.lattes}>{this.state.lattes}</a></p>
-                    <p  type='whatsapp' >Whatsapp: {this.state.whatsapp}</p>
+                    <GridContainer>
+                      <GridItem xs={12} sm={12} md={6}>
+                        <GridContainer justify="center">
+                          <GridItem xs={12} sm={12} md={12}>
+                            <p id='unity' placeholder='Unidade' type='unity'><strong>Unidade: </strong>{this.state.unity}</p>
+                          </GridItem>
+                          <GridItem xs={12} sm={12} md={12}>
+                            <p id='course' placeholder='Curso' type='course'><strong>Curso: </strong>{this.state.course}</p>
+                          </GridItem>
 
-                    <Button onClick={()=>this.props.history.push('/list')}>Voltar</Button>
-                    {edit}
-                  
+                          <GridItem xs={12} sm={12} md={12}>
+                            <p type='entryYear'><strong>Ano de Ingresso: </strong>{this.state.entryYear}</p>
+                          </GridItem>
+                          <GridItem xs={12} sm={12} md={12}>
+                            <p type='exitYear'><strong>Ano de Egresso: </strong>{this.state.exitYear? this.state.exitYear: ""}</p>
+                          </GridItem>
+                        </GridContainer>
+                      </GridItem>
+                      <GridItem xs={12} sm={12} md={6}>
+                        <GridContainer justify="center">
+                          <GridItem xs={12} sm={12} md={12}>
+                            <p type='email' ><strong>Email: </strong>{this.state.email}</p>
+                          </GridItem>
+                          <GridItem xs={12} sm={12} md={12}>
+                            <p type='Lattes' ><strong>Lattes: </strong>{this.state.lattes}</p>
+                          </GridItem>
+                          <GridItem xs={12} sm={12} md={12}>
+                            <p  type='whatsapp' ><strong>Whatsapp: </strong>{this.state.whatsapp}</p>
+                          </GridItem>
+                        </GridContainer>
+                      </GridItem>
+                    </GridContainer>
+                    {/* <p id="cpf"> cpf: {this.state.cpf}</p> */}
+
+                    <br/>
+                    <div className={classes.centerContainer}>
+                      <a href='/list'><Button>Voltar</Button></a>
+                      {edit}
+                    </div>
               </div>
                 {/* <p>
                   Formada em Sistema de Informação na Escola Superior de Tecnologia (EST)
@@ -198,7 +231,7 @@ class ProfilePage extends React.Component {
             </div>
           </div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     );
   }

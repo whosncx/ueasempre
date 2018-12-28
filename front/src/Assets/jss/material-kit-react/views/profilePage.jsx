@@ -17,7 +17,10 @@ const profilePageStyle = {
     margin: "1.071rem auto 0",
     maxWidth: "600px",
     color: "#999",
-    textAlign: "center !important"
+  },
+  centerContainer: {
+    width: "100%",
+    textAlign: "center"
   },
   name: {
     marginTop: "-80px"
@@ -42,6 +45,7 @@ const profilePageStyle = {
     minHeight: "32px",
     textDecoration: "none"
   },
+
   socials: {
     marginTop: "0",
     width: "100%",
