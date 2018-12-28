@@ -87,6 +87,8 @@ def aluno(aluno_id):
         'curso': aluno.curso.curso_nome, 
         'unidade': aluno.unidade.unidade_nome, 
         'senha': aluno.aluno_senha,
+        'lattes': aluno.aluno_lattes,
+        'whatsapp': aluno.aluno_whatsapp,
         'ano_ingresso' : aluno.aluno_ano_ingresso, 
         'ano_conclusao' : aluno.aluno_ano_conclusao, 
         'discente_inst' : aluno.aluno_discente_instituicao,
@@ -294,7 +296,13 @@ static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sta
 
 @app.route('/imgs/uploads/<path>', methods=['GET'])
 def serve_file_in_dir(path):
-    return send_file('imgs/uploads/' + path)
+    if(os.path.isfile('imgs/uploads/' + path)):
+        return send_file('imgs/uploads/' + path)
+    else:
+        response = make_response(jsonify({'message': 'File not found!'}), 404)
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        return response
+    
 
 
 

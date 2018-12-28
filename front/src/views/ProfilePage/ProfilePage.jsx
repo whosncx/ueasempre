@@ -3,21 +3,14 @@ import React from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// @material-ui/icons
-import Camera from "@material-ui/icons/Camera";
-import Palette from "@material-ui/icons/Palette";
-import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "components/Header/Header.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import HeaderLinks from "components/Header/HeaderLinks.jsx";
-import NavPills from "components/NavPills/NavPills.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 import Navbar from "../ComponentsSempreUEA/Navbar.jsx";
-import profile from "assets/img/faces/bb.jpg";
+import camera from 'assets/img/faces/profile_default.png';
 
 import "./ProfilePage.css";
 
@@ -43,7 +36,9 @@ class ProfilePage extends React.Component {
       cpf: '',
       password: '',
       facebook: '',
-      imageURL: ''
+      imageURL: '',      
+      lattes: '',
+      whatsapp: ''
     }
   }
 
@@ -55,6 +50,7 @@ class ProfilePage extends React.Component {
           })
         }).then((response) => {       
           response.json().then((data) => {
+            console.log(data);
             this.setState({
               name: data.nome,
               email: data.email,
@@ -71,10 +67,10 @@ class ProfilePage extends React.Component {
               discSituation: ''+data.discSituation, 
               egresInstitution: data.egresInstitution,
               egresSituation: data.egresSituation,
-              egresFunction: ''+data.egresFunction,           
-              imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now(),
+              egresFunction: ''+data.egresFunction,
               lattes: data.lattes,
-              whatsapp: data.whatsapp
+              whatsapp: data.whatsapp,
+              imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now()
             })
           }).catch((e) => {
             alert('Houve um erro ao listar perfil, tente novamente mais tarde');
@@ -93,6 +89,7 @@ class ProfilePage extends React.Component {
         })
       }).then((response) => {       
         response.json().then((data) => {
+          console.log(data);
           this.setState({
             name: data.nome,
             email: data.email,
@@ -109,10 +106,10 @@ class ProfilePage extends React.Component {
             discSituation: ''+data.discSituation, 
             egresInstitution: data.egresInstitution,
             egresSituation: data.egresSituation,
-            egresFunction: ''+data.egresFunction,           
-            imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now(),
+            egresFunction: ''+data.egresFunction,                
             lattes: data.lattes,
-            whatsapp: data.whatsapp
+            whatsapp: data.whatsapp,
+            imageURL: Global.API_URL + '/imgs/uploads/' + data.cpf + '.png?v=' + Date.now(),
           })
         });
       }).catch((e) => {
@@ -125,7 +122,7 @@ class ProfilePage extends React.Component {
   }
 
   handleError(e){
-    e.target.src = profile;
+    e.target.src = camera;
   }
 
   openLink(link){
@@ -137,13 +134,12 @@ class ProfilePage extends React.Component {
   }
   
   render() {
-    const { classes, ...rest } = this.props;
+    const { classes } = this.props;
     const imageClasses = classNames(
       classes.imgRaised,
       classes.imgRoundedCircle,
       classes.imgFluid
     );
-    const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     var edit = null;
     if(sessionStorage.getItem('jwtToken') !== null && sessionStorage.getItem('jwtToken') !== ''){
       edit = <a href='/register-page'><Button color="primary" className='grid-registerButtonBoxLeft'>Editar</Button></a>
@@ -199,10 +195,10 @@ class ProfilePage extends React.Component {
                       <GridItem xs={12} sm={12} md={6}>
                         <GridContainer justify="center">
                           <GridItem xs={12} sm={12} md={12}>
-                            <p type='email' ><strong>Email: </strong>{this.state.email}</p>
+                            <p type='email' ><strong>Email: </strong><a href={'mailto:'+this.state.email}>{this.state.email}</a></p>
                           </GridItem>
                           <GridItem xs={12} sm={12} md={12}>
-                            <p type='Lattes' ><strong>Lattes: </strong>{this.state.lattes}</p>
+                            <p type='Lattes' ><strong>Lattes: </strong><a href={this.state.lattes}>{this.state.lattes}</a></p>
                           </GridItem>
                           <GridItem xs={12} sm={12} md={12}>
                             <p  type='whatsapp' ><strong>Whatsapp: </strong>{this.state.whatsapp}</p>

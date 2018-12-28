@@ -63,7 +63,6 @@ class Header extends React.Component {
       color,
       rightLinks,
       leftLinks,
-      brand,
       brandImage,
       fixed,
       absolute

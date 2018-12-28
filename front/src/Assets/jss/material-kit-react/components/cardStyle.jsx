@@ -1,15 +1,3 @@
-import {
-  grayColor,
-  roseColor,
-  primaryColor,
-  secondaryColor,
-  infoColor,
-  successColor,
-  warningColor,
-  dangerColor,
-  greenButton
-} from "assets/jss/material-kit-react.jsx";
-
 const cardStyle = {
   card: {
     border: "0",

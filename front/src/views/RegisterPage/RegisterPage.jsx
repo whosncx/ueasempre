@@ -12,14 +12,8 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Email from "@material-ui/icons/Email";
 import PersonOutline from "@material-ui/icons/PersonOutline";
 import People from "@material-ui/icons/People";
-import Face from "@material-ui/icons/Face";
 import DateRange from "@material-ui/icons/DateRange";
 import Description from "@material-ui/icons/Description";
-import School from "@material-ui/icons/School";
-import AccountBalance from "@material-ui/icons/AccountBalance";
-import Dashboard from "@material-ui/icons/Dashboard";
-import Schedule from "@material-ui/icons/Schedule";
-import List from "@material-ui/icons/List";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -35,7 +29,6 @@ import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Footer from "components/Footer/Footer.jsx";
 
-
 import Navbar from "../ComponentsSempreUEA/Navbar.jsx";
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
@@ -47,8 +40,6 @@ import facebook from "assets/img/facebook-icon-input.png";
 import employee from "assets/img/employee.png";
 import linkedin from "assets/img/linkedin.png";
 import whatsapp from "assets/img/whatsapp.png";
-
-import { exact } from "prop-types";
 
 import profile from "assets/img/faces/profile_default.png";
 
@@ -146,8 +137,8 @@ class RegisterPage extends React.Component {
             facebook: data.facebook,
             entryYear: data.ano_ingresso,
             exitYear: data.ano_conclusao,            
-            cargo: data.situacao==0 ? data.discFunction:data.egresFunction,
-            institution: data.situacao==0 ? data.discInstitution:data.egresInstitution,
+            cargo: data.situacao===0 ? data.discFunction:data.egresFunction,
+            institution: data.situacao===0 ? data.discInstitution:data.egresInstitution,
             situation: ''+data.situacao,
             discInstitution: data.discInstitution,
             //discFunction: data.discFunction,
@@ -175,26 +166,26 @@ class RegisterPage extends React.Component {
     var request = {};
     var situacao_trabalhista = 0;
 
-    if(this.state.situation == "Discente"){
-      if(this.state.discSituation == "Não Trabalha"){
+    if(this.state.situation === "Discente"){
+      if(this.state.discSituation === "Não Trabalha"){
         situacao_trabalhista = 0;
-      }else if(this.state.discSituation == "Bolsista"){
+      }else if(this.state.discSituation === "Bolsista"){
         situacao_trabalhista = 1;
-      }else if(this.state.discSituation == "Estagiário"){
+      }else if(this.state.discSituation === "Estagiário"){
         situacao_trabalhista = 2;
-      }else if(this.state.discSituation == "CLT"){
+      }else if(this.state.discSituation === "CLT"){
         situacao_trabalhista = 3;
       }else{
         situacao_trabalhista = 4;
       }
     }else{
-      if(this.state.discSituation == "Não Trabalha"){
+      if(this.state.discSituation === "Não Trabalha"){
         situacao_trabalhista = 1;
-      }else if(this.state.discSituation == "Bolsista"){
+      }else if(this.state.discSituation === "Bolsista"){
         situacao_trabalhista = 2;
-      }else if(this.state.discSituation == "CLT"){
+      }else if(this.state.discSituation === "CLT"){
         situacao_trabalhista = 3;
-      }else if(this.state.discSituation == "Outros"){
+      }else if(this.state.discSituation === "Outros"){
         situacao_trabalhista = 4;
       }
     }
@@ -214,7 +205,7 @@ class RegisterPage extends React.Component {
       "facebook": this.state.facebook,
       "entryYear": parseInt(this.state.entryYear),
       "exitYear": parseInt(this.state.exitYear),
-      "situation": (this.state.situation=="null" || this.state.situation=="" ? 0 : (this.state.situation == "Egresso"? 1 : 0) ),
+      "situation": (this.state.situation==="null" || this.state.situation==="" ? 0 : (this.state.situation === "Egresso"? 1 : 0) ),
       "discente_institutuion": this.state.situation ? (this.state.institution===undefined? '':this.state.institution) : '',
       "discente_situation": situacao_trabalhista,
       "discente_function": this.state.situation ? (this.state.cargo===undefined? '':this.state.cargo) : '',
@@ -355,7 +346,7 @@ class RegisterPage extends React.Component {
   };
 
   handleChangeDiscSituation = discSituation => event => {
-    if(this.state.situation == 0){
+    if(this.state.situation === 0){
       this.setState({ [discSituation]: event.target.value });
       this.setState({ egresSituation: "" });
     }else{
@@ -376,7 +367,7 @@ class RegisterPage extends React.Component {
     // const unity = 0;
     // const data = this.state.unityOptions;
     // data.forEach(unidade => {
-    //   if(unidade.name == event.target.value){
+    //   if(unidade.name === event.target.value){
     //     this.setState({unityId: parseInt(unidade.id)});
     //   }
     // });
@@ -386,7 +377,7 @@ class RegisterPage extends React.Component {
   };
 
   handleChangeTrabalho = name => event => {
-    this.setState({ toggleSituationState: (this.state.toggleSituationState == "desempregado"? "trabalhando":"desempregado") });
+    this.setState({ toggleSituationState: (this.state.toggleSituationState === "desempregado"? "trabalhando":"desempregado") });
   };
 
   // handleChangeSituation(evt) {
@@ -480,8 +471,8 @@ class RegisterPage extends React.Component {
   
   nextStep(evt){
       evt.preventDefault();
-      if(this.state.step != 2){
-        if(this.state.step == 1){
+      if(this.state.step !== 2){
+        if(this.state.step === 1){
           this.setState({textButton: "Enviar"})
         }else{
           this.setState({textButton: "Próximo"})
@@ -501,14 +492,14 @@ class RegisterPage extends React.Component {
 
   toggleSituation(evt){
     evt.preventDefault();
-    if(this.state.toggleSituationState == "desempregado" && evt.target.id != "btnDesempregado"){
+    if(this.state.toggleSituationState === "desempregado" && evt.target.id !== "btnDesempregado"){
       
       this.setState({
         toggleSituationState:"trabalhando",
         situation: "trabalhando"
       });
     }
-    else if(evt.target.id != "btnTrabalhando"){
+    else if(evt.target.id !== "btnTrabalhando"){
       
       this.setState({
         toggleSituationState:"desempregado",
@@ -527,7 +518,7 @@ class RegisterPage extends React.Component {
   
 
   render() {
-  const { classes, ...rest } = this.props;
+  const { classes } = this.props;
   const cardTitles = ["Dados de Autenticação", "Dados Pessoais", "Dados Profissionais"];
   
   const optionsDisc = [
@@ -655,7 +646,7 @@ let personalData = <CardBody>
                     <GridContainer justify="center">
                       <GridItem xs={6} sm={6} md={6}>
                         <div>
-                          <img src={this.state.imageURL != ""? this.state.imageURL : profile} alt="..." className={imageClasses} />
+                          <img src={this.state.imageURL !== ""? this.state.imageURL : profile} alt="..." className={imageClasses} />
                         </div>
                       </GridItem>
                     </GridContainer>
@@ -688,7 +679,7 @@ let personalData = <CardBody>
                               type: "text",
                               endAdornment: (
                                 <InputAdornment position="end">
-                                  <img src={facebook} className={classes.inputIconsColor}></img>
+                                  <img alt="..."  src={facebook} className={classes.inputIconsColor}></img>
                                   {/* <PersonOutline className={classes.inputIconsColor} /> */}
                                 </InputAdornment>
                               )
@@ -790,7 +781,7 @@ let personalData = <CardBody>
                                   type: "text",
                                   endAdornment: (
                                     <InputAdornment position="end">
-                                      <img src={whatsapp} className={classes.inputIconsColor} />
+                                      <img alt='...' src={whatsapp} className={classes.inputIconsColor} />
                                     </InputAdornment>
                                   )
                                 }}
@@ -826,7 +817,7 @@ let professionalData = <CardBody>
                                 control={
                                   <MuiThemeProvider theme={theme}>
                                     <Switch
-                                      checked={this.state.toggleSituationState == "desempregado"? false:true}
+                                      checked={this.state.toggleSituationState === "desempregado"? false:true}
                                       onChange={this.handleChangeTrabalho('trabalho')}
                                       value="trabalho"
                                       color="primary"
@@ -856,16 +847,16 @@ let professionalData = <CardBody>
                                 <InputLabel htmlFor="situation-disc-for">Situação Trabalhista</InputLabel>
                                 <Select
                                   native
-                                  value={this.state.situation == 0? this.state.discSituation:this.state.egresSituation}
+                                  value={this.state.situation === 0? this.state.discSituation:this.state.egresSituation}
                                   onChange={this.handleChangeDiscSituation('discSituation')}
                                   inputProps={{
-                                    disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
+                                    disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
                                     name: 'discSituation',
                                     id: 'situation-disc-for',
                                   }}
                                 >
                                   <option value=""/>
-                                  {this.state.situation == 0? this.getOptions(optionsDisc):this.getOptions(optionsEgres)}
+                                  {this.state.situation === 0? this.getOptions(optionsDisc):this.getOptions(optionsEgres)}
 
                                 </Select>
                             </FormControl>
@@ -881,10 +872,10 @@ let professionalData = <CardBody>
                                   inputProps={{
                                     onChange: ((event) => this.handleChangeDiscFunction(event)),
                                     type: "text",
-                                    disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
+                                    disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
                                     endAdornment: (
                                       <InputAdornment position="end">
-                                        <img src={employee} className={classes.inputIconsColor} />
+                                        <img alt='...' src={employee} className={classes.inputIconsColor} />
                                       </InputAdornment>
                                     )
                                   }}
@@ -901,10 +892,10 @@ let professionalData = <CardBody>
                             inputProps={{
                               onChange: ((event) => this.handleChangeDiscInstitution(event)),
                               type: "text",
-                              disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
+                              disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
                               endAdornment: (
                                 <InputAdornment position="end">
-                                  <img src={linkedin} className={classes.inputIconsColor} />
+                                  <img alt='...' src={linkedin} className={classes.inputIconsColor} />
                                 </InputAdornment>
                               )
                             }}
@@ -920,10 +911,10 @@ let professionalData = <CardBody>
                             inputProps={{
                               onChange: ((event) => this.handleChangeLinkedin(event)),
                               type: "text",
-                              disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
+                              disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
                               endAdornment: (
                                 <InputAdornment position="end">
-                                  <img src={linkedin} className={classes.inputIconsColor} />
+                                  <img alt='...' src={linkedin} className={classes.inputIconsColor} />
                                 </InputAdornment>
                               )
                             }}
@@ -938,7 +929,7 @@ let professionalData = <CardBody>
                             inputProps={{
                               onChange: ((event) => this.handleChangeLattes(event)),
                               type: "text",
-                              disabled: (this.state.toggleSituationState == "trabalhando"?false:true),
+                              disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
                               endAdornment: (
                                 <InputAdornment position="end">
                                   <Description className={classes.inputIconsColor} />
@@ -970,12 +961,12 @@ let professionalData = <CardBody>
                     <CardHeader color="primary" className={classes.cardHeader}>
                       <h4>{cardTitles[this.state.step]}</h4>
                     </CardHeader>
-                    {this.state.step == 0? authData : ""}
-                    {this.state.step == 1? personalData : ""}
-                    {this.state.step == 2? professionalData: ""}
+                    {this.state.step === 0? authData : ""}
+                    {this.state.step === 1? personalData : ""}
+                    {this.state.step === 2? professionalData: ""}
 
                     <CardFooter className={classes.cardFooter}>
-                    <Button disabled={this.state.step == 0? true:false} onClick={this.backStep.bind(this)} color="secondary" size="md">
+                    <Button disabled={this.state.step === 0? true:false} onClick={this.backStep.bind(this)} color="secondary" size="md">
                         voltar
                       </Button>
                       <Button onClick={this.nextStep.bind(this)} color="primary" size="md">

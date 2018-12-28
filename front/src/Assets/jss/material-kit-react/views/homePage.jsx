@@ -33,12 +33,6 @@ const profilePageStyle = {
       marginTop: "100px",
       transform: "translate3d(0, -50%, 0)",
     },
-    "&:hover,&:focus": {
-      color: "white !important",
-      backgroundColor: primaryColor,
-      boxShadow:
-        "0 14px 26px -12px rgba(153, 153, 153, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(153, 153, 153, 0.2)"
-    },
   },
   description: {
     margin: "1.071rem auto 0",
@@ -67,7 +61,8 @@ const profilePageStyle = {
     position: "relative",
     marginTop: "30px",
     minHeight: "18px",
-    textDecoration: "none"
+    textDecoration: "none",
+    color: "#ccc"
   },
   
   brandImage:{
@@ -105,15 +100,6 @@ const profilePageStyle = {
     textDecoration: "none"
   },
   egressosProfession:{
-  },
-  title: {
-    ...title,
-    display: "inline-block",
-    position: "relative",
-    marginTop: "30px",
-    minHeight: "18px",
-    color: "#FFFFFF",
-    textDecoration: "none"
   },
   titleProfile: {
     ...title,

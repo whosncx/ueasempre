@@ -5,7 +5,6 @@ import './ListPage.css';
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // core components
-import Button from "components/CustomButtons/Button.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Navbar from "../ComponentsSempreUEA/Navbar";
@@ -32,7 +31,7 @@ class HomePage extends React.Component {
       }
       fetch(Global.API_URL + '/alunos/0', request).then((response) => {
           response.json().then((data) => {
-              console.log(data.alunos)
+              //console.log(data.alunos)
               this.setState({alunos:data.alunos}) 
           });      
       }).catch((e) => {
@@ -59,12 +58,7 @@ class HomePage extends React.Component {
 
 
   render() {
-    const { classes, ...rest } = this.props;
-    const imageClasses = classNames(
-      classes.imgRaised,
-      classes.imgRoundedCircle,
-      classes.imgFluid
-    );
+    const { classes } = this.props;
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     return (
       <div class='bg'>
@@ -84,7 +78,7 @@ class HomePage extends React.Component {
                   </h2>
               </div>
               <GridContainer className={classes.egressosContainer}>
-              {this.state.alunos.map(c => 
+              {this.state.alunos.map((c) => 
                 <GridItem xs={6} sm={6} md={3}>
                 <Card onClick={() => this.openProfile(c.id)} className={classes.profileList}>
                    <div>
