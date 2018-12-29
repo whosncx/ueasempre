@@ -251,7 +251,7 @@ class RegisterPage extends React.Component {
             const form = new FormData();
               form.append('file', this.file);
               form.append('filename', data.id + '.png')
-              fetch('http://localhost:5000/upload', {
+              fetch(Global.API_URL + '/upload', {
                 method: 'POST',
                 body: form,
               }).then((response) => {
