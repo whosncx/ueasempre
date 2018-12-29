@@ -20,6 +20,7 @@ class SectionNavbars extends React.Component {
     }
   }
   goToRegister(){
+    sessionStorage.setItem('jwtToken','');
     this.props.history.push('/register-page')
   }
   goToLogin(){
