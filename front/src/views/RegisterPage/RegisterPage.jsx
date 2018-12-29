@@ -249,8 +249,7 @@ class RegisterPage extends React.Component {
         response.json().then((data) => {
             
             const form = new FormData();
-            console.log(this.file);
-            if(this.file!==null&&this.file!==undefined){              
+            try{           
               form.append('file', this.file);
               form.append('filename', data.id + '.png')
         
@@ -260,18 +259,16 @@ class RegisterPage extends React.Component {
               }).then((response) => {
                 response.json().then((body) => {
                   this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+                }).catch((e) => {
+                  console.log('cannot upload file');
                 });
               });
+            }catch(e){
+              console.log('cannot upload file');
             }
-            // alert('Cadastro Realizado com Sucesso')
-            // this.props.history.push('/login')
         }); 
         alert('Cadastro Realizado com Sucesso') 
         this.props.history.push('/login')
-        if(token)
-          this.props.history.push('/perfil')  
-        else    
-          this.props.history.push('/login')  
       } 
       // else {
       //   alert("CPF informado invalido, insira outro");
