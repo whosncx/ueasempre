@@ -142,7 +142,7 @@ class ProfilePage extends React.Component {
     );
     var edit = null;
     if(sessionStorage.getItem('jwtToken') !== null && sessionStorage.getItem('jwtToken') !== ''){
-      edit = <a href='/register-page'><Button color="primary" className='grid-registerButtonBoxLeft'>Editar</Button></a>
+      edit = <Button onClick={() => this.props.history.push('/register-page')} color="primary" className='grid-registerButtonBoxLeft'>Editar</Button>
     }
     
     return (
@@ -210,7 +210,7 @@ class ProfilePage extends React.Component {
 
                     <br/>
                     <div className={classes.centerContainer}>
-                      <a href='/list'><Button>Voltar</Button></a>
+                      <Button onClick={() => this.props.history.push('/list')}>Voltar</Button>
                       {edit}
                     </div>
               </div>
