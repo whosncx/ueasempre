@@ -249,17 +249,16 @@ class RegisterPage extends React.Component {
         response.json().then((data) => {
             
             const form = new FormData();
-            try{           
               form.append('file', this.file);
               form.append('filename', data.id + '.png')
-        
               fetch('http://localhost:5000/upload', {
                 method: 'POST',
                 body: form,
               }).then((response) => {
                 response.json().then((body) => {
-                  this.setState({ imageURL: 'http://localhost:5000/${body.file}' });
-                  alert('Cadastro Realizado com Sucesso') 
+                  console.log(body);
+                  console.log('Cadastro Realizado com Sucesso');
+                  alert('Cadastro Realizado com Sucesso') ;
                   this.props.history.push('/login')
                 }).catch((e) => {
                   console.log('cannot upload file');
@@ -267,11 +266,6 @@ class RegisterPage extends React.Component {
                   this.props.history.push('/login')
                 });
               });
-            }catch(e){
-              console.log('cannot upload file');
-              alert('Cadastro Realizado com Sucesso') 
-              this.props.history.push('/login')
-            }
         }); 
       } 
       // else {
@@ -516,7 +510,9 @@ class RegisterPage extends React.Component {
     return list;
   }
 
-  
+  handleError(e){
+    e.target.src = profile;
+  }
 
   render() {
   const { classes } = this.props;
@@ -647,7 +643,7 @@ let personalData = <CardBody>
                     <GridContainer justify="center">
                       <GridItem xs={6} sm={6} md={6}>
                         <div>
-                          <img src={this.state.imageURL !== ""? this.state.imageURL : profile} alt="..." className={imageClasses} />
+                          <img onError={this.handleError}  src={this.state.imageURL !== ""? this.state.imageURL : profile} alt="..." className={imageClasses} />
                         </div>
                       </GridItem>
                     </GridContainer>
