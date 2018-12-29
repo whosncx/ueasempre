@@ -258,17 +258,21 @@ class RegisterPage extends React.Component {
                 body: form,
               }).then((response) => {
                 response.json().then((body) => {
-                  this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+                  this.setState({ imageURL: 'http://localhost:5000/${body.file}' });
+                  alert('Cadastro Realizado com Sucesso') 
+                  this.props.history.push('/login')
                 }).catch((e) => {
                   console.log('cannot upload file');
+                  alert('Cadastro Realizado com Sucesso') 
+                  this.props.history.push('/login')
                 });
               });
             }catch(e){
               console.log('cannot upload file');
+              alert('Cadastro Realizado com Sucesso') 
+              this.props.history.push('/login')
             }
         }); 
-        alert('Cadastro Realizado com Sucesso') 
-        this.props.history.push('/login')
       } 
       // else {
       //   alert("CPF informado invalido, insira outro");
