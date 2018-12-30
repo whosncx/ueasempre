@@ -847,7 +847,7 @@ let professionalData = <CardBody>
                                   value={this.state.situation === 0? this.state.discSituation:this.state.egresSituation}
                                   onChange={this.handleChangeDiscSituation('discSituation')}
                                   inputProps={{
-                                    disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
+                                    // disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
                                     name: 'discSituation',
                                     id: 'situation-disc-for',
                                   }}
@@ -869,7 +869,7 @@ let professionalData = <CardBody>
                                   inputProps={{
                                     onChange: ((event) => this.handleChangeDiscFunction(event)),
                                     type: "text",
-                                    disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
+                                    // disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
                                     endAdornment: (
                                       <InputAdornment position="end">
                                         <img alt='...' src={employee} className={classes.inputIconsColor} />
@@ -889,7 +889,7 @@ let professionalData = <CardBody>
                             inputProps={{
                               onChange: ((event) => this.handleChangeDiscInstitution(event)),
                               type: "text",
-                              disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
+                              // disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
                               endAdornment: (
                                 <InputAdornment position="end">
                                   <img alt='...' src={linkedin} className={classes.inputIconsColor} />
@@ -908,7 +908,7 @@ let professionalData = <CardBody>
                             inputProps={{
                               onChange: ((event) => this.handleChangeLinkedin(event)),
                               type: "text",
-                              disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
+                              // disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
                               endAdornment: (
                                 <InputAdornment position="end">
                                   <img alt='...' src={linkedin} className={classes.inputIconsColor} />
@@ -926,7 +926,7 @@ let professionalData = <CardBody>
                             inputProps={{
                               onChange: ((event) => this.handleChangeLattes(event)),
                               type: "text",
-                              disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
+                              // disabled: (this.state.toggleSituationState === "trabalhando"?false:true),
                               endAdornment: (
                                 <InputAdornment position="end">
                                   <Description className={classes.inputIconsColor} />
