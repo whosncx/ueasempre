@@ -237,12 +237,11 @@ class RegisterPage extends React.Component {
       }
     }
 
-    if(this.state.name === '' || this.state.entryYear === '' || this.state.cpf === '' || this.state.password === ''
-    || this.state.course === '' || this.state.course === 'escolha' || this.state.unity === '' || this.state.unity === 'escolha') {
-      alert('Prencha todos os valores');
+    if((this.state.password === '')||(this.state.name === '' || this.state.entryYear === '' || this.state.cpf === '' || this.state.course === '' || this.state.course === 'escolha' || this.state.unity === '' || this.state.unity === 'escolha')) {
+      alert('Verifique se a senha e campos obrigatórios estão preenchidos');
+      this.props.history.push('/register-page')
       return;
     }
-
 
     fetch(Global.API_URL + '/cadastro', request).then((response) => {
       if(response.ok){
