@@ -82,7 +82,8 @@ class RegisterPage extends React.Component {
       lattes: "",
       whatsapp: "",
       cargo:"",
-      institution:""
+      institution:"",
+      // goPerfil: this.props.
     };
   }
   componentDidMount() {
@@ -126,7 +127,7 @@ class RegisterPage extends React.Component {
           this.props.history.push('/login');
         }
         response.json().then((data) => {
-          console.log(data);
+          // console.log(data);
           this.setState({
             name: data.nome,
             email: data.email,
@@ -255,14 +256,19 @@ class RegisterPage extends React.Component {
                 body: form,
               }).then((response) => {
                 response.json().then((body) => {
-                  console.log(body);
+                  // console.log(body);
                   console.log('Cadastro Realizado com Sucesso');
                   alert('Cadastro Realizado com Sucesso') ;
                   this.props.history.push('/login')
                 }).catch((e) => {
                   console.log('cannot upload file');
                   alert('Cadastro Realizado com Sucesso') 
-                  this.props.history.push('/login')
+                  if (token){
+                    // alert("vai pro perfil");
+                    this.props.history.push('/profile-page')
+                  }
+                  else{
+                    this.props.history.push('/login')                  }
                 });
               });
         }); 
