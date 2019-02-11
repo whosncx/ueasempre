@@ -17,7 +17,6 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import Global from 'views/Components/global'
 import camera from 'assets/img/faces/profile_default.png';
-import facebook from 'assets/img/facebook.png'
 
 import homePageStyle from "assets/jss/material-kit-react/views/homePage.jsx";
 
