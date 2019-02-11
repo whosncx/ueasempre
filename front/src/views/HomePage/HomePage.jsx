@@ -74,7 +74,7 @@ class HomePage extends React.Component {
               {this.state.alunos.map(c => 
                 <GridItem xs={12} sm={6} md={3}>
                 <Card className={classes.profile}>
-                   <CardBody>
+                   <CardBody onClick={() => this.props.history.push('profile-page/'+c.id)}>
                      
                     <GridContainer>
                       <GridItem xs={3} sm={12} md={12} className={classes.gridImage}>
