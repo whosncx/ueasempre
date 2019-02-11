@@ -40,7 +40,7 @@ class HomePage extends React.Component {
           });      
       }).catch((e) => {
           console.log(e);
-          alert('Houve um erro ao adicionar Aluno, tente novamente mais tarde');
+          alert('Houve um erro ao listar Alunos, tente novamente mais tarde');
       });
   }
 
